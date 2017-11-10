@@ -5,7 +5,6 @@ RSpec.describe "products/new", type: :view do
     assign(:product, Product.new(
       :product_name => "MyString",
       :description => "MyText",
-      # :order_price => "",
       :order_price => Money.new(10000, 'CHF'),
       :order_currency => "MyString"
     ))
