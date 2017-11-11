@@ -17,16 +17,16 @@ end
 4.times do
   FactoryBot.create(:user, role: 'cashier')
 end
-5.times do
+10.times do
   FactoryBot.create(:user, role: 'user')
 end
 
 
-10.times do
+15.times do
   FactoryBot.create(:supplier)
 end
 
 
-30.times do
+75.times do
   FactoryBot.create(:product)
 end
