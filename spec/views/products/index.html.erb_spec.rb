@@ -2,18 +2,24 @@ require 'rails_helper'
 
 RSpec.describe "products/index", type: :view do
   before(:each) do
+    @supplier = assign(:supplier, Supplier.create!(
+        :supplier_name => "MyString",
+        :description => "MyText"
+      ))
     assign(:products, [
       Product.create!(
         :product_name => "Product Name",
         :description => "MyText",
         :order_price => Money.new(10000, 'CHF'),
-        :order_currency => "Order Currency"
+        :order_currency => "Order Currency",
+        :supplier => @supplier
       ),
       Product.create!(
         :product_name => "Product Name",
         :description => "MyText",
         :order_price => Money.new(10000, 'CHF'),
-        :order_currency => "Order Currency"
+        :order_currency => "Order Currency",
+        :supplier => @supplier
       )
     ])
   end

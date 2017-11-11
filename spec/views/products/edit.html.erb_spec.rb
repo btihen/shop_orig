@@ -2,11 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "products/edit", type: :view do
   before(:each) do
+    @supplier = assign(:supplier, Supplier.create!(
+        :supplier_name => "MyString",
+        :description => "MyText"
+      ))
     @product = assign(:product, Product.create!(
       :product_name => "MyString",
       :description => "MyText",
       :order_price => Money.new(10000, 'CHF'),
-      :order_currency => "MyString"
+      :order_currency => "MyString",
+      :supplier => @supplier
     ))
   end
 
