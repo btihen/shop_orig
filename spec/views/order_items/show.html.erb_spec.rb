@@ -13,11 +13,22 @@ RSpec.describe "order_items/show", type: :view do
       :product_currency => "MyString",
       :supplier => @supplier
     ))
+    @user = assign(:user, User.create!(
+      :username => "MyUsernane",
+      :full_name => "MyName",
+      :role => "MyRole"
+    ))
+    @order = assign(:order, Order.create!(
+      :status => "MyString",
+      :reason => "MyText",
+      :user => @user
+    ))
     @order_item = assign(:order_item, OrderItem.create!(
       :quantity => 2,
       :note => "MyText",
       :item_purchase_price => Money.new(10000, 'CHF'),
-      :product => @product
+      :product => @product,
+      :order => @order
     ))
   end
 

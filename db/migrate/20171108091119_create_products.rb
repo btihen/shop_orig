@@ -5,7 +5,6 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.text :description
       t.monetize :product_price
       t.string :product_currency
-      t.references :products, :supplier, foreign_key: true, index: true
 
       t.timestamps
     end

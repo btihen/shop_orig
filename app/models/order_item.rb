@@ -1,5 +1,8 @@
 class OrderItem < ApplicationRecord
-  belongs_to  :product 
+  belongs_to  :order
+  belongs_to  :product
+  # has_one     :supplier, through: :products
 
   monetize :item_purchase_price_cents
+
 end
