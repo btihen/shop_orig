@@ -18,16 +18,17 @@ end
 4.times do
   FactoryBot.create(:user, role: 'cashier')
 end
-10.times do
-  FactoryBot.create(:user, role: 'user')
-end
-
+# 10.times do
+#   FactoryBot.create(:user, role: 'user')
+# end
 
 15.times do
   FactoryBot.create(:supplier)
 end
 
-
 75.times do
   FactoryBot.create(:product)
 end
+
+# add orders & items
+# add sales & items

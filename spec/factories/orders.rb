@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order do
-    status "MyString"
-    reason "MyText"
-    user nil
+    status { ApplicationHelper::ORDER_STATUS }
+    reason { Faker::Lorem.sentence }
+    user { FactoryHelpers.get_user() }
   end
 end
