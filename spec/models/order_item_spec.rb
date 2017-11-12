@@ -33,12 +33,20 @@ RSpec.describe OrderItem, type: :model do
           :product => @product,
           :order => @order
         )
+        @stock_item = StockItem.create!(
+          :status => "MyString",
+          :sale_price => Money.new(10000, 'CHF'),
+          :order_item => @order_item
+        )
       end
       it "Order Items can find their associated product" do
-        expect( @order_item.product ).to eq(@product)
+        expect( @order_item.product ).to eq( @product )
       end
       it "Order Items can find their associated supplier" do
-        expect( @order_item.supplier ).to eq(@supplier)
+        expect( @order_item.supplier ).to eq( @supplier )
+      end
+      it "can find which user stock_items this from this order_item" do
+        expect( @order_item.stock_items ).to eq( [@stock_item] )
       end
     end
 

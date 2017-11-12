@@ -33,6 +33,11 @@ RSpec.describe Order, type: :model do
         :product => @product,
         :order => @order
       )
+      @stock_item = StockItem.create!(
+        :status => "MyString",
+        :sale_price => Money.new(10000, 'CHF'),
+        :order_item => @order_item
+      )
     end
     it "order to find its ordered-items" do
       expect( @order.order_items ).to eq( [@order_item] )
@@ -43,7 +48,9 @@ RSpec.describe Order, type: :model do
     it "order to find its supplier prociding products" do
       expect( @order.supplier ).to eq( [@supplier] )
     end
-
+    it "order knows it stock_items" do
+      expect( @order.stock_items ).to eq( [@stock_item] )
+    end
   end
 
 
