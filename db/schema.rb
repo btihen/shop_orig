@@ -18,12 +18,15 @@ ActiveRecord::Schema.define(version: 20171111184255) do
   create_table "products", force: :cascade do |t|
     t.string "product_name"
     t.text "description"
-    t.integer "order_price_cents", default: 0, null: false
-    t.string "order_price_currency", default: "USD", null: false
-    t.string "order_currency"
+    t.integer "product_price_cents", default: 0, null: false
+    t.string "product_price_currency", default: "USD", null: false
+    t.string "product_currency"
+    t.bigint "products_id"
+    t.bigint "supplier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "supplier_id"
+    t.index ["products_id"], name: "index_products_on_products_id"
+    t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -41,4 +44,6 @@ ActiveRecord::Schema.define(version: 20171111184255) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "products", "products", column: "products_id"
+  add_foreign_key "products", "suppliers"
 end

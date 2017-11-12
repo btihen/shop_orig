@@ -10,15 +10,15 @@ RSpec.describe "products/index", type: :view do
       Product.create!(
         :product_name => "Product Name",
         :description => "MyText",
-        :order_price => Money.new(10000, 'CHF'),
-        :order_currency => "Order Currency",
+        :product_price => Money.new(10000, 'CHF'),
+        :product_currency => "Order Currency",
         :supplier => @supplier
       ),
       Product.create!(
         :product_name => "Product Name",
         :description => "MyText",
-        :order_price => Money.new(10000, 'CHF'),
-        :order_currency => "Order Currency",
+        :product_price => Money.new(10000, 'CHF'),
+        :product_currency => "Order Currency",
         :supplier => @supplier
       )
     ])

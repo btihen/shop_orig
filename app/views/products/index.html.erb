@@ -18,8 +18,8 @@
       <tr>
         <td><%= product.product_name %></td>
         <td><%= product.description %></td>
-        <td><%= product.order_price %></td>
-        <td><%= product.order_currency %></td>
+        <td><%= product.product_price %></td>
+        <td><%= product.product_currency %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
