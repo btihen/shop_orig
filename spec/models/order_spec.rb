@@ -35,7 +35,13 @@ RSpec.describe Order, type: :model do
       )
     end
     it "order to find its ordered-items" do
-      expect( @order.order_items ).to eq([@order_item])
+      expect( @order.order_items ).to eq( [@order_item] )
+    end
+    it "order to find its products ordered" do
+      expect( @order.products ).to eq( [@product] )
+    end
+    it "order to find its supplier prociding products" do
+      expect( @order.supplier ).to eq( [@supplier] )
     end
 
   end
