@@ -7,6 +7,7 @@ FactoryBot.define do
     product_price     { Money.new(Faker::Commerce.price * 100,
                         ApplicationHelper::CURRENCIES.sample) }
     product_currency  { ApplicationHelper::CURRENCIES.sample }
+    #
     supplier          { FactoryHelpers.get_supplier() }
   end
 end

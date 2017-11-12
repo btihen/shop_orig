@@ -18,13 +18,13 @@ RSpec.describe "order_items/index", type: :view do
         :quantity => 2,
         :note => "MyText",
         :item_purchase_price => Money.new(10000, 'CHF'),
-        # :product => @product
+        :product => @product
       ),
       OrderItem.create!(
         :quantity => 2,
         :note => "MyText",
         :item_purchase_price => Money.new(10000, 'CHF'),
-        # :product => @product
+        :product => @product
       )
     ])
   end

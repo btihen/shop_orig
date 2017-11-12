@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112083124) do
+ActiveRecord::Schema.define(version: 20171112084322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20171112083124) do
     t.string "item_purchase_price_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20171112083124) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "order_items", "products"
   add_foreign_key "products", "products", column: "products_id"
   add_foreign_key "products", "suppliers"
 end

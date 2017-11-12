@@ -17,7 +17,7 @@ RSpec.describe "order_items/new", type: :view do
       :quantity => 1,
       :note => "MyText",
       :item_purchase_price => Money.new(10000, 'CHF'),
-      # :product => @product
+      :product => @product
     ))
   end
 

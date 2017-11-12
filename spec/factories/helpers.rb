@@ -1,8 +1,6 @@
 module FactoryHelpers
   extend self
 
-  ROLES = %w[itadmin owner manager cachier user]
-
   def get_supplier
     random_number = rand(1 .. 100)
 
