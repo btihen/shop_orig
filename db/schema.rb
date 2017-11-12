@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112125757) do
+ActiveRecord::Schema.define(version: 20171112142942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 20171112125757) do
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
+  create_table "stock_items", force: :cascade do |t|
+    t.string "status"
+    t.date "add_date"
+    t.date "sale_date"
+    t.integer "sale_price_cents", default: 0, null: false
+    t.string "sale_price_currency", default: "USD", null: false
+    t.bigint "order_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_item_id"], name: "index_stock_items_on_order_item_id"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "supplier_name"
     t.text "description"
@@ -68,4 +80,5 @@ ActiveRecord::Schema.define(version: 20171112125757) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "suppliers"
+  add_foreign_key "stock_items", "order_items"
 end

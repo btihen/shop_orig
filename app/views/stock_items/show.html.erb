@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @stock_item.status %>
+</p>
+
+<p>
+  <strong>Add date:</strong>
+  <%= @stock_item.add_date %>
+</p>
+
+<p>
+  <strong>Sale date:</strong>
+  <%= @stock_item.sale_date %>
+</p>
+
+<p>
+  <strong>Sale price:</strong>
+  <%= @stock_item.sale_price %>
+</p>
+
+<p>
+  <strong>Order item:</strong>
+  <%= @stock_item.order_item %>
+</p>
+
+<%= link_to 'Edit', edit_stock_item_path(@stock_item) %> |
+<%= link_to 'Back', stock_items_path %>

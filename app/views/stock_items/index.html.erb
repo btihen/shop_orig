@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stock Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Add date</th>
+      <th>Sale date</th>
+      <th>Sale price</th>
+      <th>Order item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stock_items.each do |stock_item| %>
+      <tr>
+        <td><%= stock_item.status %></td>
+        <td><%= stock_item.add_date %></td>
+        <td><%= stock_item.sale_date %></td>
+        <td><%= stock_item.sale_price %></td>
+        <td><%= stock_item.order_item %></td>
+        <td><%= link_to 'Show', stock_item %></td>
+        <td><%= link_to 'Edit', edit_stock_item_path(stock_item) %></td>
+        <td><%= link_to 'Destroy', stock_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stock Item', new_stock_item_path %>
