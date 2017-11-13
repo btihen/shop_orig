@@ -2,24 +2,27 @@ require 'rails_helper'
 
 RSpec.describe "users/index", type: :view do
   before(:each) do
-    assign(:users, [
+    @users = assign(:users, [
       User.create!(
-        :username => "Username",
-        :full_name => "Full Name",
-        :role => "Role"
+        :username => "Username0",
+        :full_name => "Full Name0",
+        :role => "Role0"
       ),
       User.create!(
-        :username => "Username",
-        :full_name => "Full Name",
-        :role => "Role"
+        :username => "Username1",
+        :full_name => "Full Name1",
+        :role => "Role1"
       )
     ])
   end
 
   it "renders a list of users" do
     render
-    assert_select "tr>td", :text => "Username".to_s, :count => 2
-    assert_select "tr>td", :text => "Full Name".to_s, :count => 2
-    assert_select "tr>td", :text => "Role".to_s, :count => 2
+    assert_select "tr>td", :text => @users[0].username.to_s, :count => 1
+    assert_select "tr>td", :text => @users[1].username.to_s, :count => 1
+    assert_select "tr>td", :text => @users[0].full_name.to_s, :count => 1
+    assert_select "tr>td", :text => @users[1].full_name.to_s, :count => 1
+    assert_select "tr>td", :text => @users[0].role.to_s, :count => 1
+    assert_select "tr>td", :text => @users[1].role.to_s, :count => 1
   end
 end

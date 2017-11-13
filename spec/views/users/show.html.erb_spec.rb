@@ -11,8 +11,8 @@ RSpec.describe "users/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Username/)
-    expect(rendered).to match(/Full Name/)
-    expect(rendered).to match(/Role/)
+    expect(rendered).to match(/#{@user.username}/)
+    expect(rendered).to match(/#{@user.full_name}/)
+    expect(rendered).to match(/#{@user.role}/)
   end
 end
