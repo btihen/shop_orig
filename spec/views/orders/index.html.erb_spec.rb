@@ -7,15 +7,15 @@ RSpec.describe "orders/index", type: :view do
       :full_name => "MyName",
       :role => "MyRole"
     ))
-    assign(:orders, [
+    @orders = assign(:orders, [
       Order.create!(
-        :status => "Status",
-        :reason => "MyText",
+        :status => "Status0",
+        :reason => "MyText0",
         :user => @user
       ),
       Order.create!(
-        :status => "Status",
-        :reason => "MyText",
+        :status => "Status1",
+        :reason => "MyText1",
         :user => @user
       )
     ])
@@ -23,8 +23,10 @@ RSpec.describe "orders/index", type: :view do
 
   it "renders a list of orders" do
     render
-    assert_select "tr>td", :text => "Status".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
-    assert_select "tr>td", :text => "#{@user.full_name}".to_s, :count => 2
+    assert_select "tr>td", :text => @orders[0].status.to_s, :count => 1
+    assert_select "tr>td", :text => @orders[1].status.to_s, :count => 1
+    assert_select "tr>td", :text => @orders[0].reason.to_s, :count => 1
+    assert_select "tr>td", :text => @orders[1].reason.to_s, :count => 1
+    assert_select "tr>td", :text => @user.full_name.to_s, :count => 2
   end
 end
