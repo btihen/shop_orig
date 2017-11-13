@@ -30,15 +30,15 @@ RSpec.describe "stock_items/index", type: :view do
       :product => @product,
       :order => @order
     ))
-    assign(:stock_items, [
+    @stock_items = assign(:stock_items, [
       StockItem.create!(
-        :status => "Status",
+        :status => "Status0",
         :sale_price => Money.new(10000, 'CHF'),
         :order_item => @order_item
       ),
       StockItem.create!(
-        :status => "Status",
-        :sale_price => Money.new(10000, 'CHF'),
+        :status => "Status1",
+        :sale_price => Money.new(9000, 'CHF'),
         :order_item => @order_item
       )
     ])
@@ -46,8 +46,10 @@ RSpec.describe "stock_items/index", type: :view do
 
   it "renders a list of stock_items" do
     render
-    assert_select "tr>td", :text => "Status".to_s, :count => 2
-    assert_select "tr>td", :text => "#{Money.new(10000, 'CHF')}".to_s, :count => 2
-    # assert_select "tr>td", :text => nil.to_s, :count => 2
+    assert_select "tr>td", :text => @stock_items[0].status.to_s, :count => 1
+    assert_select "tr>td", :text => @stock_items[1].status.to_s, :count => 1
+    assert_select "tr>td", :text => @stock_items[0].status.to_s, :count => 1
+    assert_select "tr>td", :text => @stock_items[1].status.to_s, :count => 1
+    assert_select "tr>td", :text => @stock_items[0].order_item.id.to_s, :count => 2
   end
 end

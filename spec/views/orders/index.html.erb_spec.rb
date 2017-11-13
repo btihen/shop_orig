@@ -27,6 +27,6 @@ RSpec.describe "orders/index", type: :view do
     assert_select "tr>td", :text => @orders[1].status.to_s, :count => 1
     assert_select "tr>td", :text => @orders[0].reason.to_s, :count => 1
     assert_select "tr>td", :text => @orders[1].reason.to_s, :count => 1
-    assert_select "tr>td", :text => @user.full_name.to_s, :count => 2
+    assert_select "tr>td", :text => @orders[0].user.full_name.to_s, :count => 2
   end
 end

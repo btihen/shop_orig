@@ -27,6 +27,6 @@ RSpec.describe "registers/index", type: :view do
     assert_select "tr>td", :text => @registers[0].close_amount.to_s, :count => 1
     assert_select "tr>td", :text => @registers[1].open_amount.to_s, :count => 1
     assert_select "tr>td", :text => @registers[1].close_amount.to_s, :count => 1
-    assert_select "tr>td", :text => @user.full_name.to_s, :count => 2
+    assert_select "tr>td", :text => @registers[0].user.full_name.to_s, :count => 2
   end
 end

@@ -21,7 +21,7 @@
         <td><%= stock_item.add_datetime %></td>
         <td><%= stock_item.sale_datetime %></td>
         <td><%= stock_item.sale_price %></td>
-        <td><%= stock_item.order_item %></td>
+        <td><%= stock_item.order_item.id %></td>
         <td><%= link_to 'Show', stock_item %></td>
         <td><%= link_to 'Edit', edit_stock_item_path(stock_item) %></td>
         <td><%= link_to 'Destroy', stock_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>

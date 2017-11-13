@@ -18,6 +18,6 @@ RSpec.describe "registers/show", type: :view do
     render
     expect(rendered).to match(/#{@register.open_amount}/)
     expect(rendered).to match(/#{@register.close_amount}/)
-    expect(rendered).to match(/#{@user.full_name}/)
+    expect(rendered).to match(/#{@register.user.full_name}/)
   end
 end
