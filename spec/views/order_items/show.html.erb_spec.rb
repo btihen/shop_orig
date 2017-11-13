@@ -34,8 +34,8 @@ RSpec.describe "order_items/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/2/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/100.00/)
+    expect(rendered).to match(/#{@order_item.quantity}/)
+    expect(rendered).to match(/#{@order_item.note}/)
+    expect(rendered).to match(/#{@order_item.item_purchase_price}/)
   end
 end
