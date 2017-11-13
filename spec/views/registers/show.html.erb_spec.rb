@@ -16,8 +16,8 @@ RSpec.describe "registers/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/#{Money.new(10000, 'CHF')}/)
-    expect(rendered).to match(/#{Money.new(9000, 'CHF')}/)
+    expect(rendered).to match(/#{@register.open_amount}/)
+    expect(rendered).to match(/#{@register.close_amount}/)
     expect(rendered).to match(/#{@user.full_name}/)
   end
 end
