@@ -41,6 +41,10 @@ RSpec.describe User, type: :model do
       :close_amount => Money.new(9000, 'CHF'),
       :user => @user
     )
+    @sale = Sale.create!(
+      :payment_method => "MyString",
+      :register => @register
+    )
   end
 
   context "test stock_items relationships" do
@@ -57,9 +61,9 @@ RSpec.describe User, type: :model do
     it "can find its registers" do
       expect(@user.registers).to eq( [@register] )
     end
-    # it "can find its sales" do
-    #   expect(@user.sales).to eq( [@sale] )
-    # end
+    it "can find its sales" do
+      expect(@user.sales).to eq( [@sale] )
+    end
     # it "can find its sales_items" do
     #   expect(@user.sales_items).to eq( [@sales_items] )
     # end

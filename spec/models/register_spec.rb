@@ -14,9 +14,19 @@ RSpec.describe Register, type: :model do
       :close_amount => Money.new(9000, 'CHF'),
       :user => @user
     )
+    @sale = Sale.create!(
+      :payment_method => "MyString",
+      :register => @register
+    )
   end
 
-  it "register to find its user" do
-    expect( @register.user ).to eq( @user )
+  context "find model relationships" do
+    it "register to find its user" do
+      expect( @register.user ).to eq( @user )
+    end
+    it "register to find its sales" do
+      expect( @register.sales ).to eq( [@sale] )
+    end
   end
+
 end
