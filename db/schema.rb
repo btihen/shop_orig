@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113124110) do
+ActiveRecord::Schema.define(version: 20171113131359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,12 +61,6 @@ ActiveRecord::Schema.define(version: 20171113124110) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer "sale_amount_cents", default: 0, null: false
-    t.string "sale_amount_currency", default: "USD", null: false
-    t.integer "amount_given_cents", default: 0, null: false
-    t.string "amount_given_currency", default: "USD", null: false
-    t.integer "return_amount_cents", default: 0, null: false
-    t.string "return_amount_currency", default: "USD", null: false
     t.string "payment_method"
     t.bigint "register_id"
     t.datetime "created_at", null: false

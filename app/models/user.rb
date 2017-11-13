@@ -4,5 +4,6 @@ class User < ApplicationRecord
   has_many :stock_items, through: :order_items
   #
   has_many :registers
+  has_many :sales,       through: :registers
 
 end
