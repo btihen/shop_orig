@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
       :order_item => @order_item
     )
     @register = Register.create!(
-      :open_amount => Money.new(10000, 'CHF'),
+      :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
       :user => @user
     )

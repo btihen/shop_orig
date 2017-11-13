@@ -8,7 +8,7 @@ RSpec.describe "registers/show", type: :view do
       :role => "MyRole"
     ))
     @register = assign(:register, Register.create!(
-      :open_amount => Money.new(10000, 'CHF'),
+      :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
       :user => @user
     ))
@@ -16,7 +16,7 @@ RSpec.describe "registers/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/#{@register.open_amount}/)
+    expect(rendered).to match(/#{@register.start_amount}/)
     expect(rendered).to match(/#{@register.close_amount}/)
     expect(rendered).to match(/#{@register.user.full_name}/)
   end

@@ -1,7 +1,8 @@
 class Register < ApplicationRecord
   belongs_to :user
+  has_many   :sales
 
-  monetize :open_amount_cents
+  monetize :start_amount_cents
   monetize :close_amount_cents
-  
+
 end

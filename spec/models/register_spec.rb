@@ -10,7 +10,7 @@ RSpec.describe Register, type: :model do
       :role => "MyRole"
     )
     @register = Register.create!(
-      :open_amount => Money.new(10000, 'CHF'),
+      :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
       :user => @user
     )

@@ -8,7 +8,7 @@ RSpec.describe "registers/edit", type: :view do
       :role => "MyRole"
     ))
     @register = assign(:register, Register.create!(
-      :open_amount => Money.new(10000, 'CHF'),
+      :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
       :user => @user
     ))
@@ -19,7 +19,7 @@ RSpec.describe "registers/edit", type: :view do
 
     assert_select "form[action=?][method=?]", register_path(@register), "post" do
 
-      assert_select "input[name=?]", "register[open_amount]"
+      assert_select "input[name=?]", "register[start_amount]"
 
       assert_select "input[name=?]", "register[close_amount]"
 

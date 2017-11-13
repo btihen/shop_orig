@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113093729) do
+ActiveRecord::Schema.define(version: 20171113124110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,14 +50,28 @@ ActiveRecord::Schema.define(version: 20171113093729) do
   end
 
   create_table "registers", force: :cascade do |t|
-    t.integer "open_amount_cents", default: 0, null: false
-    t.string "open_amount_currency", default: "USD", null: false
+    t.integer "start_amount_cents", default: 0, null: false
+    t.string "start_amount_currency", default: "USD", null: false
     t.integer "close_amount_cents", default: 0, null: false
     t.string "close_amount_currency", default: "USD", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_registers_on_user_id"
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer "sale_amount_cents", default: 0, null: false
+    t.string "sale_amount_currency", default: "USD", null: false
+    t.integer "amount_given_cents", default: 0, null: false
+    t.string "amount_given_currency", default: "USD", null: false
+    t.integer "return_amount_cents", default: 0, null: false
+    t.string "return_amount_currency", default: "USD", null: false
+    t.string "payment_method"
+    t.bigint "register_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["register_id"], name: "index_sales_on_register_id"
   end
 
   create_table "stock_items", force: :cascade do |t|
@@ -92,5 +106,6 @@ ActiveRecord::Schema.define(version: 20171113093729) do
   add_foreign_key "orders", "users"
   add_foreign_key "products", "suppliers"
   add_foreign_key "registers", "users"
+  add_foreign_key "sales", "registers"
   add_foreign_key "stock_items", "order_items"
 end
