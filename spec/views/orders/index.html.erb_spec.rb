@@ -25,6 +25,6 @@ RSpec.describe "orders/index", type: :view do
     render
     assert_select "tr>td", :text => "Status".to_s, :count => 2
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
-    # assert_select "tr>td", :text => nil.to_s, :count => 2
+    assert_select "tr>td", :text => "#{@user.full_name}".to_s, :count => 2
   end
 end

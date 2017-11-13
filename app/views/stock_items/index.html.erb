@@ -18,8 +18,8 @@
     <% @stock_items.each do |stock_item| %>
       <tr>
         <td><%= stock_item.status %></td>
-        <td><%= stock_item.add_date %></td>
-        <td><%= stock_item.sale_date %></td>
+        <td><%= stock_item.add_datetime %></td>
+        <td><%= stock_item.sale_datetime %></td>
         <td><%= stock_item.sale_price %></td>
         <td><%= stock_item.order_item %></td>
         <td><%= link_to 'Show', stock_item %></td>

@@ -16,8 +16,8 @@ RSpec.describe "orders/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Status/)
-    expect(rendered).to match(/MyText/)
-    # expect(rendered).to match(//)
+    expect(rendered).to match(/#{@order.status}/)
+    expect(rendered).to match(/#{@order.reason}/)
+    expect(rendered).to match(/#{@user.full_name}/)
   end
 end

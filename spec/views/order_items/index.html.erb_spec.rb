@@ -23,18 +23,18 @@ RSpec.describe "order_items/index", type: :view do
       :reason => "MyText",
       :user => @user
     ))
-    assign(:order_items, [
+    @order_items = assign(:order_items, [
       OrderItem.create!(
-        :quantity => 2,
-        :note => "MyText",
+        :quantity => 1,
+        :note => "MyText1",
         :item_purchase_price => Money.new(10000, 'CHF'),
         :product => @product,
         :order => @order
       ),
       OrderItem.create!(
         :quantity => 2,
-        :note => "MyText",
-        :item_purchase_price => Money.new(10000, 'CHF'),
+        :note => "MyText2",
+        :item_purchase_price => Money.new(9000, 'CHF'),
         :product => @product,
         :order => @order
       )
@@ -43,8 +43,11 @@ RSpec.describe "order_items/index", type: :view do
 
   it "renders a list of order_items" do
     render
-    assert_select "tr>td", :text => 2.to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
-    assert_select "tr>td", :text => "#{Money.new(10000, 'CHF')}".to_s, :count => 2
+    assert_select "tr>td", :text => @order_items[0].quantity.to_s, :count => 1
+    assert_select "tr>td", :text => @order_items[1].quantity.to_s, :count => 1
+    assert_select "tr>td", :text => @order_items[0].note.to_s, :count => 1
+    assert_select "tr>td", :text => @order_items[1].note.to_s, :count => 1
+    assert_select "tr>td", :text => @order_items[0].item_purchase_price.to_s, :count => 1
+    assert_select "tr>td", :text => @order_items[1].item_purchase_price.to_s, :count => 1
   end
 end
