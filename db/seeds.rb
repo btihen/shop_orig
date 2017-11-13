@@ -30,5 +30,8 @@ end
   FactoryBot.create(:product)
 end
 
-# add orders & items
-# add sales & items
+# add orders
+# add order_items
+# add register
+# add sales
+# add sales_items
