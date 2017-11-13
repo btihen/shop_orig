@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sale_items
   resources :sales
   resources :registers
   resources :stock_items

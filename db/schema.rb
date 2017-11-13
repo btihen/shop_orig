@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113131359) do
+ActiveRecord::Schema.define(version: 20171113134137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 20171113131359) do
     t.index ["user_id"], name: "index_registers_on_user_id"
   end
 
+  create_table "sale_items", force: :cascade do |t|
+    t.text "note"
+    t.integer "sale_price_cents", default: 0, null: false
+    t.string "sale_price_currency", default: "USD", null: false
+    t.bigint "sale_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sale_id"], name: "index_sale_items_on_sale_id"
+  end
+
   create_table "sales", force: :cascade do |t|
     t.string "payment_method"
     t.bigint "register_id"
@@ -100,6 +110,7 @@ ActiveRecord::Schema.define(version: 20171113131359) do
   add_foreign_key "orders", "users"
   add_foreign_key "products", "suppliers"
   add_foreign_key "registers", "users"
+  add_foreign_key "sale_items", "sales"
   add_foreign_key "sales", "registers"
   add_foreign_key "stock_items", "order_items"
 end
