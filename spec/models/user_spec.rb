@@ -36,6 +36,11 @@ RSpec.describe User, type: :model do
       :sale_price => Money.new(10000, 'CHF'),
       :order_item => @order_item
     )
+    @register = Register.create!(
+      :open_amount => Money.new(10000, 'CHF'),
+      :close_amount => Money.new(9000, 'CHF'),
+      :user => @user
+    )
   end
 
   context "test stock_items relationships" do
@@ -48,6 +53,16 @@ RSpec.describe User, type: :model do
     it "can find its stock_items" do
       expect(@user.stock_items).to eq( [@stock_item] )
     end
+    #
+    it "can find its registers" do
+      expect(@user.registers).to eq( [@register] )
+    end
+    # it "can find its sales" do
+    #   expect(@user.sales).to eq( [@sale] )
+    # end
+    # it "can find its sales_items" do
+    #   expect(@user.sales_items).to eq( [@sales_items] )
+    # end
   end
 
   context "check user relationships"

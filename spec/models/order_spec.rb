@@ -39,6 +39,9 @@ RSpec.describe Order, type: :model do
         :order_item => @order_item
       )
     end
+    it "order to find its user" do
+      expect( @order.user ).to eq( @user )
+    end
     it "order to find its ordered-items" do
       expect( @order.order_items ).to eq( [@order_item] )
     end
