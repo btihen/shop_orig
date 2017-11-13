@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Open amount:</strong>
+  <%= @register.open_amount %>
+</p>
+
+<p>
+  <strong>Close amount:</strong>
+  <%= @register.close_amount %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @register.user.full_name %>
+</p>
+
+<%= link_to 'Edit', edit_register_path(@register) %> |
+<%= link_to 'Back', registers_path %>
