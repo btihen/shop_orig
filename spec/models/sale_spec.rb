@@ -18,6 +18,11 @@ RSpec.describe Sale, type: :model do
       :payment_method => "MyString",
       :register => @register
     )
+    @sale_item = SaleItem.create!(
+      :note => "MyText",
+      :sale_price => Money.new(9000, 'CHF'),
+      :sale => @sale
+    )
   end
 
   context "model can find its relationships" do
@@ -27,7 +32,9 @@ RSpec.describe Sale, type: :model do
     it "finds it's register" do
       expect( @sale.register ).to eq( @register )
     end
-    it "finds it's sales_items"
+    it "finds it's sales_items" do
+      expect( @sale.sale_items ).to eq( [@sale_item] )
+    end
   end
 
 end

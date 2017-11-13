@@ -45,9 +45,14 @@ RSpec.describe User, type: :model do
       :payment_method => "MyString",
       :register => @register
     )
+    @sale_item = SaleItem.create!(
+      :note => "MyText",
+      :sale_price => Money.new(9000, 'CHF'),
+      :sale => @sale
+    )
   end
 
-  context "test stock_items relationships" do
+  context "test user relationships" do
     it "can find its orders" do
       expect(@user.orders).to eq( [@order] )
     end
@@ -64,11 +69,9 @@ RSpec.describe User, type: :model do
     it "can find its sales" do
       expect(@user.sales).to eq( [@sale] )
     end
-    # it "can find its sales_items" do
-    #   expect(@user.sales_items).to eq( [@sales_items] )
-    # end
+    it "can find its sales_items" do
+      expect(@user.sale_items).to eq( [@sale_item] )
+    end
   end
-
-  context "check user relationships"
 
 end
