@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
       :product_currency => "MyString",
       :supplier => @supplier
     )
-    @user = User.create!(
+    @manager = User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
     @order = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :user => @user
+      :user => @manager
     )
     @order_item = OrderItem.create!(
       :quantity => 2,
@@ -36,10 +36,16 @@ RSpec.describe User, type: :model do
       :sale_price => Money.new(10000, 'CHF'),
       :order_item => @order_item
     )
+    #####################
+    @cashier = User.create!(
+      :username => "MyUsernane",
+      :full_name => "MyName",
+      :role => "MyRole"
+    )
     @register = Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
-      :user => @user
+      :user => @cashier
     )
     @sale = Sale.create!(
       :payment_method => "MyString",
@@ -48,29 +54,30 @@ RSpec.describe User, type: :model do
     @sale_item = SaleItem.create!(
       :note => "MyText",
       :sale_price => Money.new(9000, 'CHF'),
-      :sale => @sale
+      :sale => @sale,
+      :stock_item => @stock_item
     )
   end
 
   context "test user relationships" do
     it "can find its orders" do
-      expect(@user.orders).to eq( [@order] )
+      expect(@manager.orders).to eq( [@order] )
     end
     it "can find its order_items" do
-      expect(@user.order_items).to eq( [@order_item] )
+      expect(@manager.order_items).to eq( [@order_item] )
     end
     it "can find its stock_items" do
-      expect(@user.stock_items).to eq( [@stock_item] )
+      expect(@manager.stock_items).to eq( [@stock_item] )
     end
     #
     it "can find its registers" do
-      expect(@user.registers).to eq( [@register] )
+      expect(@cashier.registers).to eq( [@register] )
     end
     it "can find its sales" do
-      expect(@user.sales).to eq( [@sale] )
+      expect(@cashier.sales).to eq( [@sale] )
     end
     it "can find its sales_items" do
-      expect(@user.sale_items).to eq( [@sale_item] )
+      expect(@cashier.sale_items).to eq( [@sale_item] )
     end
   end
 

@@ -2,7 +2,41 @@ require 'rails_helper'
 
 RSpec.describe "sale_items/show", type: :view do
   before(:each) do
-    @user = assign(:user, User.create!(
+    @supplier = assign(:supplier, Supplier.create!(
+        :supplier_name => "MyString",
+        :description => "MyText"
+      ))
+    @product = assign(:product, Product.create!(
+      :product_name => "MyString",
+      :description => "MyText",
+      :product_price => Money.new(10000, 'CHF'),
+      :product_currency => "MyString",
+      :supplier => @supplier
+    ))
+    @manager = assign(:user, User.create!(
+      :username => "MyUsernane",
+      :full_name => "MyName",
+      :role => "MyRole"
+    ))
+    @order = assign(:order, Order.create!(
+      :status => "MyString",
+      :reason => "MyText",
+      :user => @manager
+    ))
+    @order_item = assign(:order_item, OrderItem.create!(
+      :quantity => 1,
+      :note => "MyText",
+      :item_purchase_price => Money.new(10000, 'CHF'),
+      :product => @product,
+      :order => @order
+    ))
+    @stock_item = assign(:stock_item, StockItem.create!(
+      :status => "MyString",
+      :sale_price => Money.new(10000, 'CHF'),
+      :order_item => @order_item
+    ))
+    ########
+    @cashier = assign(:user, User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -10,7 +44,7 @@ RSpec.describe "sale_items/show", type: :view do
     @register = assign(:register, Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
-      :user => @user
+      :user => @cashier
     ))
     @sale = assign(:sale, Sale.create!(
       :payment_method => "MyString",
@@ -19,7 +53,8 @@ RSpec.describe "sale_items/show", type: :view do
     @sale_item = assign(:sale_item, SaleItem.create!(
       :note => "MyText",
       :sale_price => Money.new(9000, 'CHF'),
-      :sale => @sale
+      :sale => @sale,
+      :stock_item => @stock_item
     ))
   end
 
