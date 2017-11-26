@@ -70,6 +70,12 @@ RSpec.describe Register, type: :model do
     it "register to find its sales_items" do
       expect( @register.sale_items ).to eq( [@sale_item] )
     end
+    it "register to find its order_items" do
+      expect( @register.order_items ).to eq( [@order_item] )
+    end
+    it "register to find its products_sold" do
+      expect( @register.products_sold ).to eq( [@product] )
+    end
   end
 
 end
