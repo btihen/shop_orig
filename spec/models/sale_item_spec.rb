@@ -23,7 +23,7 @@ RSpec.describe SaleItem, type: :model do
     @order = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :user => @procurer
+      :procurer => @procurer
     )
     @order_item = OrderItem.create!(
       :quantity => 2,
@@ -46,7 +46,7 @@ RSpec.describe SaleItem, type: :model do
     @register = Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
-      :user => @cashier
+      :cashier => @cashier
     )
     @sale = Sale.create!(
       :payment_method => "MyString",
@@ -62,7 +62,7 @@ RSpec.describe SaleItem, type: :model do
 
   context "test sale_item relationships" do
     it "can find it's user" do
-      expect(@sale_item.user).to eq( @cashier )
+      expect(@sale_item.cashier).to eq( @cashier )
     end
     it "can find its register" do
       expect(@sale_item.register).to eq( @register )
@@ -85,9 +85,9 @@ RSpec.describe SaleItem, type: :model do
     it "can find its order" do
       expect(@sale_item.order).to eq( @order )
     end
-    # it "can find its procurer" do
-    #   expect(@sale_item.procurer).to eq( @procurer )
-    # end
+    it "can find its procurer" do
+      expect(@sale_item.procurer).to eq( @procurer )
+    end
   end
 
 end

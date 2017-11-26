@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "registers/index", type: :view do
   before(:each) do
-    @user = assign(:user, User.create!(
+    @cashier = assign(:user, User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -11,12 +11,12 @@ RSpec.describe "registers/index", type: :view do
       Register.create!(
         :start_amount => Money.new(10000, 'CHF'),
         :close_amount => Money.new(9000, 'CHF'),
-        :user => @user
+        :cashier => @cashier
       ),
       Register.create!(
         :start_amount => Money.new(110000, 'CHF'),
         :close_amount => Money.new(19000, 'CHF'),
-        :user => @user
+        :cashier => @cashier
       )
     ])
   end
@@ -27,6 +27,6 @@ RSpec.describe "registers/index", type: :view do
     assert_select "tr>td", :text => @registers[0].close_amount.to_s, :count => 1
     assert_select "tr>td", :text => @registers[1].start_amount.to_s, :count => 1
     assert_select "tr>td", :text => @registers[1].close_amount.to_s, :count => 1
-    assert_select "tr>td", :text => @registers[0].user.full_name.to_s, :count => 2
+    assert_select "tr>td", :text => @registers[0].cashier.full_name.to_s, :count => 2
   end
 end

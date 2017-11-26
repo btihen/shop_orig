@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "orders/edit", type: :view do
   before(:each) do
-    @user = assign(:user, User.create!(
+    @procurer = assign(:user, User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -10,7 +10,7 @@ RSpec.describe "orders/edit", type: :view do
     @order = assign(:order, Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :user => @user
+      :procurer => @procurer
     ))
   end
 

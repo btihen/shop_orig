@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "sales/edit", type: :view do
   before(:each) do
-    @user = assign(:user, User.create!(
+    @cashier = assign(:user, User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -10,7 +10,7 @@ RSpec.describe "sales/edit", type: :view do
     @register = assign(:register, Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
-      :user => @user
+      :cashier => @cashier
     ))
     @sale = assign(:sale, Sale.create!(
       :payment_method => "MyString",

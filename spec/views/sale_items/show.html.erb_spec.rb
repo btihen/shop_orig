@@ -13,7 +13,7 @@ RSpec.describe "sale_items/show", type: :view do
       :product_currency => "MyString",
       :supplier => @supplier
     ))
-    @manager = assign(:user, User.create!(
+    @procurer = assign(:user, User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -21,7 +21,7 @@ RSpec.describe "sale_items/show", type: :view do
     @order = assign(:order, Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :user => @manager
+      :procurer => @procurer
     ))
     @order_item = assign(:order_item, OrderItem.create!(
       :quantity => 1,
@@ -44,7 +44,7 @@ RSpec.describe "sale_items/show", type: :view do
     @register = assign(:register, Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
-      :user => @cashier
+      :cashier => @cashier
     ))
     @sale = assign(:sale, Sale.create!(
       :payment_method => "MyString",

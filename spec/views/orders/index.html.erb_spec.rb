@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "orders/index", type: :view do
   before(:each) do
-    @user = assign(:user, User.create!(
+    @procurer = assign(:user, User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -11,12 +11,12 @@ RSpec.describe "orders/index", type: :view do
       Order.create!(
         :status => "Status0",
         :reason => "MyText0",
-        :user => @user
+        :procurer => @procurer
       ),
       Order.create!(
         :status => "Status1",
         :reason => "MyText1",
-        :user => @user
+        :procurer => @procurer
       )
     ])
   end
@@ -27,6 +27,6 @@ RSpec.describe "orders/index", type: :view do
     assert_select "tr>td", :text => @orders[1].status.to_s, :count => 1
     assert_select "tr>td", :text => @orders[0].reason.to_s, :count => 1
     assert_select "tr>td", :text => @orders[1].reason.to_s, :count => 1
-    assert_select "tr>td", :text => @orders[0].user.full_name.to_s, :count => 2
+    assert_select "tr>td", :text => @orders[0].procurer.full_name.to_s, :count => 2
   end
 end

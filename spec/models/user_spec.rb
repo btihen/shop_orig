@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
       :product_currency => "MyString",
       :supplier => @supplier
     )
-    @manager = User.create!(
+    @procurer = User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
     @order = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :user => @manager
+      :procurer => @procurer
     )
     @order_item = OrderItem.create!(
       :quantity => 2,
@@ -45,7 +45,7 @@ RSpec.describe User, type: :model do
     @register = Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
-      :user => @cashier
+      :cashier => @cashier
     )
     @sale = Sale.create!(
       :payment_method => "MyString",
@@ -61,14 +61,14 @@ RSpec.describe User, type: :model do
 
   context "test user relationships" do
     it "can find its orders" do
-      expect(@manager.orders).to eq( [@order] )
+      expect(@procurer.orders).to eq( [@order] )
     end
     it "can find its order_items" do
-      expect(@manager.order_items).to eq( [@order_item] )
+      expect(@procurer.order_items).to eq( [@order_item] )
     end
-    it "can find its stock_items" do
-      expect(@manager.stock_items).to eq( [@stock_item] )
-    end
+    # it "can find its products_ordered" do
+    #   expect(@procurer.products_ordered).to eq( [@products_ordered] )
+    # end
     #
     it "can find its registers" do
       expect(@cashier.registers).to eq( [@register] )
@@ -79,6 +79,12 @@ RSpec.describe User, type: :model do
     it "can find its sales_items" do
       expect(@cashier.sale_items).to eq( [@sale_item] )
     end
+    it "can find its stock_items" do
+      expect(@cashier.stock_items).to eq( [@stock_item] )
+    end
+    # it "can find its products_sold" do
+    #   expect(@procurer.products_sold).to eq( [@products_sold] )
+    # end
   end
 
 end

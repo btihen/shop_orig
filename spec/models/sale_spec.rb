@@ -15,7 +15,7 @@ RSpec.describe Sale, type: :model do
       :product_currency => "MyString",
       :supplier => @supplier
     )
-    @manager = User.create!(
+    @procurer = User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -23,7 +23,7 @@ RSpec.describe Sale, type: :model do
     @order = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :user => @manager
+      :procurer => @procurer
     )
     @order_item = OrderItem.create!(
       :quantity => 2,
@@ -46,7 +46,7 @@ RSpec.describe Sale, type: :model do
     @register = Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
-      :user => @cashier
+      :cashier => @cashier
     )
     @sale = Sale.create!(
       :payment_method => "MyString",
@@ -62,7 +62,7 @@ RSpec.describe Sale, type: :model do
 
   context "model can find its relationships" do
     it "finds it's user" do
-      expect( @sale.user ).to eq( @cashier )
+      expect( @sale.cashier ).to eq( @cashier )
     end
     it "finds it's register" do
       expect( @sale.register ).to eq( @register )
