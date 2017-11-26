@@ -14,6 +14,7 @@ RSpec.describe User, type: :model do
       :product_currency => "MyString",
       :supplier => @supplier
     )
+    ######
     @procurer = User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
@@ -66,9 +67,9 @@ RSpec.describe User, type: :model do
     it "can find its order_items" do
       expect(@procurer.order_items).to eq( [@order_item] )
     end
-    # it "can find its products_ordered" do
-    #   expect(@procurer.products_ordered).to eq( [@products_ordered] )
-    # end
+    it "can find its products_ordered" do
+      expect(@procurer.products_ordered).to eq( [@product] )
+    end
     #
     it "can find its registers" do
       expect(@cashier.registers).to eq( [@register] )
@@ -82,9 +83,15 @@ RSpec.describe User, type: :model do
     it "can find its stock_items" do
       expect(@cashier.stock_items).to eq( [@stock_item] )
     end
-    # it "can find its products_sold" do
-    #   expect(@procurer.products_sold).to eq( [@products_sold] )
-    # end
+    it "can find its sold_stock_items" do
+      expect(@cashier.stock_items).to eq( [@stock_item] )
+    end
+    xit "can find its sold_order_items" do
+      expect(@cashier.sold_order_items).to eq( [@order_items] )
+    end
+    xit "can find its products_sold" do
+      expect(@cashier.products_sold).to eq( [@product] )
+    end
   end
 
 end
