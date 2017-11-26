@@ -15,7 +15,7 @@ RSpec.describe Sale, type: :model do
       :product_currency => "MyString",
       :supplier => @supplier
     )
-    @procurer = User.create!(
+    @sourcer = User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -23,7 +23,7 @@ RSpec.describe Sale, type: :model do
     @order = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :procurer => @procurer
+      :sourcer => @sourcer
     )
     @order_item = OrderItem.create!(
       :quantity => 2,

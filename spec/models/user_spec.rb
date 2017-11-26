@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
       :supplier => @supplier
     )
     ######
-    @procurer = User.create!(
+    @sourcer = User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -30,12 +30,12 @@ RSpec.describe User, type: :model do
     @order1 = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :procurer => @procurer
+      :sourcer => @sourcer
     )
     @order2 = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :procurer => @procurer
+      :sourcer => @sourcer
     )
     @order_item1 = OrderItem.create!(
       :quantity => 2,
@@ -86,13 +86,13 @@ RSpec.describe User, type: :model do
 
   context "test user relationships" do
     it "can find its orders" do
-      expect(@procurer.orders).to eq( [@order1, @order2] )
+      expect(@sourcer.orders).to eq( [@order1, @order2] )
     end
     it "can find its order_items" do
-      expect(@procurer.order_items).to eq( [@order_item1, @order_item2] )
+      expect(@sourcer.order_items).to eq( [@order_item1, @order_item2] )
     end
     it "can find its products_ordered" do
-      expect(@procurer.products_ordered).to eq( [@product1, @product2] )
+      expect(@sourcer.products_ordered).to eq( [@product1, @product2] )
     end
     #
     it "can find its registers" do

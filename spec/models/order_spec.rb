@@ -5,7 +5,7 @@ RSpec.describe Order, type: :model do
 
   context "test relationships" do
     before(:each) do
-      @procurer = User.create!(
+      @sourcer = User.create!(
         :username => "MyUsernane",
         :full_name => "MyName",
         :role => "MyRole"
@@ -24,7 +24,7 @@ RSpec.describe Order, type: :model do
       @order = Order.create!(
         :status => "MyString",
         :reason => "MyText",
-        :procurer => @procurer
+        :sourcer => @sourcer
       )
       @order_item = OrderItem.create!(
         :quantity => 2,
@@ -40,7 +40,7 @@ RSpec.describe Order, type: :model do
       )
     end
     it "order to find its user" do
-      expect( @order.procurer ).to eq( @procurer )
+      expect( @order.sourcer ).to eq( @sourcer )
     end
     it "order to find its ordered-items" do
       expect( @order.order_items ).to eq( [@order_item] )

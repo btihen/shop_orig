@@ -5,7 +5,7 @@ class StockItem < ApplicationRecord
   has_one    :supplier,   through: :product
 
   has_one    :order,      through: :order_item
-  has_one    :procurer,   through: :order
+  has_one    :sourcer,   through: :order
 
   monetize   :sale_price_cents
 end

@@ -13,7 +13,7 @@ RSpec.describe "order_items/index", type: :view do
       :product_currency => "MyString",
       :supplier => @supplier
     ))
-    @procurer = assign(:user, User.create!(
+    @sourcer = assign(:user, User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -21,7 +21,7 @@ RSpec.describe "order_items/index", type: :view do
     @order = assign(:order, Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :procurer => @procurer
+      :sourcer => @sourcer
     ))
     @order_items = assign(:order_items, [
       OrderItem.create!(

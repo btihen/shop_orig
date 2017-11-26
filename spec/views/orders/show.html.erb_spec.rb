@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "orders/show", type: :view do
   before(:each) do
-    @procurer = assign(:user, User.create!(
+    @sourcer = assign(:user, User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -10,7 +10,7 @@ RSpec.describe "orders/show", type: :view do
     @order = assign(:order, Order.create!(
       :status => "Status",
       :reason => "MyText",
-      :procurer => @procurer
+      :sourcer => @sourcer
     ))
   end
 
@@ -18,6 +18,6 @@ RSpec.describe "orders/show", type: :view do
     render
     expect(rendered).to match(/#{@order.status}/)
     expect(rendered).to match(/#{@order.reason}/)
-    expect(rendered).to match(/#{@order.procurer.full_name}/)
+    expect(rendered).to match(/#{@order.sourcer.full_name}/)
   end
 end

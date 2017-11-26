@@ -15,7 +15,7 @@ RSpec.describe SaleItem, type: :model do
       :product_currency => "MyString",
       :supplier => @supplier
     )
-    @procurer = User.create!(
+    @sourcer = User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -23,7 +23,7 @@ RSpec.describe SaleItem, type: :model do
     @order = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :procurer => @procurer
+      :sourcer => @sourcer
     )
     @order_item = OrderItem.create!(
       :quantity => 2,
@@ -85,8 +85,8 @@ RSpec.describe SaleItem, type: :model do
     it "can find its order" do
       expect(@sale_item.order).to eq( @order )
     end
-    it "can find its procurer" do
-      expect(@sale_item.procurer).to eq( @procurer )
+    it "can find its sourcer" do
+      expect(@sale_item.sourcer).to eq( @sourcer )
     end
   end
 

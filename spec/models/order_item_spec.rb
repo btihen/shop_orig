@@ -5,7 +5,7 @@ RSpec.describe OrderItem, type: :model do
 
     context "Check Supplier Relationships" do
       before(:each) do
-        @procurer = User.create!(
+        @sourcer = User.create!(
           :username => "MyUsernane",
           :full_name => "MyName",
           :role => "MyRole"
@@ -24,7 +24,7 @@ RSpec.describe OrderItem, type: :model do
         @order = Order.create!(
           :status => "MyString",
           :reason => "MyText",
-          :procurer => @procurer
+          :sourcer => @sourcer
         )
         @order_item = OrderItem.create!(
           :quantity => 2,

@@ -14,7 +14,7 @@ RSpec.describe StockItem, type: :model do
       :product_currency => "MyString",
       :supplier => @supplier
     )
-    @procurer = User.create!(
+    @sourcer = User.create!(
       :username => "MyUsernane",
       :full_name => "MyName",
       :role => "MyRole"
@@ -22,7 +22,7 @@ RSpec.describe StockItem, type: :model do
     @order = Order.create!(
       :status => "MyString",
       :reason => "MyText",
-      :procurer => @procurer
+      :sourcer => @sourcer
     )
     @order_item = OrderItem.create!(
       :quantity => 2,
@@ -52,7 +52,7 @@ RSpec.describe StockItem, type: :model do
       expect(@stock_item.order).to eq(@order)
     end
     it "can find who ordered this item" do
-      expect(@stock_item.procurer).to eq(@procurer)
+      expect(@stock_item.sourcer).to eq(@sourcer)
     end
   end
 end

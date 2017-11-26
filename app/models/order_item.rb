@@ -1,6 +1,6 @@
 class OrderItem < ApplicationRecord
   belongs_to  :order
-  has_one     :procurer, through: :order
+  has_one     :sourcer, through: :order
   
   belongs_to  :product
   has_one     :supplier, through: :product
