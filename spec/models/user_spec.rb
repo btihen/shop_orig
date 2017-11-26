@@ -7,7 +7,14 @@ RSpec.describe User, type: :model do
       :supplier_name => "MyString",
       :description => "MyText"
     )
-    @product = Product.create!(
+    @product1 = Product.create!(
+      :product_name => "MyString",
+      :description => "MyText",
+      :product_price => Money.new(10000, 'CHF'),
+      :product_currency => "MyString",
+      :supplier => @supplier
+    )
+    @product2 = Product.create!(
       :product_name => "MyString",
       :description => "MyText",
       :product_price => Money.new(10000, 'CHF'),
@@ -20,22 +27,39 @@ RSpec.describe User, type: :model do
       :full_name => "MyName",
       :role => "MyRole"
     )
-    @order = Order.create!(
+    @order1 = Order.create!(
       :status => "MyString",
       :reason => "MyText",
       :procurer => @procurer
     )
-    @order_item = OrderItem.create!(
+    @order2 = Order.create!(
+      :status => "MyString",
+      :reason => "MyText",
+      :procurer => @procurer
+    )
+    @order_item1 = OrderItem.create!(
       :quantity => 2,
       :note => "MyText",
       :item_purchase_price => Money.new(10000, 'CHF'),
-      :product => @product,
-      :order => @order
+      :product => @product1,
+      :order => @order1
     )
-    @stock_item = StockItem.create!(
+    @order_item2 = OrderItem.create!(
+      :quantity => 2,
+      :note => "MyText",
+      :item_purchase_price => Money.new(10000, 'CHF'),
+      :product => @product2,
+      :order => @order2
+    )
+    @stock_item1 = StockItem.create!(
       :status => "MyString",
       :sale_price => Money.new(10000, 'CHF'),
-      :order_item => @order_item
+      :order_item => @order_item1
+    )
+    @stock_item2 = StockItem.create!(
+      :status => "MyString",
+      :sale_price => Money.new(10000, 'CHF'),
+      :order_item => @order_item2
     )
     #####################
     @cashier = User.create!(
@@ -56,19 +80,19 @@ RSpec.describe User, type: :model do
       :note => "MyText",
       :sale_price => Money.new(9000, 'CHF'),
       :sale => @sale,
-      :stock_item => @stock_item
+      :stock_item => @stock_item2
     )
   end
 
   context "test user relationships" do
     it "can find its orders" do
-      expect(@procurer.orders).to eq( [@order] )
+      expect(@procurer.orders).to eq( [@order1, @order2] )
     end
     it "can find its order_items" do
-      expect(@procurer.order_items).to eq( [@order_item] )
+      expect(@procurer.order_items).to eq( [@order_item1, @order_item2] )
     end
     it "can find its products_ordered" do
-      expect(@procurer.products_ordered).to eq( [@product] )
+      expect(@procurer.products_ordered).to eq( [@product1, @product2] )
     end
     #
     it "can find its registers" do
@@ -80,17 +104,14 @@ RSpec.describe User, type: :model do
     it "can find its sales_items" do
       expect(@cashier.sale_items).to eq( [@sale_item] )
     end
-    it "can find its stock_items" do
-      expect(@cashier.stock_items).to eq( [@stock_item] )
-    end
     it "can find its sold_stock_items" do
-      expect(@cashier.stock_items).to eq( [@stock_item] )
+      expect(@cashier.stock_items).to eq( [@stock_item2] )
     end
-    xit "can find its sold_order_items" do
-      expect(@cashier.sold_order_items).to eq( [@order_items] )
+    it "can find its sold_order_items" do
+      expect(@cashier.sold_order_items).to eq( [@order_item2] )
     end
-    xit "can find its products_sold" do
-      expect(@cashier.products_sold).to eq( [@product] )
+    it "can find its products_sold" do
+      expect(@cashier.products_sold).to eq( [@product2] )
     end
   end
 
