@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 # gem 'devise', '~> 4.3'
 gem 'money-rails', '~> 1.9'
+
 # bootstrap needs
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
@@ -46,6 +47,7 @@ group :development, :test do
 
   gem 'factory_bot_rails', '~> 4.8'
   gem 'rspec-rails', '~> 3.7'
+  
   gem 'simplecov', '~> 0.15'
   gem 'faker', '~> 1.8'
 end

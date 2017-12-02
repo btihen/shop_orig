@@ -6,5 +6,6 @@ FactoryBot.define do
                           ApplicationHelper::CURRENCIES.sample) }
     #
     product             { FactoryHelpers.get_product() }
+    order               { FactoryHelpers.get_order() }
   end
 end

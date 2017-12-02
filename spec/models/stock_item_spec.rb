@@ -1,58 +1,53 @@
 require 'rails_helper'
 
 RSpec.describe StockItem, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
-  before(:each) do
-    @supplier = Supplier.create!(
-      :supplier_name => "MyString",
-      :description => "MyText"
-    )
-    @product = Product.create!(
-      :product_name => "MyString",
-      :description => "MyText",
-      :product_price => Money.new(10000, 'CHF'),
-      :product_currency => "MyString",
-      :supplier => @supplier
-    )
-    @sourcer = User.create!(
-      :username => "MyUsernane",
-      :full_name => "MyName",
-      :role => "MyRole"
-    )
-    @order = Order.create!(
-      :status => "MyString",
-      :reason => "MyText",
-      :sourcer => @sourcer
-    )
-    @order_item = OrderItem.create!(
-      :quantity => 2,
-      :note => "MyText",
-      :item_purchase_price => Money.new(10000, 'CHF'),
-      :product => @product,
-      :order => @order
-    )
-    @stock_item = StockItem.create!(
-      :status => "MyString",
-      :sale_price => Money.new(10000, 'CHF'),
-      :order_item => @order_item
-    )
+
+  let(:stock_item)  { FactoryBot.build(:stock_item) }
+  #
+  let!(:supplier)   { FactoryBot.create(:supplier) }
+  let!(:product)    { FactoryBot.create(:product,
+                                        supplier:   supplier) }
+  #
+  let!(:sourcer)    { FactoryBot.create(:user) }
+  let!(:order)      { FactoryBot.create(:order,
+                                        sourcer:    sourcer) }
+  let!(:order_item) { FactoryBot.create(:order_item,
+                                        product:    product,
+                                        order:      order) }
+  let!(:stock_item) { FactoryBot.create(:stock_item,
+                                        order_item: order_item) }
+  #
+  let!(:cashier)    { FactoryBot.create(:user) }
+  let!(:register)   { FactoryBot.create(:register,
+                                        cashier:    cashier) }
+  let!(:sale)       { FactoryBot.create(:sale,
+                                        register:   register) }
+  let!(:sale_item)  { FactoryBot.create(:sale_item,
+                                        sale:       sale,
+                                        stock_item: stock_item) }
+
+  context "verify factory" do
+    it "correctly builds stock_item" do
+      expect( stock_item.valid? ).to be_truthy
+      # expect( supplier[:errors]).to eq( nil )
+    end
   end
 
   context "test stock_items relationships" do
     it "can find its order_item" do
-      expect(@stock_item.order_item).to eq(@order_item)
+      expect(stock_item.order_item).to eq(order_item)
     end
     it "can find its product" do
-      expect(@stock_item.product).to eq(@product)
+      expect(stock_item.product).to eq(product)
     end
     it "can find its supplier" do
-      expect(@stock_item.supplier).to eq(@supplier)
+      expect(stock_item.supplier).to eq(supplier)
     end
     it "can find its order" do
-      expect(@stock_item.order).to eq(@order)
+      expect(stock_item.order).to eq(order)
     end
     it "can find who ordered this item" do
-      expect(@stock_item.sourcer).to eq(@sourcer)
+      expect(stock_item.sourcer).to eq(sourcer)
     end
   end
 end

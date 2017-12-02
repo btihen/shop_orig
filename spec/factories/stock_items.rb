@@ -6,6 +6,6 @@ FactoryBot.define do
     sale_datetime { Faker::Date.between(days_ago, Date.today) }
     sale_price    { Money.new(Faker::Commerce.price * 100,
                     ApplicationHelper::CURRENCIES.sample) }
-    order_item    { FactoryHelpers.get_order() }
+    order_item    { FactoryHelpers.get_order_item() }
   end
 end
