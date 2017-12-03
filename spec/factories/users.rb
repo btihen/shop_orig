@@ -8,4 +8,21 @@ FactoryBot.define do
     # password { passwd }
     # password_confirm { passwd }
   end
+  factory :cashier, parent: :user do
+    role        { 'cashier' }
+  end
+  factory :sourcer, parent: :user do
+    role        { 'manager' }
+  end
+  factory :manager, parent: :user do
+    role        {'manager'}
+  end
+  factory :owner, parent: :user do
+    role        {'owner'}
+  end
+  factory :invalid_user, parent: :user do
+    username    {nil}
+    full_name   {"a"}
+    role        {nil}
+  end
 end

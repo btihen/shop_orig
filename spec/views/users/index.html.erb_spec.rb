@@ -3,16 +3,18 @@ require 'rails_helper'
 RSpec.describe "users/index", type: :view do
   before(:each) do
     @users = assign(:users, [
-      User.create!(
-        :username => "Username0",
-        :full_name => "Full Name0",
-        :role => "Role0"
-      ),
-      User.create!(
-        :username => "Username1",
-        :full_name => "Full Name1",
-        :role => "Role1"
-      )
+      FactoryBot.create(:user, role: 'manager'),
+      FactoryBot.create(:user, role: 'cashier'),
+      # User.create!(
+      #   :username => "Username0",
+      #   :full_name => "Full Name0",
+      #   :role => "Role0"
+      # ),
+      # User.create!(
+      #   :username => "Username1",
+      #   :full_name => "Full Name1",
+      #   :role => "Role1"
+      # )
     ])
   end
 

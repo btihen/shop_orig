@@ -13,11 +13,12 @@ RSpec.describe "sale_items/show", type: :view do
       :product_currency => "MyString",
       :supplier => @supplier
     ))
-    @sourcer = assign(:user, User.create!(
-      :username => "MyUsernane",
-      :full_name => "MyName",
-      :role => "MyRole"
-    ))
+    @sourcer = assign( :user, FactoryBot.create(:sourcer) )
+    # @sourcer = assign(:user, User.create!(
+    #   :username => "MyUsernane",
+    #   :full_name => "MyName",
+    #   :role => "MyRole"
+    # ))
     @order = assign(:order, Order.create!(
       :status => "MyString",
       :reason => "MyText",
@@ -36,11 +37,12 @@ RSpec.describe "sale_items/show", type: :view do
       :order_item => @order_item
     ))
     ########
-    @cashier = assign(:user, User.create!(
-      :username => "MyUsernane",
-      :full_name => "MyName",
-      :role => "MyRole"
-    ))
+    @cashier = assign( :user, FactoryBot.create(:cashier) )
+    # @cashier = assign(:user, User.create!(
+    #   :username => "MyUsernane",
+    #   :full_name => "MyName",
+    #   :role => "MyRole"
+    # ))
     @register = assign(:register, Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),

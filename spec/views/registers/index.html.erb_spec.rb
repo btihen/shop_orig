@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "registers/index", type: :view do
   before(:each) do
-    @cashier = assign(:user, User.create!(
-      :username => "MyUsernane",
-      :full_name => "MyName",
-      :role => "MyRole"
-    ))
+    @cashier = assign(:user, FactoryBot.create(:cashier) )
+    # @cashier = assign(:user, User.create!(
+    #   :username => "MyUsernane",
+    #   :full_name => "MyName",
+    #   :role => "MyRole"
+    # ))
     @registers = assign(:registers, [
       Register.create!(
         :start_amount => Money.new(10000, 'CHF'),

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   let(:user)          { FactoryBot.build(:user) }
+  let(:invalid_user)  { FactoryBot.build(:invalid_user) }
   #
   let!(:supplier)     { FactoryBot.create(:supplier) }
   let!(:product1)     { FactoryBot.create(:product,
@@ -38,8 +39,24 @@ RSpec.describe User, type: :model do
   context "verify factory" do
     it "correctly builds user" do
       expect( user.valid? ).to be_truthy
-      expect( user.errors[:details]).to eq( [] )
-      expect( user.errors[:messages]).to eq( [] )
+      expect( user.errors.details).to eq( {} )
+      expect( user.errors.messages).to eq( {} )
+    end
+    it "correctly builds an invalid user" do
+      expect( invalid_user.valid? ).to be_falsey
+      # expect( invalid_user.valid? ).not_to be_truthy
+      expect( invalid_user.errors.details[:username]).to eq(
+              [{:error=>:blank}, {:error=>:too_short, :count=>2}] )
+      expect( invalid_user.errors.details[:full_name]).to eq(
+              [{:error=>:too_short, :count=>2}] )
+      expect( invalid_user.errors.details[:role]).to eq(
+              [{:error=>:blank}, {:error=>:inclusion, :value=>nil}] )
+      expect( invalid_user.errors.messages[:username]).to eq(
+              ["can't be blank", "is too short (minimum is 2 characters)"] )
+      expect( invalid_user.errors.messages[:full_name]).to eq(
+              ["is too short (minimum is 2 characters)"] )
+      expect( invalid_user.errors.messages[:role]).to eq(
+              ["can't be blank", "is not included in the list"] )
     end
   end
 

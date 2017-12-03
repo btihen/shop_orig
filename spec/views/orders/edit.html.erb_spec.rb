@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "orders/edit", type: :view do
   before(:each) do
-    @sourcer = assign(:user, User.create!(
-      :username => "MyUsernane",
-      :full_name => "MyName",
-      :role => "MyRole"
-    ))
+    @sourcer = assign( :user, FactoryBot.create(:sourcer) )
+    # @sourcer = assign(:user, User.create!(
+    #   :username => "MyUsernane",
+    #   :full_name => "MyName",
+    #   :role => "MyRole"
+    # ))
     @order = assign(:order, Order.create!(
       :status => "MyString",
       :reason => "MyText",

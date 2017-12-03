@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "registers/new", type: :view do
   before(:each) do
-    @cashier = assign(:user, User.create!(
-      :username => "MyUsernane",
-      :full_name => "MyName",
-      :role => "MyRole"
-    ))
+    @cashier = assign(:user, FactoryBot.create(:cashier) )
+    # @cashier = assign(:user, User.create!(
+    #   :username => "MyUsernane",
+    #   :full_name => "MyName",
+    #   :role => "MyRole"
+    # ))
     assign(:register, Register.new(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
