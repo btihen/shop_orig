@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "products/new", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, Supplier.create!(
-        :supplier_name => "MyString",
-        :description => "MyText"
-      ))
+    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
     assign(:product, Product.new(
       :product_name => "MyString",
       :description => "MyText",

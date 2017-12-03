@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "suppliers/edit", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, Supplier.create!(
-      :supplier_name => "MyString",
-      :description => "MyText"
-    ))
+    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
   end
 
   it "renders the edit supplier form" do

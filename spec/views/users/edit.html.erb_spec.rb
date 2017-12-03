@@ -3,11 +3,6 @@ require 'rails_helper'
 RSpec.describe "users/edit", type: :view do
   before(:each) do
     @user = assign( :user, FactoryBot.create(:user) )
-    # @user = assign(:user, User.create!(
-    #   :username => "MyUsernane",
-    #   :full_name => "MyName",
-    #   :role => "MyRole"
-    # ))
   end
 
   it "renders the edit user form" do

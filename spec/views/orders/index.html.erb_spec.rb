@@ -3,11 +3,6 @@ require 'rails_helper'
 RSpec.describe "orders/index", type: :view do
   before(:each) do
     @sourcer = assign( :user, FactoryBot.create(:sourcer) )
-    # @sourcer = assign(:user, User.create!(
-    #   :username => "MyUsernane",
-    #   :full_name => "MyName",
-    #   :role => "MyRole"
-    # ))
     @orders = assign(:orders, [
       Order.create!(
         :status => "Status0",

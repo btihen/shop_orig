@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "suppliers/new", type: :view do
   before(:each) do
-    assign(:supplier, Supplier.new(
-      :supplier_name => "MyString",
-      :description => "MyText"
-    ))
+    assign(:supplier, FactoryBot.build(:supplier) )
   end
 
   it "renders new supplier form" do

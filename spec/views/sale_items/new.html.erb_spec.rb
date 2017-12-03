@@ -3,11 +3,6 @@ require 'rails_helper'
 RSpec.describe "sale_items/new", type: :view do
   before(:each) do
     @cashier = assign( :user, FactoryBot.create(:cashier) )
-    # @cashier = assign(:user, User.create!(
-    #   :username => "MyUsernane",
-    #   :full_name => "MyName",
-    #   :role => "MyRole"
-    # ))
     @register = assign(:register, Register.create!(
       :start_amount => Money.new(10000, 'CHF'),
       :close_amount => Money.new(9000, 'CHF'),
@@ -17,7 +12,7 @@ RSpec.describe "sale_items/new", type: :view do
       :payment_method => "MyString",
       :register => @register
     ))
-    @sale_item = assign(:sale_item, SaleItem.new(
+    assign(:sale_item, SaleItem.new(
       :note => "MyText",
       :sale_price => Money.new(9000, 'CHF'),
       :sale => @sale

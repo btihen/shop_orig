@@ -3,11 +3,6 @@ require 'rails_helper'
 RSpec.describe "users/new", type: :view do
   before(:each) do
     assign(:user, User.new( FactoryBot.build(:user).attributes ) )
-    # assign(:user, User.new(
-    #   :username => "MyUsername",
-    #   :full_name => "MyFullName",
-    #   :role => "MyRole"
-    # ))
   end
 
   it "renders new user form" do

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  let(:user)          { FactoryBot.build(:user) }
+  let!(:user)         { FactoryBot.create(:user) }
+  let(:duplicate_user){ FactoryBot.build(:user, username: user.username) }
   let(:invalid_user)  { FactoryBot.build(:invalid_user) }
   #
   let!(:supplier)     { FactoryBot.create(:supplier) }
@@ -41,6 +42,12 @@ RSpec.describe User, type: :model do
       expect( user.valid? ).to be_truthy
       expect( user.errors.details).to eq( {} )
       expect( user.errors.messages).to eq( {} )
+    end
+    it "correctly detects duplicate_user" do
+      expect( duplicate_user.valid? ).to be_falsey
+      expect( duplicate_user.errors.details[:username][0][:error]).to eq( :taken )
+      expect( duplicate_user.errors.messages).to eq(
+                            {:username=>["has already been taken"]} )
     end
     it "correctly builds an invalid user" do
       expect( invalid_user.valid? ).to be_falsey

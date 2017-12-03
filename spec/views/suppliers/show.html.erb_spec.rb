@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "suppliers/show", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, Supplier.create!(
-      :supplier_name => "Supplier Name",
-      :description => "MyText"
-    ))
+    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
   end
 
   it "renders attributes in <p>" do

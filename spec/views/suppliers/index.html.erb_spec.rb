@@ -3,15 +3,9 @@ require 'rails_helper'
 RSpec.describe "suppliers/index", type: :view do
   before(:each) do
     @suppliers = assign(:suppliers, [
-      Supplier.create!(
-        :supplier_name => "Supplier Name0",
-        :description => "MyText0"
-      ),
-      Supplier.create!(
-        :supplier_name => "Supplier Name1",
-        :description => "MyText1"
-      )
-    ])
+                          FactoryBot.create(:supplier),
+                          FactoryBot.create(:supplier),
+                        ])
   end
 
   it "renders a list of suppliers" do

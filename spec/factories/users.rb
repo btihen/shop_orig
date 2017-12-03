@@ -21,8 +21,8 @@ FactoryBot.define do
     role        {'owner'}
   end
   factory :invalid_user, parent: :user do
-    username    {nil}
-    full_name   {"a"}
-    role        {nil}
+    username    { " " }
+    full_name   { "a" }
+    role        { nil }
   end
 end
