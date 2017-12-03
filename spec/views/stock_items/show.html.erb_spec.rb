@@ -13,7 +13,7 @@ RSpec.describe "stock_items/show", type: :view do
       :product_currency => "MyString",
       :supplier => @supplier
     ))
-    @sourcer = assign(:user, FactoryBot.create(:user) )
+    @sourcer = assign(:user, FactoryBot.create(:sourcer) )
     # @sourcer = assign(:user, User.create!(
     #   :username => "MyUsernane",
     #   :full_name => "MyName",
