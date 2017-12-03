@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "users/new", type: :view do
   before(:each) do
-    assign(:user, User.new( FactoryBot.build(:user).attributes ) )
+    assign(:user, FactoryBot.build(:user) )
+    # assign(:user, User.new( FactoryBot.build(:user).attributes ) )
   end
 
   it "renders new user form" do
