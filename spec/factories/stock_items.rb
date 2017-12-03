@@ -8,4 +8,7 @@ FactoryBot.define do
                     ApplicationHelper::CURRENCIES.sample) }
     order_item    { FactoryHelpers.get_order_item() }
   end
+  factory :invalid_stock_item, parent: :stock_item do
+    status        { 'wrong' }
+  end
 end

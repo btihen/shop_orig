@@ -2,21 +2,22 @@ require 'rails_helper'
 
 RSpec.describe "sale_items/new", type: :view do
   before(:each) do
-    @cashier = assign( :user, FactoryBot.create(:cashier) )
-    @register = assign(:register, Register.create!(
-      :start_amount => Money.new(10000, 'CHF'),
-      :close_amount => Money.new(9000, 'CHF'),
-      :cashier => @cashier
-    ))
-    @sale = assign(:sale, Sale.create!(
-      :payment_method => "MyString",
-      :register => @register
-    ))
-    assign(:sale_item, SaleItem.new(
-      :note => "MyText",
-      :sale_price => Money.new(9000, 'CHF'),
-      :sale => @sale
-    ))
+    # @cashier = assign( :user, FactoryBot.create(:cashier) )
+    # @register = assign(:register, Register.create!(
+    #   :start_amount => Money.new(10000, 'CHF'),
+    #   :close_amount => Money.new(9000, 'CHF'),
+    #   :cashier => @cashier
+    # ))
+    # @sale = assign(:sale, Sale.create!(
+    #   :payment_method => "MyString",
+    #   :register => @register
+    # ))
+    assign( :sale_item, FactoryBot.build(:sale_item) )
+    # assign(:sale_item, SaleItem.new(
+    #   :note => "MyText",
+    #   :sale_price => Money.new(9000, 'CHF'),
+    #   :sale => @sale
+    # ))
   end
 
   it "renders new sale_item form" do

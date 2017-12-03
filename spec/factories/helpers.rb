@@ -49,6 +49,18 @@ module FactoryHelpers
     return OrderItem.find( rand(1..OrderItem.count) )
   end
 
+  def get_stock_item
+    # if only one supplier generate and return a new one
+    return FactoryBot.create :stock_item    if StockItem.count <= 3
+
+    # Generate a random number between 1 and 100
+    random_number = Faker::Number.between(1, 100)
+    # 10% return a random new supplier
+    return FactoryBot.create :stock_item         if random_number <= 10
+    # 90% of the time pick a random existing supplier
+    return StockItem.find( rand(1..StockItem.count) )
+  end
+
   def get_sale
     # if only one supplier generate and return a new one
     return FactoryBot.create :sale           if Sale.count <= 3

@@ -2,54 +2,55 @@ require 'rails_helper'
 
 RSpec.describe "sale_items/edit", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
-    @product = assign(:product, Product.create!(
-      :product_name => "MyString",
-      :description => "MyText",
-      :product_price => Money.new(10000, 'CHF'),
-      :product_currency => "MyString",
-      :supplier => @supplier
-    ))
-    @sourcer = assign( :user, FactoryBot.create(:sourcer) )
-    @order = assign(:order, Order.create!(
-      :status => "MyString",
-      :reason => "MyText",
-      :sourcer => @sourcer
-    ))
-    @order_item = assign(:order_item, OrderItem.create!(
-      :quantity => 1,
-      :note => "MyText",
-      :item_purchase_price => Money.new(10000, 'CHF'),
-      :product => @product,
-      :order => @order
-    ))
-    @stock_item = assign(:stock_item, StockItem.create!(
-      :status => "MyString",
-      :sale_price => Money.new(10000, 'CHF'),
-      :order_item => @order_item
-    ))
-    ########
-    @cashier = assign( :user, FactoryBot.create(:cashier) )
-    # @cashier = assign(:user, User.create!(
-    #   :username => "MyUsernane",
-    #   :full_name => "MyName",
-    #   :role => "MyRole"
+    # @supplier = assign(:supplier, FactoryBot.create(:supplier) )
+    # @product = assign(:product, Product.create!(
+    #   :product_name => "MyString",
+    #   :description => "MyText",
+    #   :product_price => Money.new(10000, 'CHF'),
+    #   :product_currency => "MyString",
+    #   :supplier => @supplier
     # ))
-    @register = assign(:register, Register.create!(
-      :start_amount => Money.new(10000, 'CHF'),
-      :close_amount => Money.new(9000, 'CHF'),
-      :cashier => @cashier
-    ))
-    @sale = assign(:sale, Sale.create!(
-      :payment_method => "MyString",
-      :register => @register
-    ))
-    @sale_item = assign(:sale_item, SaleItem.create!(
-      :note => "MyText",
-      :sale_price => Money.new(9000, 'CHF'),
-      :sale => @sale,
-      :stock_item => @stock_item
-    ))
+    # @sourcer = assign( :user, FactoryBot.create(:sourcer) )
+    # @order = assign(:order, Order.create!(
+    #   :status => "MyString",
+    #   :reason => "MyText",
+    #   :sourcer => @sourcer
+    # ))
+    # @order_item = assign(:order_item, OrderItem.create!(
+    #   :quantity => 1,
+    #   :note => "MyText",
+    #   :item_purchase_price => Money.new(10000, 'CHF'),
+    #   :product => @product,
+    #   :order => @order
+    # ))
+    # @stock_item = assign(:stock_item, StockItem.create!(
+    #   :status => "MyString",
+    #   :sale_price => Money.new(10000, 'CHF'),
+    #   :order_item => @order_item
+    # ))
+    # ########
+    # @cashier = assign( :user, FactoryBot.create(:cashier) )
+    # # @cashier = assign(:user, User.create!(
+    # #   :username => "MyUsernane",
+    # #   :full_name => "MyName",
+    # #   :role => "MyRole"
+    # # ))
+    # @register = assign(:register, Register.create!(
+    #   :start_amount => Money.new(10000, 'CHF'),
+    #   :close_amount => Money.new(9000, 'CHF'),
+    #   :cashier => @cashier
+    # ))
+    # @sale = assign(:sale, Sale.create!(
+    #   :payment_method => "MyString",
+    #   :register => @register
+    # ))
+    @sale_item = assign(:sale_item, FactoryBot.create(:sale_item) )
+    # @sale_item = assign(:sale_item, SaleItem.create!(
+    #   :note => "MyText",
+    #   :sale_price => Money.new(9000, 'CHF'),
+    #   :sale => @sale,
+    #   :stock_item => @stock_item
+    # ))
   end
 
   it "renders the edit sale_item form" do
