@@ -9,7 +9,8 @@ RSpec.describe Product, type: :model do
   context "verify factory" do
     it "correctly builds product" do
       expect( product.valid? ).to be_truthy
-      # expect( product[:errors]).to eq( nil )
+      expect( product.errors[:details]).to eq( [] )
+      expect( product.errors[:messages]).to eq( [] )
     end
   end
 

@@ -38,7 +38,8 @@ RSpec.describe User, type: :model do
   context "verify factory" do
     it "correctly builds user" do
       expect( user.valid? ).to be_truthy
-      # expect( user[:errors]).to eq( nil )
+      expect( user.errors[:details]).to eq( [] )
+      expect( user.errors[:messages]).to eq( [] )
     end
   end
 

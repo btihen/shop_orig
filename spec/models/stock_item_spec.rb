@@ -29,7 +29,8 @@ RSpec.describe StockItem, type: :model do
   context "verify factory" do
     it "correctly builds stock_item" do
       expect( stock_item.valid? ).to be_truthy
-      # expect( supplier[:errors]).to eq( nil )
+      expect( stock_item.errors[:details]).to eq( [] )
+      expect( stock_item.errors[:messages]).to eq( [] )
     end
   end
 

@@ -16,7 +16,8 @@ RSpec.describe OrderItem, type: :model do
     context "verify factory" do
       it "correctly builds order_item" do
         expect( order_item.valid? ).to be_truthy
-        # expect( order_items[:errors]).to eq( nil )
+        expect( order_item.errors[:details]).to eq( [] )
+        expect( order_item.errors[:messages]).to eq( [] )
       end
     end
 

@@ -8,7 +8,8 @@ RSpec.describe Supplier, type: :model do
   context "verify factory" do
     it "correctly builds supplier" do
       expect( supplier.valid? ).to be_truthy
-      # expect( supplier[:errors]).to eq( nil )
+      expect( supplier.errors[:details]).to eq( [] )
+      expect( supplier.errors[:messages]).to eq( [] )
     end
   end
 
