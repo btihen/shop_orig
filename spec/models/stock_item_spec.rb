@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe StockItem, type: :model do
 
-  let(:stock_item)  { FactoryBot.build(:stock_item) }
+  let(:stock_item)          { FactoryBot.build(:stock_item) }
+  let(:invalid_stock_item)  { FactoryBot.build(:invalid_stock_item) }
   #
   let!(:supplier)   { FactoryBot.create(:supplier) }
   let!(:product)    { FactoryBot.create(:product,
@@ -32,6 +33,12 @@ RSpec.describe StockItem, type: :model do
       expect( stock_item.errors[:details]).to eq( [] )
       expect( stock_item.errors[:messages]).to eq( [] )
     end
+    it "detects an invalid_stock_item" do
+      expect( invalid_stock_item.valid? ).to be_falsey
+      expect( invalid_stock_item.errors.details[:status][0][:error]).to eq( :inclusion )
+      expect( invalid_stock_item.errors.messages[:status]).to eq(["is not included in the list"])
+    end
+
   end
 
   context "test stock_items relationships" do

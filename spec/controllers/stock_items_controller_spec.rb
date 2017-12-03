@@ -30,7 +30,7 @@ RSpec.describe StockItemsController, type: :controller do
   # adjust the attributes here as well.
   let(:valid_attributes)  { FactoryBot.build(:stock_item).attributes }
 
-  let(:invalid_attributes){ skip(FactoryBot.build(:invalid_stock_item).attributes) }
+  let(:invalid_attributes){ FactoryBot.build(:invalid_stock_item).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -92,15 +92,13 @@ RSpec.describe StockItemsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { { status: 'returned'} }
 
       it "updates the requested stock_item" do
         stock_item = StockItem.create! valid_attributes
         put :update, params: {id: stock_item.to_param, stock_item: new_attributes}, session: valid_session
         stock_item.reload
-        skip("Add assertions for updated state")
+        expect( stock_item.status ).to eq( 'returned' )
       end
 
       it "redirects to the stock_item" do
