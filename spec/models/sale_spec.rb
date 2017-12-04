@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Sale, type: :model do
 
   let(:sale)        { FactoryBot.build(:sale) }
+  let(:invalid_sale){ FactoryBot.build(:invalid_sale) }
   #
   let!(:supplier)   { FactoryBot.create(:supplier) }
   let!(:product)    { FactoryBot.create(:product,
@@ -31,6 +32,11 @@ RSpec.describe Sale, type: :model do
       expect( sale.valid? ).to be_truthy
       expect( sale.errors[:details]).to eq( [] )
       expect( sale.errors[:messages]).to eq( [] )
+    end
+    it "detects an invalid_stock_item" do
+      expect( invalid_sale.valid? ).to be_falsey
+      expect( invalid_sale.errors.details[:payment_method][0][:error]).to eq( :inclusion )
+      expect( invalid_sale.errors.messages[:payment_method]).to eq(["is not included in the list"])
     end
   end
 

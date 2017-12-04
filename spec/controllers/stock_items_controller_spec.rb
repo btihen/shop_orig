@@ -92,7 +92,7 @@ RSpec.describe StockItemsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { { status: 'returned'} }
+      let(:new_attributes) { {status: 'returned'} }
 
       it "updates the requested stock_item" do
         stock_item = StockItem.create! valid_attributes

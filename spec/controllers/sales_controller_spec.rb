@@ -28,13 +28,9 @@ RSpec.describe SalesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Sale. As you add validations to Sale, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { FactoryBot.build(:sale).attributes }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { FactoryBot.build(:invalid_sale).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -96,15 +92,13 @@ RSpec.describe SalesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { {payment_metod: 'cash'} }
 
       it "updates the requested sale" do
         sale = Sale.create! valid_attributes
         put :update, params: {id: sale.to_param, sale: new_attributes}, session: valid_session
         sale.reload
-        skip("Add assertions for updated state")
+        expect(sale.payment_method).to eq( 'cash' )
       end
 
       it "redirects to the sale" do

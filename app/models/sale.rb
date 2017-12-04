@@ -8,4 +8,7 @@ class Sale < ApplicationRecord
   # has_many   :products,    through: :stock_items
   # has_many   :suppliers,   through: :products
 
+  validates :payment_method, presence: true,
+                            inclusion: { :in => ApplicationHelper::PAYMENT_METHOD }
+
 end
