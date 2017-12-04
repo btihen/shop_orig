@@ -92,7 +92,7 @@ RSpec.describe SalesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {payment_metod: 'cash'} }
+      let(:new_attributes) { {payment_method: 'cash'} }
 
       it "updates the requested sale" do
         sale = Sale.create! valid_attributes
