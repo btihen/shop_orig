@@ -8,7 +8,7 @@ RSpec.describe Register, type: :model do
   let!(:product)    { FactoryBot.create(:product,
                                         supplier:   supplier) }
   #
-  let!(:sourcer)    { FactoryBot.create(:user) }
+  let!(:sourcer)    { FactoryBot.create(:sourcer) }
   let!(:order)      { FactoryBot.create(:order,
                                         sourcer:    sourcer) }
   let!(:order_item) { FactoryBot.create(:order_item,
@@ -17,7 +17,7 @@ RSpec.describe Register, type: :model do
   let!(:stock_item) { FactoryBot.create(:stock_item,
                                         order_item: order_item) }
   #
-  let!(:cashier)    { FactoryBot.create(:user) }
+  let!(:cashier)    { FactoryBot.create(:cashier) }
   let!(:register)   { FactoryBot.create(:register,
                                         cashier:    cashier) }
   let!(:sale)       { FactoryBot.create(:sale,

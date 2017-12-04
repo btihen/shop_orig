@@ -102,4 +102,38 @@ module FactoryHelpers
     return user
   end
 
+  def get_cashier
+    # if only one supplier generate and return a new one
+    return FactoryBot.create :cashier       if User.count <= 3
+
+    # Generate a random number between 1 and 100
+    random_number = Faker::Number.between(1, 100)
+    # 10% return a random new supplier
+    return FactoryBot.create :cashier       if random_number <= 10
+    # 90% of the time pick a random existing supplier
+    return User.where( role: 'cashier' ).sample
+    # # do not return an itadmin user
+    # while supplier.role == "itadmin"
+    #   user = User.find( rand(1..User.count) )
+    # end
+    # return user
+  end
+
+  def get_sourcer
+    # if only one supplier generate and return a new one
+    return FactoryBot.create :sourcer       if User.count <= 3
+
+    # Generate a random number between 1 and 100
+    random_number = Faker::Number.between(1, 100)
+    # 10% return a random new supplier
+    return FactoryBot.create :sourcer       if random_number <= 10
+    # 90% of the time pick a random existing supplier
+    return User.where( role: 'sourcer' ).sample
+    # # do not return an itadmin user
+    # while supplier.role == "itadmin"
+    #   user = User.find( rand(1..User.count) )
+    # end
+    # return user
+  end
+
 end

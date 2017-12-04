@@ -1,13 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "registers/new", type: :view do
+
+  # let!(:register) { assign( :register, FactoryBot.create(:register) ) }
   before(:each) do
-    @cashier = assign(:user, FactoryBot.create(:cashier) )
-    assign(:register, Register.new(
-      :start_amount => Money.new(10000, 'CHF'),
-      :close_amount => Money.new(9000, 'CHF'),
-      :cashier => @cashier
-    ))
+    assign(:register, FactoryBot.build(:register) )
   end
 
   it "renders new register form" do

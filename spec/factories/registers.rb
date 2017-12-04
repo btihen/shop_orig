@@ -4,6 +4,6 @@ FactoryBot.define do
                     ApplicationHelper::CURRENCIES.sample) }
     close_amount  { Money.new(Faker::Commerce.price * 100,
                     ApplicationHelper::CURRENCIES.sample) }
-    cashier       { FactoryHelpers.get_user() }
+    cashier       { FactoryHelpers.get_cashier() }
   end
 end
