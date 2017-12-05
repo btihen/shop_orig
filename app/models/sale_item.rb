@@ -15,6 +15,6 @@ class SaleItem < ApplicationRecord
   monetize   :sale_price_cents
 
   validates  :sale_price, presence: true,
-                          numericality: { greater_than_or_equal_to: 1 }
+                          numericality: { greater_than_or_equal_to: 0 }
 
 end

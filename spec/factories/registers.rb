@@ -7,7 +7,7 @@ FactoryBot.define do
     cashier       { FactoryHelpers.get_cashier() }
   end
   factory :invalid_register, parent: :register do
-    start_amount  { Money.new(-1 * Faker::Commerce.price * 100,
+    start_amount  { Money.new(-1100,
                               ApplicationHelper::CURRENCIES.sample) }
     cashier       { nil }
   end
