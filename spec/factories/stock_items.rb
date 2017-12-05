@@ -10,5 +10,6 @@ FactoryBot.define do
   end
   factory :invalid_stock_item, parent: :stock_item do
     status        { 'wrong' }
+    order_item    { nil }
   end
 end

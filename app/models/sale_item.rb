@@ -10,8 +10,11 @@ class SaleItem < ApplicationRecord
   has_one    :supplier,   through: :product
   #
   has_one    :order,      through: :order_item
-  has_one    :sourcer,   through: :order
+  has_one    :sourcer,    through: :order
 
   monetize   :sale_price_cents
+
+  validates  :sale_price, presence: true,
+                          numericality: { greater_than_or_equal_to: 1 }
 
 end

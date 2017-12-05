@@ -11,5 +11,6 @@ FactoryBot.define do
   end
   factory :invalid_sale, parent: :sale do
     payment_method { 'bad' }
+    register       { nil }
   end
 end

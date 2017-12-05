@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
     end
     it "correctly detects duplicate_user" do
       expect( duplicate_user.valid? ).to be_falsey
-      expect( duplicate_user.errors.details[:username][0][:error]).to eq( :taken )
+      # expect( duplicate_user.errors.details[:username][0][:error]).to eq( :taken )
       expect( duplicate_user.errors.messages).to eq(
                             {:username=>["has already been taken"]} )
     end

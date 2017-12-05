@@ -30,13 +30,15 @@ RSpec.describe StockItem, type: :model do
   context "verify factory" do
     it "correctly builds stock_item" do
       expect( stock_item.valid? ).to be_truthy
-      expect( stock_item.errors[:details]).to eq( [] )
-      expect( stock_item.errors[:messages]).to eq( [] )
+      expect( stock_item.errors.details).to eq( {} )
+      expect( stock_item.errors.messages).to eq( {} )
     end
     it "detects an invalid_stock_item" do
       expect( invalid_stock_item.valid? ).to be_falsey
-      expect( invalid_stock_item.errors.details[:status][0][:error]).to eq( :inclusion )
-      expect( invalid_stock_item.errors.messages[:status]).to eq(["is not included in the list"])
+      # expect( invalid_stock_item.errors.details[:status][0][:error]).to eq( :inclusion )
+      expect( invalid_stock_item.errors.messages).to eq(
+                                { order_item: ["must exist"], sell_price: [], 
+                                  status: ["is not included in the list"] } )
     end
 
   end

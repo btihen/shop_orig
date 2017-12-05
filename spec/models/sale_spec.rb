@@ -30,13 +30,15 @@ RSpec.describe Sale, type: :model do
   context "verify factory" do
     it "correctly builds sale" do
       expect( sale.valid? ).to be_truthy
-      expect( sale.errors[:details]).to eq( [] )
-      expect( sale.errors[:messages]).to eq( [] )
+      expect( sale.errors.details).to eq( {} )
+      expect( sale.errors.messages).to eq( {} )
     end
     it "detects an invalid_stock_item" do
       expect( invalid_sale.valid? ).to be_falsey
-      expect( invalid_sale.errors.details[:payment_method][0][:error]).to eq( :inclusion )
-      expect( invalid_sale.errors.messages[:payment_method]).to eq(["is not included in the list"])
+      # expect( invalid_sale.errors.details[:payment_method][0][:error]).to eq( :inclusion )
+      expect( invalid_sale.errors.messages).to eq(
+                          { register: ["must exist"],
+                            payment_method: ["is not included in the list"] } )
     end
   end
 

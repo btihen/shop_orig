@@ -6,4 +6,10 @@ FactoryBot.define do
     sale        { FactoryHelpers.get_sale() }
     stock_item  { FactoryHelpers.get_stock_item() }
   end
+  factory :invalid_sale_item, parent: :sale_item do
+    sale        { nil }
+    stock_item  { nil }
+    sale_price  { Money.new(-1 * Faker::Commerce.price * 100,
+                            ApplicationHelper::CURRENCIES.sample) }
+  end
 end

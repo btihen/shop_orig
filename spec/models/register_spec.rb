@@ -29,8 +29,8 @@ RSpec.describe Register, type: :model do
   context "verify factory" do
     it "correctly builds register" do
       expect( register.valid? ).to be_truthy
-      expect( register.errors[:details]).to eq( [] )
-      expect( register.errors[:messages]).to eq( [] )
+      expect( register.errors.details).to eq( {} )
+      expect( register.errors.messages).to eq( {} )
     end
   end
 

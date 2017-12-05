@@ -16,9 +16,9 @@ RSpec.describe Supplier, type: :model do
     end
     it "correctly detects duplicate_supplier" do
       expect( duplicate_supplier.valid? ).to be_falsey
-      expect( duplicate_supplier.errors.details[:supplier_name][0][:error]).to eq( :taken )
+      # expect( duplicate_supplier.errors.details[:supplier_name][0][:error]).to eq( :taken )
       expect( duplicate_supplier.errors.messages).to eq(
-                                  {:supplier_name=>["has already been taken"]} )
+                                {:supplier_name=>["has already been taken"]} )
     end
     it "detects an invalid_supplier" do
       expect( invalid_supplier.valid? ).to be_falsey
