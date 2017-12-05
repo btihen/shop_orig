@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   let!(:user)         { FactoryBot.create(:user) }
-  let(:duplicate_user){ FactoryBot.build(:user, username: user.username) }
+  let(:duplicate_user){ FactoryBot.build(:user,
+                                          username:   user.username) }
   let(:invalid_user)  { FactoryBot.build(:invalid_user) }
   #
   let!(:supplier)     { FactoryBot.create(:supplier) }
