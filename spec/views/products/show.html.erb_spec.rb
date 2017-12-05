@@ -2,14 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "products/show", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
-    @product = assign(:product, Product.create!(
-      :product_name => "Product Name",
-      :description => "MyText",
-      :product_price => Money.new(10000, 'CHF'),
-      :product_currency => "CHF",
-      :supplier => @supplier
-    ))
+    @product = assign(:product, FactoryBot.create(:product) )
   end
 
   it "renders attributes in <p>" do

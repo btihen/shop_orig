@@ -2,14 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "products/new", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
-    assign(:product, Product.new(
-      :product_name => "MyString",
-      :description => "MyText",
-      :product_price => Money.new(10000, 'CHF'),
-      :product_currency => "MyString",
-      :supplier => @supplier
-    ))
+    assign(:product, FactoryBot.build(:product) )
   end
 
   it "renders new product form" do
