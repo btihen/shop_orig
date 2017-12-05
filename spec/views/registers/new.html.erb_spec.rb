@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "registers/new", type: :view do
 
-  # let!(:register) { assign( :register, FactoryBot.create(:register) ) }
   before(:each) do
     assign(:register, FactoryBot.build(:register) )
   end

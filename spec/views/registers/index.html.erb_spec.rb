@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "registers/index", type: :view do
   before(:each) do
-    # @cashier = assign(:user, FactoryBot.create(:cashier) )
     @registers = assign(:registers, [
                           FactoryBot.create(:register),
                           FactoryBot.create(:register),
