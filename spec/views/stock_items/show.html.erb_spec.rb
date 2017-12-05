@@ -8,7 +8,7 @@ RSpec.describe "stock_items/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/#{@stock_item.status}/)
-    expect(rendered).to match(/#{@stock_item.sale_price}/)
+    expect(rendered).to match(/#{@stock_item.sell_price}/)
     expect(rendered).to match(/#{@stock_item.order_item.id}/)
   end
 end

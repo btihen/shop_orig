@@ -33,8 +33,8 @@ RSpec.describe "stock_items/index", type: :view do
     render
     assert_select "tr>td", :text => @stock_items[0].status, :count => 1
     assert_select "tr>td", :text => @stock_items[1].status, :count => 1
-    assert_select "tr>td", :text => @stock_items[0].sale_price.to_s, :count => 1
-    assert_select "tr>td", :text => @stock_items[1].sale_price.to_s, :count => 1
+    assert_select "tr>td", :text => @stock_items[0].sell_price.to_s, :count => 1
+    assert_select "tr>td", :text => @stock_items[1].sell_price.to_s, :count => 1
     assert_select "tr>td", :text => @stock_items[0].order_item.id.to_s, :count => 1
     assert_select "tr>td", :text => @stock_items[1].order_item.id.to_s, :count => 1
   end

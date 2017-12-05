@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 20171203115635) do
   create_table "stock_items", force: :cascade do |t|
     t.string "status"
     t.datetime "add_datetime"
-    t.datetime "sale_datetime"
-    t.integer "sale_price_cents", default: 0, null: false
-    t.string "sale_price_currency", default: "USD", null: false
+    t.datetime "sold_datetime"
+    t.integer "sell_price_cents", default: 0, null: false
+    t.string "sell_price_currency", default: "USD", null: false
     t.bigint "order_item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

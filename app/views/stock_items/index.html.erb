@@ -7,8 +7,8 @@
     <tr>
       <th>Status</th>
       <th>Add date</th>
-      <th>Sale date</th>
-      <th>Sale price</th>
+      <th>Sold date</th>
+      <th>Sell price</th>
       <th>Order item</th>
       <th colspan="3"></th>
     </tr>
@@ -19,8 +19,8 @@
       <tr>
         <td><%= stock_item.status %></td>
         <td><%= stock_item.add_datetime %></td>
-        <td><%= stock_item.sale_datetime %></td>
-        <td><%= stock_item.sale_price %></td>
+        <td><%= stock_item.sold_datetime %></td>
+        <td><%= stock_item.sell_price %></td>
         <td><%= stock_item.order_item.id %></td>
         <td><%= link_to 'Show', stock_item %></td>
         <td><%= link_to 'Edit', edit_stock_item_path(stock_item) %></td>
