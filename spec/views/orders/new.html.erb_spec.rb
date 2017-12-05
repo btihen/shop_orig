@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "orders/new", type: :view do
   before(:each) do
-    @sourcer = assign( :user, FactoryBot.create(:sourcer) )
-    assign(:order, Order.new(
-      :status => "MyString",
-      :reason => "MyText",
-      :sourcer => @sourcer
-    ))
+    assign(:order, FactoryBot.build(:order) )
   end
 
   it "renders new order form" do

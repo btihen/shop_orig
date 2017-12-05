@@ -2,36 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "order_items/index", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
-    @product = assign(:product, Product.create!(
-      :product_name => "MyString",
-      :description => "MyText",
-      :product_price => Money.new(10000, 'CHF'),
-      :product_currency => "MyString",
-      :supplier => @supplier
-    ))
-    @sourcer = assign( :user, FactoryBot.create(:sourcer) )
-    @order = assign(:order, Order.create!(
-      :status => "MyString",
-      :reason => "MyText",
-      :sourcer => @sourcer
-    ))
     @order_items = assign(:order_items, [
-      OrderItem.create!(
-        :quantity => 1,
-        :note => "MyText1",
-        :item_purchase_price => Money.new(10000, 'CHF'),
-        :product => @product,
-        :order => @order
-      ),
-      OrderItem.create!(
-        :quantity => 2,
-        :note => "MyText2",
-        :item_purchase_price => Money.new(9000, 'CHF'),
-        :product => @product,
-        :order => @order
-      )
-    ])
+                            FactoryBot.create(:order_item, :quantity => 1),
+                            FactoryBot.create(:order_item, :quantity => 2),
+                          ])
   end
 
   it "renders a list of order_items" do

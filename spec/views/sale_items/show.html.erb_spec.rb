@@ -7,7 +7,7 @@ RSpec.describe "sale_items/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/#{@sale_item.note}/)
+    expect(rendered).to match(/#{CGI.escapeHTML(@sale_item.note)}/)
     expect(rendered).to match(/#{@sale_item.sale_price}/)
     expect(rendered).to match(/#{@sale_item.sale.id}/)
   end

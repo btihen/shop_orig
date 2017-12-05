@@ -2,27 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "order_items/new", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
-    @product = assign(:product, Product.create!(
-      :product_name => "MyString",
-      :description => "MyText",
-      :product_price => Money.new(10000, 'CHF'),
-      :product_currency => "MyString",
-      :supplier => @supplier
-    ))
-    @sourcer = assign( :user, FactoryBot.create(:sourcer) )
-    @order = assign(:order, Order.create!(
-      :status => "MyString",
-      :reason => "MyText",
-      :sourcer => @sourcer
-    ))
-    assign(:order_item, OrderItem.new(
-      :quantity => 1,
-      :note => "MyText",
-      :item_purchase_price => Money.new(10000, 'CHF'),
-      :product => @product,
-      :order => @order
-    ))
+    @order_item = assign( :order_item, FactoryBot.build(:order_item) )
   end
 
   it "renders new order_item form" do

@@ -7,7 +7,7 @@ RSpec.describe "suppliers/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/#{@supplier.supplier_name}/)
-    expect(rendered).to match(/#{@supplier.description}/)
+    expect(rendered).to match(/#{CGI.escapeHTML(@supplier.supplier_name)}/)
+    expect(rendered).to match(/#{CGI.escapeHTML(@supplier.description)}/)
   end
 end

@@ -2,27 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "order_items/edit", type: :view do
   before(:each) do
-    @supplier = assign(:supplier, FactoryBot.create(:supplier) )
-    @product = assign(:product, Product.create!(
-      :product_name => "MyString",
-      :description => "MyText",
-      :product_price => Money.new(10000, 'CHF'),
-      :product_currency => "MyString",
-      :supplier => @supplier
-    ))
-    @sourcer = assign( :user, FactoryBot.create(:sourcer) )
-    @order = assign(:order, Order.create!(
-      :status => "MyString",
-      :reason => "MyText",
-      :sourcer => @sourcer
-    ))
-    @order_item = assign(:order_item, OrderItem.create!(
-      :quantity => 1,
-      :note => "MyText",
-      :item_purchase_price => Money.new(10000, 'CHF'),
-      :product => @product,
-      :order => @order
-    ))
+    @order_item = assign(:order_item, FactoryBot.create(:order_item) )
   end
 
   it "renders the edit order_item form" do
