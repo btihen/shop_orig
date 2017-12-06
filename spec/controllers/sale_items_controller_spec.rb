@@ -28,13 +28,14 @@ RSpec.describe SaleItemsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # SaleItem. As you add validations to SaleItem, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let!(:stock_item)      { FactoryBot.create(:stock_item) }
+  let(:valid_attributes) { FactoryBot.build(:sale_item,
+                                      sale_price: Money.new(5001, 'EUR'),
+                                      # sale_price_cents: 5001,
+                                      # sale_price_currency: 'EUR',
+                                      stock_item: stock_item).attributes }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { FactoryBot.attributes_for(:invalid_sale_item) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -75,6 +76,7 @@ RSpec.describe SaleItemsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new SaleItem" do
+        # byebug
         expect {
           post :create, params: {sale_item: valid_attributes}, session: valid_session
         }.to change(SaleItem, :count).by(1)
@@ -96,15 +98,15 @@ RSpec.describe SaleItemsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { {sale_price_cents: 1005,  sale_price_currency: 'CHF'} }
+      # let(:new_attributes) { {sale_price: Money.new(1005, 'CHF')} }
 
       it "updates the requested sale_item" do
         sale_item = SaleItem.create! valid_attributes
-        put :update, params: {id: sale_item.to_param, sale_item: new_attributes}, session: valid_session
+        put :update, params: {id: sale_item.to_param, sale_item: new_attributes},
+                              session: valid_session
         sale_item.reload
-        skip("Add assertions for updated state")
+        expect( sale_item.sale_price ).to eq( Money.new(1005, 'CHF') )
       end
 
       it "redirects to the sale_item" do

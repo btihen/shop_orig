@@ -38,7 +38,8 @@ RSpec.describe SaleItem, type: :model do
       # expect( invalid_sale_item.errors.details[:sale]).to eq( [{:error=>:blank}] )
       # expect( invalid_sale_item.errors.details[:sale_price][0][:error]).to eq( :greater_than_or_equal_to )
       expect( invalid_sale_item.errors.messages).to eq(
-                                { :sale=>["must exist"], :stock_item=>["must exist"],
+                                { :sale=>["must exist"],
+                                  :stock_item=>["must exist"],
                                   :sale_price=>["must be greater than or equal to 0"]} )
     end
   end
