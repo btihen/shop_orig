@@ -36,23 +36,23 @@ RSpec.describe SaleItem, type: :model do
     end
     it "correctly detects invalid_sale_item" do
       expect( invalid_sale_item.valid? ).to be_falsey
+      # puts "\nINVALID NIL PRICE SALE ITEM"
       # pp invalid_sale_item.errors.messages
       expect( invalid_sale_item.errors.messages ).to eq(
               { :sale=>["must exist"],
                 :stock_item=>["must exist"],
                 :sale_price_cents=>["is not a number", "is not a number"],
-                :sale_price=>["is not a number"],
                 :sale_price_currency=>["is not included in the list"]
               }
             )
     end
     it "correctly detects invalid_neg_sale_item" do
       expect( invalid_neg_sale_item.valid? ).to be_falsey
+      # puts "\nINVALID NEG PRICE SALE ITEM"
       # pp invalid_neg_sale_item.errors.messages
       expect( invalid_neg_sale_item.errors.messages ).to eq(
               { :sale=>["must exist"],
                 :stock_item=>["must exist"],
-                :sale_price=>["must be greater than or equal to 0"],
                 :sale_price_cents=>["must be greater than or equal to 0"],
                 :sale_price_currency=>["is not included in the list"]
               }

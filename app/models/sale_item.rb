@@ -12,15 +12,19 @@ class SaleItem < ApplicationRecord
   has_one    :order,      through: :order_item
   has_one    :sourcer,    through: :order
 
-  monetize :sale_price_cents, :allow_nil => false,
-                              :numericality => {
-                                :greater_than_or_equal_to => 0,
-                                # :less_than_or_equal_to => 100000
-                              }
+  monetize :sale_price_cents,
+                          allow_nil: false,
+                          numericality: false
+                          # numericality: {
+                          #   greater_than_or_equal_to: 0,
+                          #   # less_than_or_equal_to: 100000
+                          # }
   validates  :sale_price_cents,
-                          numericality: { greater_than_or_equal_to: 0 }
+                          numericality: { greater_than_or_equal_to: 0,
+                                          # less_than_or_equal_to: 100000
+                                        }
   validates  :sale_price_currency,
-                          inclusion: { :in => ApplicationHelper::CURRENCIES },
+                          inclusion: { in: ApplicationHelper::CURRENCIES },
                           allow_nil: false
 
 end

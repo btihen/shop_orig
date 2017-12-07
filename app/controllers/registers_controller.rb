@@ -69,6 +69,12 @@ class RegistersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def register_params
-      params.require(:register).permit(:start_amount, :close_amount, :user_id)
+      params.require(:register).permit( :start_amount,
+                                        :start_amount_cents,
+                                        :start_amount_currency,
+                                        :close_amount,
+                                        :close_amount_cents,
+                                        :close_amount_currency,
+                                        :user_id)
     end
 end
