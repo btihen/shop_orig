@@ -9,9 +9,22 @@ FactoryBot.define do
   factory :invalid_sale_item, parent: :sale_item do
     sale        { nil }
     stock_item  { nil }
-    sale_price  { Money.new(-100, 
-                            ApplicationHelper::CURRENCIES.sample ) }
-    # sale_price  { Money.new(-1 * Faker::Commerce.price * 100,
-    #                         ApplicationHelper::CURRENCIES.sample) }
+    sale_price_cents    { nil }
+    sale_price_currency { nil }
+    # sale_price  { Money.new(nil, nil) }
+  end
+  factory :invalid_nil_sale_item, parent: :sale_item do
+    sale        { nil }
+    stock_item  { nil }
+    sale_price_cents    { -1000 }
+    sale_price_currency { nil }
+    # sale_price  { Money.new(nil, nil) }
+  end
+  factory :invalid_neg_sale_item, parent: :sale_item do
+    sale        { nil }
+    stock_item  { nil }
+    sale_price_cents    { -1000 }
+    sale_price_currency { nil }
+    # sale_price  { Money.new(-100, nil ) }
   end
 end

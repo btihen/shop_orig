@@ -4,6 +4,7 @@ RSpec.describe SaleItem, type: :model do
 
   let(:sale_item)         { FactoryBot.build(:sale_item) }
   let(:invalid_sale_item) { FactoryBot.build(:invalid_sale_item) }
+  let(:invalid_neg_sale_item) { FactoryBot.build(:invalid_neg_sale_item) }
   #
   let!(:supplier)   { FactoryBot.create(:supplier) }
   let!(:product)    { FactoryBot.create(:product,
@@ -35,12 +36,27 @@ RSpec.describe SaleItem, type: :model do
     end
     it "correctly detects invalid_sale_item" do
       expect( invalid_sale_item.valid? ).to be_falsey
-      # expect( invalid_sale_item.errors.details[:sale]).to eq( [{:error=>:blank}] )
-      # expect( invalid_sale_item.errors.details[:sale_price][0][:error]).to eq( :greater_than_or_equal_to )
-      expect( invalid_sale_item.errors.messages).to eq(
-                                { :sale=>["must exist"],
-                                  :stock_item=>["must exist"],
-                                  :sale_price=>["must be greater than or equal to 0"]} )
+      # pp invalid_sale_item.errors.messages
+      expect( invalid_sale_item.errors.messages ).to eq(
+              { :sale=>["must exist"],
+                :stock_item=>["must exist"],
+                :sale_price_cents=>["is not a number", "is not a number"],
+                :sale_price=>["is not a number"],
+                :sale_price_currency=>["is not included in the list"]
+              }
+            )
+    end
+    it "correctly detects invalid_neg_sale_item" do
+      expect( invalid_neg_sale_item.valid? ).to be_falsey
+      # pp invalid_neg_sale_item.errors.messages
+      expect( invalid_neg_sale_item.errors.messages ).to eq(
+              { :sale=>["must exist"],
+                :stock_item=>["must exist"],
+                :sale_price=>["must be greater than or equal to 0"],
+                :sale_price_cents=>["must be greater than or equal to 0"],
+                :sale_price_currency=>["is not included in the list"]
+              }
+            )
     end
   end
 
