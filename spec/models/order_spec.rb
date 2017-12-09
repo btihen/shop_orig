@@ -2,23 +2,34 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
 
-  let!(:sourcer)    { FactoryBot.create(:user ) }
-  let!(:order)      { FactoryBot.create(:order,
-                                        sourcer:    sourcer) }
-  let!(:supplier)   { FactoryBot.create(:supplier) }
-  let!(:product)    { FactoryBot.create(:product,
-                                        supplier:   supplier) }
-  let!(:order_item) { FactoryBot.create(:order_item,
-                                        product:    product,
-                                        order:      order) }
-  let(:stock_item)  { FactoryBot.create(:stock_item,
-                                        order_item: order_item) }
+  let(:invalid_order) { FactoryBot.build(:invalid_order) }
+  #
+  let!(:sourcer)      { FactoryBot.create(:user) }
+  let!(:order)        { FactoryBot.build(:order,
+                                          sourcer:    sourcer) }
+  let!(:supplier)     { FactoryBot.create(:supplier) }
+  let!(:product)      { FactoryBot.create(:product,
+                                          supplier:   supplier) }
+  let!(:order_item)   { FactoryBot.create(:order_item,
+                                          product:    product,
+                                          order:      order) }
+  let(:stock_item)    { FactoryBot.create(:stock_item,
+                                          order_item: order_item) }
 
   context "verify factory" do
     it "correctly builds order" do
       expect( order.valid? ).to be_truthy
       expect( order.errors.details).to eq( {} )
       expect( order.errors.messages).to eq( {} )
+    end
+    it "correctly detect invalid_order" do
+      expect( invalid_order.valid? ).to be_falsey
+      # pp invalid_order.errors.messages
+      # expect( invalid_order.errors.details).to eq( {} )
+      expect( invalid_order.errors.messages).to eq(
+              { sourcer: ["must exist"],
+                status:  ["can't be blank", "is not included in the list"]
+              } )
     end
   end
 

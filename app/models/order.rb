@@ -6,4 +6,7 @@ class Order < ApplicationRecord
   has_many    :supplier,    through: :products
   has_many    :stock_items, through: :order_items
 
+  validates :status, presence: true,
+                    inclusion: { in: ApplicationHelper::ORDER_STATUS }
+
 end

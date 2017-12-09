@@ -10,6 +10,6 @@ class StockItem < ApplicationRecord
   monetize   :sell_price_cents
 
   validates  :status,   presence: true,
-                        inclusion: { :in => ApplicationHelper::STOCK_STATUS }
+                        inclusion: { in: ApplicationHelper::STOCK_STATUS }
 
 end

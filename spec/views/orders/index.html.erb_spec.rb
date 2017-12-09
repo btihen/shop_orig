@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "orders/index", type: :view do
   before(:each) do
     @orders = assign(:orders, [
-                      FactoryBot.create(:order, status: 'available'),
-                      FactoryBot.create(:order, status: 'sold'),
+                      FactoryBot.create(:order, status: 'approved'),
+                      FactoryBot.create(:order, status: 'paid'),
                     ])
   end
 
