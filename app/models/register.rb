@@ -31,13 +31,17 @@ class Register < ApplicationRecord
                               #   # less_than_or_equal_to: 100000
                               # }
   validates  :close_amount_cents,
-                            allow_nil: true,
-                            numericality: { greater_than_or_equal_to: 0 }
+                            numericality: { greater_than_or_equal_to: 0 },
+                            allow_nil: true, if: :validate_close_amount?
   validates  :close_amount_currency,
-                            allow_nil: true,
-                            inclusion: { in: ApplicationHelper::CURRENCIES }
+                            inclusion: { in: ApplicationHelper::CURRENCIES },
+                            allow_nil: true, if: :validate_close_amount?
   # validates  :start_amount, presence: true,
   #                           numericality: { greater_than_or_equal_to: 0 }
   # validates  :close_amount, numericality: { greater_than_or_equal_to: 0 }
+
+  def validate_close_amount?
+    return true unless close_amount_cents.blank?
+  end
 
 end
