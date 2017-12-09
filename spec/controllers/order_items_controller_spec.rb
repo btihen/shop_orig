@@ -28,13 +28,9 @@ RSpec.describe OrderItemsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # OrderItem. As you add validations to OrderItem, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { FactoryBot.build(:order_item).attributes }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { FactoryBot.build(:invalid_order_item).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -96,15 +92,13 @@ RSpec.describe OrderItemsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { {note: "best product"} }
 
       it "updates the requested order_item" do
         order_item = OrderItem.create! valid_attributes
         put :update, params: {id: order_item.to_param, order_item: new_attributes}, session: valid_session
         order_item.reload
-        skip("Add assertions for updated state")
+        expect( order_item.note ).to eq("best product")
       end
 
       it "redirects to the order_item" do

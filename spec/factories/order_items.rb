@@ -8,4 +8,12 @@ FactoryBot.define do
     product             { FactoryHelpers.get_product() }
     order               { FactoryHelpers.get_order() }
   end
+  factory :invalid_order_item, parent: :order_item do
+    quantity            { nil }
+    item_purchase_price_cents    { nil }
+    item_purchase_price_currency { nil }
+    #
+    product             { nil }
+    order               { nil }
+  end
 end
