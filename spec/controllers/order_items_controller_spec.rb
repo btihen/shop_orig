@@ -72,19 +72,22 @@ RSpec.describe OrderItemsController, type: :controller do
     context "with valid params" do
       it "creates a new OrderItem" do
         expect {
-          post :create, params: {order_item: valid_attributes}, session: valid_session
+          post :create, params: {order_item: valid_attributes},
+                        session: valid_session
         }.to change(OrderItem, :count).by(1)
       end
 
       it "redirects to the created order_item" do
-        post :create, params: {order_item: valid_attributes}, session: valid_session
+        post :create, params: {order_item: valid_attributes},
+                      session: valid_session
         expect(response).to redirect_to(OrderItem.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {order_item: invalid_attributes}, session: valid_session
+        post :create, params: {order_item: invalid_attributes},
+                      session: valid_session
         expect(response).to be_success
       end
     end
@@ -96,14 +99,18 @@ RSpec.describe OrderItemsController, type: :controller do
 
       it "updates the requested order_item" do
         order_item = OrderItem.create! valid_attributes
-        put :update, params: {id: order_item.to_param, order_item: new_attributes}, session: valid_session
+        put :update, params: {id: order_item.to_param,
+                              order_item: new_attributes},
+                    session: valid_session
         order_item.reload
         expect( order_item.note ).to eq("best product")
       end
 
       it "redirects to the order_item" do
         order_item = OrderItem.create! valid_attributes
-        put :update, params: {id: order_item.to_param, order_item: valid_attributes}, session: valid_session
+        put :update, params: {id: order_item.to_param,
+                              order_item: valid_attributes},
+                    session: valid_session
         expect(response).to redirect_to(order_item)
       end
     end
@@ -111,7 +118,9 @@ RSpec.describe OrderItemsController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         order_item = OrderItem.create! valid_attributes
-        put :update, params: {id: order_item.to_param, order_item: invalid_attributes}, session: valid_session
+        put :update, params: {id: order_item.to_param,
+                              order_item: invalid_attributes},
+                    session: valid_session
         expect(response).to be_success
       end
     end
@@ -121,13 +130,15 @@ RSpec.describe OrderItemsController, type: :controller do
     it "destroys the requested order_item" do
       order_item = OrderItem.create! valid_attributes
       expect {
-        delete :destroy, params: {id: order_item.to_param}, session: valid_session
+        delete :destroy, params: {id: order_item.to_param},
+                        session: valid_session
       }.to change(OrderItem, :count).by(-1)
     end
 
     it "redirects to the order_items list" do
       order_item = OrderItem.create! valid_attributes
-      delete :destroy, params: {id: order_item.to_param}, session: valid_session
+      delete :destroy, params: {id: order_item.to_param},
+                      session: valid_session
       expect(response).to redirect_to(order_items_url)
     end
   end
