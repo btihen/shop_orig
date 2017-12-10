@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203115635) do
+ActiveRecord::Schema.define(version: 20171210191010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,9 +94,19 @@ ActiveRecord::Schema.define(version: 20171203115635) do
 
   create_table "suppliers", force: :cascade do |t|
     t.string "supplier_name"
-    t.text "description"
+    t.text "supplier_notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "supplier_currency"
+    t.string "supplier_web_url"
+    t.string "supplier_email"
+    t.string "supplier_phone"
+    t.string "supplier_address_1"
+    t.string "supplier_address_2"
+    t.string "supplier_city"
+    t.string "supplier_region"
+    t.string "supplier_postcode"
+    t.string "supplier_country_code"
     t.index ["supplier_name"], name: "index_suppliers_on_supplier_name", unique: true
   end
 

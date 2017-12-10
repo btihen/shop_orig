@@ -12,8 +12,8 @@ RSpec.describe "suppliers/index", type: :view do
     render
     assert_select "tr>td", :text => @suppliers[0].supplier_name, :count => 1
     assert_select "tr>td", :text => @suppliers[1].supplier_name, :count => 1
-    assert_select "tr>td", :text => @suppliers[0].description, :count => 1
-    assert_select "tr>td", :text => @suppliers[1].description, :count => 1
+    assert_select "tr>td", :text => @suppliers[0].supplier_notes, :count => 1
+    assert_select "tr>td", :text => @suppliers[1].supplier_notes, :count => 1
     # assert_select "tr>td", :text => @suppliers[0].currency.to_s, :count => 1
     # assert_select "tr>td", :text => @suppliers[1].currency.to_s, :count => 1
   end

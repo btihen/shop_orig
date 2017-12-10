@@ -65,13 +65,13 @@ RSpec.describe SuppliersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {description: "Lots of Malas"} }
+      let(:new_attributes) { {supplier_notes: "Lots of Malas"} }
 
       it "updates the requested supplier" do
         supplier = Supplier.create! valid_attributes
         put :update, params: {id: supplier.to_param, supplier: new_attributes}, session: valid_session
         supplier.reload
-        expect( supplier.description ).to eq( "Lots of Malas" )
+        expect( supplier.supplier_notes ).to eq( "Lots of Malas" )
       end
 
       it "redirects to the supplier" do
