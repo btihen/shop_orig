@@ -16,7 +16,5 @@ FactoryBot.define do
   factory :invalid_supplier, parent: :supplier do
     supplier_name         { nil }
     supplier_currency     { nil }
-    supplier_web_url      { nil }
-    supplier_email        { nil }
   end
 end

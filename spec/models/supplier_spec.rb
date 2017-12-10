@@ -22,12 +22,14 @@ RSpec.describe Supplier, type: :model do
     end
     it "detects an invalid_supplier" do
       expect( invalid_supplier.valid? ).to be_falsey
-      expect( invalid_supplier.errors.details).to eq(
-                  {:supplier_name=>[{:error=>:blank},
-                                    {:error=>:too_short, :count=>2}]})
+      # expect( invalid_supplier.errors.details).to eq(
+      #             {:supplier_name=>[{:error=>:blank},
+      #                               {:error=>:too_short, :count=>2}]})
       expect( invalid_supplier.errors.messages).to eq(
-                  {:supplier_name=>["can't be blank",
-                                    "is too short (minimum is 2 characters)"]})
+                  { supplier_name: ["can't be blank",
+                                    "is too short (minimum is 2 characters)"],
+                    supplier_currency: ["is not included in the list"]
+                  } )
     end
   end
 

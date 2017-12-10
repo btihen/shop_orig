@@ -24,7 +24,7 @@ class SaleItem < ApplicationRecord
                                           # less_than_or_equal_to: 100000
                                         }
   validates  :sale_price_currency,
-                          inclusion: { in: ApplicationHelper::CURRENCIES },
-                          allow_nil: false
+                          allow_nil: false,
+                          inclusion: { in: ApplicationHelper::CURRENCIES }
 
 end
