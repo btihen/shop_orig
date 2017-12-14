@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # username: shop
+  pool: 5
+
+development:
+  <<: *default
+  database: shop_development
+
+test:
+  <<: *default
+  database: shop_test
+
+production:
+  <<: *default
+  database: shop_developement
