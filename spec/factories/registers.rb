@@ -1,35 +1,30 @@
 FactoryBot.define do
   factory :register do
-    start_amount  { Money.new(Faker::Commerce.price * 100,
-                              ApplicationHelper::CURRENCIES.sample) }
-    close_amount  { Money.new(Faker::Commerce.price * 100,
-                              ApplicationHelper::CURRENCIES.sample) }
-    cashier       { FactoryHelpers.get_cashier() }
+    register_currency  { ApplicationHelper::CURRENCIES.sample }
+    start_amount_cents { Faker::Commerce.price * 100 }
+    close_amount_cents { Faker::Commerce.price * 100 }
+    # start_amount      { Money.new(Faker::Commerce.price * 100, register_currency) }
+    # close_amount      { Money.new(Faker::Commerce.price * 100, register_currency) }
+    cashier            { FactoryHelpers.get_cashier() }
   end
-  factory :open_nil_register, parent: :register do
-    close_amount_cents  { nil }
-    close_amount_currency  { nil }
-    # close_amount  { Money.new(nil, nil) }
+  factory :open_register_closed_nil, parent: :register do
+    close_amount_cents { nil }
   end
-  factory :open_empty_register, parent: :register do
-    close_amount_cents  { "" }
-    close_amount_currency  { "" }
+  factory :open_register_closed_blank, parent: :register do
+    close_amount_cents { "" }
   end
   factory :closed_register, parent: :register do
-    close_amount  { Money.new(Faker::Commerce.price * 100,
-                              ApplicationHelper::CURRENCIES.sample) }
+    close_amount_cents { Faker::Commerce.price * 100 }
+    # close_amount  { Money.new(Faker::Commerce.price * 100, register_currency) }
   end
   factory :invalid_register, parent: :register do
-    start_amount_cents    { nil }
-    start_amount_currency { nil }
-    close_amount_cents    { nil }
-    close_amount_currency { nil }
-    # close_amount          { Money.new(nil, nil) }
-    cashier               { nil }
+    register_currency  { nil }
+    start_amount_cents { nil }
+    close_amount_cents { nil }
+    cashier            { nil }
   end
   factory :invalid_neg_register, parent: :register do
-    # close_amount          { Money.new(-100, nil ) }
-    close_amount_cents    { -1000 }
-    close_amount_currency { '' }
+    register_currency  { ApplicationHelper::CURRENCIES.sample }
+    close_amount_cents { -1000 }
   end
 end

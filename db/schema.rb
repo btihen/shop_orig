@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20171210191010) do
     t.integer "quantity"
     t.text "note"
     t.integer "item_purchase_price_cents", default: 0, null: false
-    t.string "item_purchase_price_currency", default: "USD", null: false
+    t.string "item_purchase_price_currency", default: "CHF", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "order_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171210191010) do
     t.string "product_name"
     t.text "description"
     t.integer "product_price_cents", default: 0, null: false
-    t.string "product_price_currency", default: "USD", null: false
+    t.string "product_price_currency", default: "CHF", null: false
     t.string "product_currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,10 +50,11 @@ ActiveRecord::Schema.define(version: 20171210191010) do
   end
 
   create_table "registers", force: :cascade do |t|
+    t.string "register_currency"
     t.integer "start_amount_cents", default: 0, null: false
-    t.string "start_amount_currency", default: "USD", null: false
+    t.string "start_amount_currency", default: "CHF", null: false
     t.integer "close_amount_cents", default: 0, null: false
-    t.string "close_amount_currency", default: "USD", null: false
+    t.string "close_amount_currency", default: "CHF", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,7 +64,7 @@ ActiveRecord::Schema.define(version: 20171210191010) do
   create_table "sale_items", force: :cascade do |t|
     t.text "note"
     t.integer "sale_price_cents", default: 0, null: false
-    t.string "sale_price_currency", default: "USD", null: false
+    t.string "sale_price_currency", default: "CHF", null: false
     t.bigint "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,7 +86,7 @@ ActiveRecord::Schema.define(version: 20171210191010) do
     t.datetime "add_datetime"
     t.datetime "sold_datetime"
     t.integer "sell_price_cents", default: 0, null: false
-    t.string "sell_price_currency", default: "USD", null: false
+    t.string "sell_price_currency", default: "CHF", null: false
     t.bigint "order_item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

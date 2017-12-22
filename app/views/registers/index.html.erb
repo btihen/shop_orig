@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Currency</th>
       <th>Open amount</th>
       <th>Close amount</th>
       <th>User</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @registers.each do |register| %>
       <tr>
+        <td><%= register.register_currency %></td>
         <td><%= register.start_amount %></td>
         <td><%= register.close_amount %></td>
         <td><%= register.cashier.full_name %></td>

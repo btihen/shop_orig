@@ -8,40 +8,29 @@ class Register < ApplicationRecord
   has_many   :order_items,    through: :stock_items
   has_many   :products_sold,  through: :order_items, source: 'product'
 
-  monetize   :start_amount_cents,
+  monetize   :start_amount_cents, disable_validation: true
+  monetize   :close_amount_cents, disable_validation: true
+
+  after_validation(on: :create) do
+    self.start_amount = Money.new(start_amount_cents.to_i,
+                                  register_currency) if attribute_present?("start_amount_cents")
+    self.close_amount = Money.new(close_amount_cents.to_i,
+                                  register_currency) if attribute_present?("close_amount_cents")
+  end
+
+  validates  :register_currency, presence: true,
                               allow_nil: false,
-                              numericality: false
-                              # numericality: {
-                              #   greater_than_or_equal_to: 0,
-                              #   # less_than_or_equal_to: 100000
-                              # }
+                              inclusion: { in: ApplicationHelper::CURRENCIES }
   validates  :start_amount_cents,
                               numericality: { greater_than_or_equal_to: 0 },
                               allow_nil: false
-  validates  :start_amount_currency,
-                              inclusion: { in: ApplicationHelper::CURRENCIES },
-                              allow_nil: false
-  #
-  monetize   :close_amount_cents,
-                              allow_nil: true,
-                              numericality: false
-                              # disable_validation: true,
-                              # numericality: {
-                              #   greater_than_or_equal_to: 0,
-                              #   # less_than_or_equal_to: 100000
-                              # }
   validates  :close_amount_cents,
-                            numericality: { greater_than_or_equal_to: 0 },
-                            allow_nil: true, if: :validate_close_amount?
-  validates  :close_amount_currency,
-                            inclusion: { in: ApplicationHelper::CURRENCIES },
-                            allow_nil: true, if: :validate_close_amount?
-  # validates  :start_amount, presence: true,
-  #                           numericality: { greater_than_or_equal_to: 0 }
-  # validates  :close_amount, numericality: { greater_than_or_equal_to: 0 }
+                              numericality: { greater_than_or_equal_to: 0 },
+                              allow_nil: true #,
+                              # if: :validate_close_amount?
 
-  def validate_close_amount?
-    return true unless close_amount_cents.blank?
-  end
+  # def validate_close_amount?
+  #   return true unless close_amount_cents.blank?
+  # end
 
 end

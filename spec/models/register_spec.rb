@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Register, type: :model do
 
   let(:register)              { FactoryBot.build(:register) }
-  let(:open_nil_register)     { FactoryBot.build(:open_nil_register) }
-  let(:open_empty_register)   { FactoryBot.build(:open_empty_register) }
+  let(:open_register_closed_nil)  { FactoryBot.build(:open_register_closed_nil) }
+  let(:open_register_closed_blank){ FactoryBot.build(:open_register_closed_blank) }
   let(:invalid_register)      { FactoryBot.build(:invalid_register) }
   let(:invalid_neg_register)  { FactoryBot.build(:invalid_neg_register) }
   #
@@ -37,22 +37,22 @@ RSpec.describe Register, type: :model do
       expect( register.errors.messages).to eq( {} )
     end
     it "correctly open_nil_register" do
-      expect( open_nil_register.valid? ).to be_truthy
+      expect( open_register_closed_nil.valid? ).to be_truthy
       # puts "\nNEWLY OPENED REGISTER"
-      # pp open_nil_register
+      # pp open_register_closed_nil
       # puts "\nNEWLY OPENED REGISTER - PARAMS"
-      # pp open_nil_register.errors.messages
-      expect( open_nil_register.errors.details ).to eq( {} )
-      expect( open_nil_register.errors.messages ).to eq( {} )
+      # pp open_register_closed_nil.errors.messages
+      expect( open_register_closed_nil.errors.details ).to eq( {} )
+      expect( open_register_closed_nil.errors.messages ).to eq( {} )
     end
-    xit "correctly open_empty_register" do
+    it "correctly open_empty_register" do
       puts "\nNEWLY OPENED EMPTY REGISTER"
-      pp open_empty_register
+      # pp open_register_closed_blank
       puts "\nNEWLY OPENED EMPTY REGISTER - PARAMS"
-      expect( open_empty_register.valid? ).to be_truthy
-      pp open_empty_register.errors.messages
-      expect( open_empty_register.errors.details ).to eq( {} )
-      expect( open_empty_register.errors.messages ).to eq( {} )
+      expect( open_register_closed_blank.valid? ).to be_truthy
+      # pp open_register_closed_blank.errors.messages
+      expect( open_register_closed_blank.errors.details ).to eq( {} )
+      expect( open_register_closed_blank.errors.messages ).to eq( {} )
     end
     it "correctly detects invalid_register" do
       expect( invalid_register.valid? ).to be_falsey
@@ -62,8 +62,9 @@ RSpec.describe Register, type: :model do
       # pp invalid_register.errors.messages
       expect( invalid_register.errors.messages ).to eq(
               { :cashier=>["must exist"],
-                :start_amount_cents=>["is not a number"],
-                :start_amount_currency=>["is not included in the list"]
+                :register_currency=>["can't be blank", "is not included in the list"],
+                :start_amount_cents=>["is not a number"] #,
+                # :start_amount_currency=>["is not included in the list"]
               }
             )
     end
@@ -74,8 +75,8 @@ RSpec.describe Register, type: :model do
       # puts "\nINVALID NEG AMOUNT PARAMS"
       # pp invalid_neg_register.errors.messages
       expect( invalid_neg_register.errors.messages).to eq(
-              { :close_amount_cents=>["must be greater than or equal to 0"],
-                :close_amount_currency=>["is not included in the list"]
+              { :close_amount_cents=>["must be greater than or equal to 0"] #,
+                # :close_amount_currency=>["is not included in the list"]
               }
             )
     end
