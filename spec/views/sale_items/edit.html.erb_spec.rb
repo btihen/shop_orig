@@ -10,7 +10,7 @@ RSpec.describe "sale_items/edit", type: :view do
 
     assert_select "form[action=?][method=?]", sale_item_path(@sale_item), "post" do
 
-      assert_select "textarea[name=?]", "sale_item[note]"
+      assert_select "textarea[name=?]", "sale_item[sale_item_note]"
 
       assert_select "input[name=?]", "sale_item[sale_price]"
 

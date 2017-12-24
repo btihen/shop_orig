@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20171222163540) do
   end
 
   create_table "sale_items", force: :cascade do |t|
-    t.text "note"
+    t.text "sale_item_note"
     t.integer "sale_price_cents", default: 0, null: false
     t.string "sale_price_currency", default: "CHF", null: false
     t.bigint "sale_id"
