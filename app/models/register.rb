@@ -10,6 +10,7 @@ class Register < ApplicationRecord
 
   monetize   :start_amount_cents, disable_validation: true
   monetize   :close_amount_cents, disable_validation: true
+  monetize   :cash_deposit_cents, disable_validation: true
 
   after_validation(on: :create) do
     self.start_amount = Money.new(start_amount_cents.to_i,
@@ -22,15 +23,22 @@ class Register < ApplicationRecord
                               allow_nil: false,
                               inclusion: { in: ApplicationHelper::CURRENCIES }
   validates  :start_amount_cents,
-                              numericality: { greater_than_or_equal_to: 0 },
-                              allow_nil: false
+                              allow_nil: false,
+                              numericality: { greater_than_or_equal_to: 0 }
   validates  :close_amount_cents,
-                              numericality: { greater_than_or_equal_to: 0 },
-                              allow_nil: true #,
+                              allow_nil: true,
+                              numericality: { greater_than_or_equal_to: 0 } #,
                               # if: :validate_close_amount?
+  validates  :cash_deposit_cents,
+                              allow_nil: true,
+                              numericality: { greater_than_or_equal_to: 0 },
+                              if: :validate_cash_deposit?
 
-  # def validate_close_amount?
-  #   return true unless close_amount_cents.blank?
-  # end
+  def validate_close_amount?
+    return true if not cash_deposit_cents.nil? and cash_deposit_cents > 0
+  end
+  def validate_cash_deposit?
+    return true if not close_amount_cents.nil? and close_amount_cents > 0
+  end
 
 end

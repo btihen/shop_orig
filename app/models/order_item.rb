@@ -9,10 +9,10 @@ class OrderItem < ApplicationRecord
   monetize  :item_purchase_price_cents,
                           allow_nil: false,
                           numericality: false
-  validates  :item_purchase_price_cents,
+  validates :item_purchase_price_cents,
                           allow_nil: false,
                           numericality: { greater_than_or_equal_to: 0 }
-  validates  :item_purchase_price_currency,
+  validates :item_purchase_price_currency,
                           allow_nil: false,
                           inclusion: { in: ApplicationHelper::CURRENCIES }
 

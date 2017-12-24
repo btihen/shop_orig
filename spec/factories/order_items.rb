@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order_item do
     quantity            { Faker::Number.between(1, 10) }
-    note                { Faker::Hipster.sentence }
+    order_item_note     { Faker::Hipster.sentence }
     item_purchase_price { Money.new(Faker::Commerce.price * 100,
                           ApplicationHelper::CURRENCIES.sample) }
     #

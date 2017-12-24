@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171210191010) do
+ActiveRecord::Schema.define(version: 20171222163540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "citext"
 
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
-    t.text "note"
+    t.text "order_item_note"
     t.integer "item_purchase_price_cents", default: 0, null: false
     t.string "item_purchase_price_currency", default: "CHF", null: false
     t.datetime "created_at", null: false
@@ -53,11 +54,13 @@ ActiveRecord::Schema.define(version: 20171210191010) do
     t.string "register_currency"
     t.integer "start_amount_cents", default: 0, null: false
     t.string "start_amount_currency", default: "CHF", null: false
-    t.integer "close_amount_cents", default: 0, null: false
+    t.integer "close_amount_cents"
     t.string "close_amount_currency", default: "CHF", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cash_deposit_cents"
+    t.string "cash_deposit_currency", default: "CHF", null: false
     t.index ["user_id"], name: "index_registers_on_user_id"
   end
 

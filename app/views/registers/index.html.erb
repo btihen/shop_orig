@@ -8,6 +8,7 @@
       <th>Currency</th>
       <th>Open amount</th>
       <th>Close amount</th>
+      <th>Cash Deposit</th>
       <th>User</th>
       <th colspan="3"></th>
     </tr>
@@ -19,6 +20,7 @@
         <td><%= register.register_currency %></td>
         <td><%= register.start_amount %></td>
         <td><%= register.close_amount %></td>
+        <td><%= register.cash_deposit %></td>
         <td><%= register.cashier.full_name %></td>
         <td><%= link_to 'Show', register %></td>
         <td><%= link_to 'Edit', edit_register_path(register) %></td>

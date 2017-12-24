@@ -95,7 +95,7 @@ RSpec.describe OrderItemsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {note: "best product"} }
+      let(:new_attributes) { {order_item_note: "best product"} }
 
       it "updates the requested order_item" do
         order_item = OrderItem.create! valid_attributes
@@ -103,7 +103,7 @@ RSpec.describe OrderItemsController, type: :controller do
                               order_item: new_attributes},
                     session: valid_session
         order_item.reload
-        expect( order_item.note ).to eq("best product")
+        expect( order_item.order_item_note ).to eq("best product")
       end
 
       it "redirects to the order_item" do

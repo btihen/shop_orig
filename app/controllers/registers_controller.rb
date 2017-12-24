@@ -72,6 +72,7 @@ class RegistersController < ApplicationController
       params.require(:register).permit( :register_currency,
                                         :start_amount_cents,
                                         :close_amount_cents,
+                                        :cash_deposit_cents,
                                         :user_id
                                       )
     end
