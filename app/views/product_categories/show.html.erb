@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product category name:</strong>
+  <%= @product_category.product_category_name %>
+</p>
+
+<p>
+  <strong>Tax category:</strong>
+  <%= @product_category.tax_category.tax_category_name %>
+</p>
+
+<%= link_to 'Edit', edit_product_category_path(@product_category) %> |
+<%= link_to 'Back', product_categories_path %>

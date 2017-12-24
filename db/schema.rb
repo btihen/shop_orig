@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171222163540) do
+ActiveRecord::Schema.define(version: 20171224120222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20171222163540) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "product_categories", force: :cascade do |t|
+    t.string "product_category_name"
+    t.bigint "tax_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_category_name"], name: "index_product_categories_on_product_category_name", unique: true
+    t.index ["tax_category_id"], name: "index_product_categories_on_tax_category_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "product_name"
     t.text "description"
@@ -47,6 +56,8 @@ ActiveRecord::Schema.define(version: 20171222163540) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "supplier_id"
+    t.bigint "product_category_id"
+    t.index ["product_category_id"], name: "index_products_on_product_category_id"
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
@@ -114,6 +125,14 @@ ActiveRecord::Schema.define(version: 20171222163540) do
     t.index ["supplier_name"], name: "index_suppliers_on_supplier_name", unique: true
   end
 
+  create_table "tax_categories", force: :cascade do |t|
+    t.string "tax_category_name"
+    t.decimal "tax_category_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tax_category_name"], name: "index_tax_categories_on_tax_category_name", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "full_name"
@@ -126,6 +145,8 @@ ActiveRecord::Schema.define(version: 20171222163540) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "product_categories", "tax_categories"
+  add_foreign_key "products", "product_categories"
   add_foreign_key "products", "suppliers"
   add_foreign_key "registers", "users"
   add_foreign_key "sale_items", "sales"

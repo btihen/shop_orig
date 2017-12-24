@@ -73,9 +73,10 @@ class ProductsController < ApplicationController
                                         :description,
                                         :product_price,
                                         :product_price_cents,
-                                        :product_price_currency, 
+                                        :product_price_currency,
                                         :product_currency,
                                         :supplier_id,
+                                        :product_category_id,
                                       )
     end
 end

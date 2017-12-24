@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :product_categories
+  resources :tax_categories
   resources :sale_items
   resources :sales
   resources :registers

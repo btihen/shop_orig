@@ -1,6 +1,20 @@
 module FactoryHelpers
   extend self
 
+  def get_tax_category
+    # if less than 3 tax categories (make new ones)
+    return FactoryBot.create :tax_category      if TaxCategory.count < 3
+    # if 3 tax categories - return an exising tax category
+    return TaxCategory.find( rand(1..TaxCategory.count) )
+  end
+
+  def get_product_category
+    # if less than 5 tax categories (make new ones)
+    return FactoryBot.create :product_category      if ProductCategory.count < 5
+    # if 3 tax categories - return an exising tax category
+    return ProductCategory.find( rand(1..ProductCategory.count) )
+  end
+
   def get_supplier
     # if only one supplier generate and return a new one
     return FactoryBot.create :supplier      if Supplier.count <= 3

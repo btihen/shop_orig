@@ -5,7 +5,7 @@ FactoryBot.define do
     # color                   {  Faker::Commerce.color }
     product_price           { Money.new(Faker::Commerce.price * 100,
                               ApplicationHelper::CURRENCIES.sample) }
-    # product_category        { ApplicationHelper::PRODUCT_CATEGORIES.sample }
+    product_category        { FactoryHelpers.get_product_category() }
     supplier                { FactoryHelpers.get_supplier() }
   end
   factory :invalid_product, parent: :product do
