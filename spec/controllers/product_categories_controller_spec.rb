@@ -28,13 +28,9 @@ RSpec.describe ProductCategoriesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # ProductCategory. As you add validations to ProductCategory, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { FactoryBot.build(:product_category).attributes }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { FactoryBot.build(:invalid_product_category).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -96,15 +92,13 @@ RSpec.describe ProductCategoriesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { {product_category_name: "Bill"} }
 
       it "updates the requested product_category" do
         product_category = ProductCategory.create! valid_attributes
         put :update, params: {id: product_category.to_param, product_category: new_attributes}, session: valid_session
         product_category.reload
-        skip("Add assertions for updated state")
+        expect( product_category.product_category_name).to eq( "Bill" )
       end
 
       it "redirects to the product_category" do

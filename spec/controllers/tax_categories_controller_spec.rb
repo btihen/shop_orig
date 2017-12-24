@@ -28,13 +28,9 @@ RSpec.describe TaxCategoriesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # TaxCategory. As you add validations to TaxCategory, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { FactoryBot.build(:tax_category).attributes }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { FactoryBot.build(:invalid_tax_category).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -96,15 +92,13 @@ RSpec.describe TaxCategoriesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { {tax_category_name: "free"} }
 
       it "updates the requested tax_category" do
         tax_category = TaxCategory.create! valid_attributes
         put :update, params: {id: tax_category.to_param, tax_category: new_attributes}, session: valid_session
         tax_category.reload
-        skip("Add assertions for updated state")
+        expect( tax_category.tax_category_name).to eq( "free" )
       end
 
       it "redirects to the tax_category" do
