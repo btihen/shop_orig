@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 # gem 'devise', '~> 4.3'
 gem 'money-rails', '~> 1.9'
+gem 'eu_central_bank', '~> 1.1'
 
 # detect old browsers
 gem "browser", '~> 2.5'
