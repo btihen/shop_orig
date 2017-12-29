@@ -2,8 +2,9 @@
 
 ## Features
 
-* allows inventory management
-* allows ordering management
+* allows supplier management
+* allows product ordering management
+* allows product inventory management
 * allows bulk/bundled orders (of diverse products)
 * allows bulk/bundled sales (for now with override)
 * allows sales register tracking (in multiple currencies)
@@ -40,7 +41,7 @@ Things you may want to cover:
 
 * Configuration
   - default currency & exchange bank: in *config/initializers/money.rb*
-  - https://richonrails.com/articles/currency-validation-in-ruby-on-rails - better money validation:
+  - https://richonrails.com/articles/currency-validation-in-ruby-on-rails - better money validation (use default money config - otherwise validation error messages stop working):
   ```ruby
   validates :price, :presence => true,
             :numericality => true,
