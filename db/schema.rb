@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20171224120222) do
     t.string "product_name"
     t.text "product_description"
     t.jsonb "product_details", default: "{}", null: false
-    t.integer "product_purchase_price_cents", default: 0, null: false
-    t.string "product_purchase_price_currency", default: "USD", null: false
+    t.integer "product_supplier_price_cents", default: 0, null: false
+    t.string "product_supplier_price_currency", default: "USD", null: false
     t.integer "product_resell_item_price_cents", default: 0, null: false
     t.string "product_resell_item_price_currency", default: "USD", null: false
     t.datetime "created_at", null: false

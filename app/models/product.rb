@@ -23,7 +23,7 @@ class Product < ApplicationRecord
   # validates :product_name, presence: true, # uniqueness: true,
   #                          length: { minimum: 2 }
 
-  monetize  :product_purchase_price_cents,
+  monetize  :product_supplier_price_cents,
                             allow_nil: false,
                             numericality: false
                             # numericality: { greater_than_or_equal_to: 0 }
@@ -31,7 +31,7 @@ class Product < ApplicationRecord
                             allow_nil: true,
                             numericality: false
 
-  validates :product_purchase_price_cents,
+  validates :product_supplier_price_cents,
                             numericality: { greater_than_or_equal_to: 0 }
   validates :product_resell_item_price_cents,
                             allow_nil: true,
@@ -42,7 +42,7 @@ class Product < ApplicationRecord
                             inclusion: { in: ApplicationHelper::CURRENCIES }
 
   def assign_currency
-    product_purchase_price_currency = product_currency
+    product_supplier_price_currency = product_currency
   end
 
   def product_currency

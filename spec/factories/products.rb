@@ -6,9 +6,9 @@ FactoryBot.define do
                                   color:       Faker::Color.color_name,
                                   style:       ['Mens', 'Women'].sample,
                                   size: ['XS', 'S', 'M', 'L', 'XL', 'XXL'].sample } }
-    product_purchase_price_cents   { Faker::Commerce.price * 100 }
-    # product_purchase_price_currency{ ApplicationHelper::CURRENCIES.sample }
-    # product_purchase_price    { Money.new(Faker::Commerce.price * 100,
+    product_supplier_price_cents   { Faker::Commerce.price * 100 }
+    # product_supplier_price_currency{ ApplicationHelper::CURRENCIES.sample }
+    # product_supplier_price    { Money.new(Faker::Commerce.price * 100,
     #                             ApplicationHelper::CURRENCIES.sample) }
     product_resell_item_price { Money.new(Faker::Commerce.price * 100,
                                 ApplicationHelper::CURRENCIES.sample) }
@@ -17,7 +17,7 @@ FactoryBot.define do
   end
   factory :invalid_product, parent: :product do
     product_name                    { nil }
-    product_purchase_price_cents    { nil }
+    product_supplier_price_cents    { nil }
     product_resell_item_price_cents { -100 }
     supplier                        { nil }
   end

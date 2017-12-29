@@ -20,7 +20,8 @@
         <td><%= product.product_name %></td>
         <td><%= product.product_description %></td>
         <td><%= product.supplier.supplier_name %></td>
-        <td><%= product.product_purchase_price %></td>
+        <td><%= product.product_supplier_price %></td>
+        <td><%= product.product_resell_item_price %></td>
         <td><%= product.supplier.supplier_currency %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
