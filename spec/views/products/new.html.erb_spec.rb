@@ -12,11 +12,12 @@ RSpec.describe "products/new", type: :view do
 
       assert_select "input[name=?]", "product[product_name]"
 
-      assert_select "textarea[name=?]", "product[description]"
+      assert_select "textarea[name=?]", "product[product_description]"
 
-      assert_select "input[name=?]", "product[product_price]"
+      assert_select "input[name=?]", "product[product_purchase_price]"
 
-      # assert_select "input[name=?]", "product[product_currency]"
+      # TODO: test input of associated models
+      # assert_select "input[name=?]", "product[supplier]"
     end
   end
 end

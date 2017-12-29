@@ -97,15 +97,14 @@ RSpec.describe RegistersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {close_amount_cents: 12000,
-                              close_amount_currency: 'CHF'} }
+      let(:new_attributes) { {close_amount_cents: 12000} }
       it "updates the requested register" do
         register = Register.create! valid_attributes
         put :update,  params: { id: register.to_param,
                                 register: new_attributes},
                       session: valid_session
         register.reload
-        expect( register.close_amount ).to eq( Money.new(12000, 'CHF') )
+        expect( register.close_amount.cents ).to eq( 12000 )
       end
 
       it "redirects to the register" do

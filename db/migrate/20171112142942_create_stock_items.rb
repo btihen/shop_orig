@@ -5,7 +5,7 @@ class CreateStockItems < ActiveRecord::Migration[5.1]
       t.datetime :add_datetime
       t.datetime :sold_datetime
       t.monetize :sell_price
-      t.references :order_item, foreign_key: true, index: true
+      t.references :order_line, foreign_key: true, index: true
 
       t.timestamps
     end

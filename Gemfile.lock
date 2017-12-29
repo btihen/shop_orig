@@ -49,6 +49,7 @@ GEM
     browser (2.5.2)
     builder (3.2.3)
     byebug (9.1.0)
+    cocoon (1.2.10)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -221,6 +222,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.beta2.1)
   browser (~> 2.5)
   byebug
+  cocoon (~> 1.2)
   coffee-rails (~> 4.2)
   eu_central_bank (~> 1.1)
   factory_bot_rails (~> 4.8)
@@ -244,7 +246,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.4.2p198
+   ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

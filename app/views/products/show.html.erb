@@ -7,17 +7,22 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @product.description %>
+  <%= @product.product_description %>
 </p>
 
 <p>
   <strong>Order price:</strong>
-  <%= @product.product_price %>
+  <%= @product.product_purchase_price %>
 </p>
 
 <p>
-  <strong>Order currency:</strong>
-  <%= @product.product_currency %>
+  <strong>Product currency:</strong>
+  <%= @product.supplier.supplier_currency %>
+</p>
+
+<p>
+  <strong>Product Supplier:</strong>
+  <%= @product.supplier.supplier_name %>
 </p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |

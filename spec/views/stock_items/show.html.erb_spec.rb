@@ -9,6 +9,6 @@ RSpec.describe "stock_items/show", type: :view do
     render
     expect(rendered).to match(/#{@stock_item.status}/)
     expect(rendered).to match(/#{@stock_item.sell_price}/)
-    expect(rendered).to match(/#{@stock_item.order_item.id}/)
+    expect(rendered).to match(/#{@stock_item.order_line.id}/)
   end
 end

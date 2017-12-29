@@ -15,18 +15,18 @@ RSpec.describe Register, type: :model do
   let!(:sourcer)    { FactoryBot.create(:sourcer) }
   let!(:order)      { FactoryBot.create(:order,
                                         sourcer:    sourcer) }
-  let!(:order_item) { FactoryBot.create(:order_item,
+  let!(:order_line) { FactoryBot.create(:order_line,
                                         product:    product,
                                         order:      order) }
   let!(:stock_item) { FactoryBot.create(:stock_item,
-                                        order_item: order_item) }
+                                        order_line: order_line) }
   #
   let!(:cashier)    { FactoryBot.create(:cashier) }
   let!(:register)   { FactoryBot.create(:register,
                                         cashier:    cashier) }
   let!(:sale)       { FactoryBot.create(:sale,
                                         register:   register) }
-  let!(:sale_item)  { FactoryBot.create(:sale_item,
+  let!(:sale_line)  { FactoryBot.create(:sale_line,
                                         sale:       sale,
                                         stock_item: stock_item) }
 
@@ -90,10 +90,10 @@ RSpec.describe Register, type: :model do
       expect( register.sales ).to eq( [sale] )
     end
     it "register to find its sales_items" do
-      expect( register.sale_items ).to eq( [sale_item] )
+      expect( register.sale_lines ).to eq( [sale_line] )
     end
-    it "register to find its order_items" do
-      expect( register.order_items ).to eq( [order_item] )
+    it "register to find its order_lines" do
+      expect( register.order_lines ).to eq( [order_line] )
     end
     it "register to find its products_sold" do
       expect( register.products_sold ).to eq( [product] )

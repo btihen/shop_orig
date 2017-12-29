@@ -1,10 +1,10 @@
 class StockItem < ApplicationRecord
-  belongs_to :order_item
+  belongs_to :order_line
 
-  has_one    :product,  through: :order_item
+  has_one    :product,  through: :order_line
   has_one    :supplier, through: :product
 
-  has_one    :order,    through: :order_item
+  has_one    :order,    through: :order_line
   has_one    :sourcer,  through: :order
 
   monetize   :sell_price_cents

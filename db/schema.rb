@@ -16,17 +16,17 @@ ActiveRecord::Schema.define(version: 20171224120222) do
   enable_extension "plpgsql"
   enable_extension "citext"
 
-  create_table "order_items", force: :cascade do |t|
+  create_table "order_lines", force: :cascade do |t|
     t.integer "quantity"
-    t.text "order_item_note"
-    t.integer "item_purchase_price_cents", default: 0, null: false
-    t.string "item_purchase_price_currency", default: "CHF", null: false
+    t.text "order_line_note"
+    t.integer "order_line_actual_purchase_price_cents", default: 0, null: false
+    t.string "order_line_actual_purchase_price_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "order_id"
     t.bigint "product_id"
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-    t.index ["product_id"], name: "index_order_items_on_product_id"
+    t.index ["order_id"], name: "index_order_lines_on_order_id"
+    t.index ["product_id"], name: "index_order_lines_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -49,42 +49,45 @@ ActiveRecord::Schema.define(version: 20171224120222) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
-    t.text "description"
-    t.integer "product_price_cents", default: 0, null: false
-    t.string "product_price_currency", default: "CHF", null: false
-    t.string "product_currency"
+    t.text "product_description"
+    t.jsonb "product_details", default: "{}", null: false
+    t.integer "product_purchase_price_cents", default: 0, null: false
+    t.string "product_purchase_price_currency", default: "USD", null: false
+    t.integer "product_resell_item_price_cents", default: 0, null: false
+    t.string "product_resell_item_price_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "supplier_id"
     t.bigint "product_category_id"
     t.index ["product_category_id"], name: "index_products_on_product_category_id"
+    t.index ["product_details"], name: "index_products_on_product_details", using: :gin
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
   create_table "registers", force: :cascade do |t|
     t.string "register_currency"
     t.integer "start_amount_cents", default: 0, null: false
-    t.string "start_amount_currency", default: "CHF", null: false
+    t.string "start_amount_currency", default: "USD", null: false
     t.integer "close_amount_cents"
-    t.string "close_amount_currency", default: "CHF", null: false
+    t.string "close_amount_currency", default: "USD", null: false
+    t.integer "cash_deposit_cents"
+    t.string "cash_deposit_currency", default: "USD", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "cash_deposit_cents"
-    t.string "cash_deposit_currency", default: "CHF", null: false
     t.index ["user_id"], name: "index_registers_on_user_id"
   end
 
-  create_table "sale_items", force: :cascade do |t|
-    t.text "sale_item_note"
+  create_table "sale_lines", force: :cascade do |t|
+    t.text "sale_line_note"
     t.integer "sale_price_cents", default: 0, null: false
-    t.string "sale_price_currency", default: "CHF", null: false
+    t.string "sale_price_currency", default: "USD", null: false
     t.bigint "sale_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "stock_item_id"
-    t.index ["sale_id"], name: "index_sale_items_on_sale_id"
-    t.index ["stock_item_id"], name: "index_sale_items_on_stock_item_id"
+    t.index ["sale_id"], name: "index_sale_lines_on_sale_id"
+    t.index ["stock_item_id"], name: "index_sale_lines_on_stock_item_id"
   end
 
   create_table "sales", force: :cascade do |t|
@@ -100,28 +103,30 @@ ActiveRecord::Schema.define(version: 20171224120222) do
     t.datetime "add_datetime"
     t.datetime "sold_datetime"
     t.integer "sell_price_cents", default: 0, null: false
-    t.string "sell_price_currency", default: "CHF", null: false
-    t.bigint "order_item_id"
+    t.string "sell_price_currency", default: "USD", null: false
+    t.bigint "order_line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_item_id"], name: "index_stock_items_on_order_item_id"
+    t.index ["order_line_id"], name: "index_stock_items_on_order_line_id"
   end
 
   create_table "suppliers", force: :cascade do |t|
     t.string "supplier_name"
-    t.text "supplier_notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "supplier_currency"
     t.string "supplier_web_url"
-    t.string "supplier_email"
+    t.citext "supplier_email"
     t.string "supplier_phone"
+    t.string "supplier_contact_person"
     t.string "supplier_address_1"
     t.string "supplier_address_2"
     t.string "supplier_city"
     t.string "supplier_region"
     t.string "supplier_postcode"
     t.string "supplier_country_code"
+    t.string "supplier_notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supplier_currency"], name: "index_suppliers_on_supplier_currency"
     t.index ["supplier_name"], name: "index_suppliers_on_supplier_name", unique: true
   end
 
@@ -134,23 +139,24 @@ ActiveRecord::Schema.define(version: 20171224120222) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
+    t.citext "username"
     t.string "full_name"
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["role"], name: "index_users_on_role"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "products"
+  add_foreign_key "order_lines", "orders"
+  add_foreign_key "order_lines", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "tax_categories"
   add_foreign_key "products", "product_categories"
   add_foreign_key "products", "suppliers"
   add_foreign_key "registers", "users"
-  add_foreign_key "sale_items", "sales"
-  add_foreign_key "sale_items", "stock_items"
+  add_foreign_key "sale_lines", "sales"
+  add_foreign_key "sale_lines", "stock_items"
   add_foreign_key "sales", "registers"
-  add_foreign_key "stock_items", "order_items"
+  add_foreign_key "stock_items", "order_lines"
 end

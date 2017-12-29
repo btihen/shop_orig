@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :tax_category do
-    tax_category_name { Faker::Commerce.department(2, true) }
+    # add random num to avoid duplicates
+    tax_category_name { "#{Faker::Commerce.department(2, true)}_#{Random.rand(1000)}" }
     tax_category_rate { Faker::Number.decimal(2, 3) }
   end
   factory :invalid_tax_category, parent: :tax_category do

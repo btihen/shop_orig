@@ -10,11 +10,11 @@ RSpec.describe Order, type: :model do
   let!(:supplier)     { FactoryBot.create(:supplier) }
   let!(:product)      { FactoryBot.create(:product,
                                           supplier:   supplier) }
-  let!(:order_item)   { FactoryBot.create(:order_item,
+  let!(:order_line)   { FactoryBot.create(:order_line,
                                           product:    product,
                                           order:      order) }
   let(:stock_item)    { FactoryBot.create(:stock_item,
-                                          order_item: order_item) }
+                                          order_line: order_line) }
 
   context "verify factory" do
     it "correctly builds order" do
@@ -38,7 +38,7 @@ RSpec.describe Order, type: :model do
       expect( order.sourcer ).to eq( sourcer )
     end
     it "order to find its ordered-items" do
-      expect( order.order_items ).to eq( [order_item] )
+      expect( order.order_lines ).to eq( [order_line] )
     end
     it "order to find its products ordered" do
       expect( order.products ).to eq( [product] )

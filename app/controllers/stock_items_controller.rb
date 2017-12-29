@@ -74,6 +74,6 @@ class StockItemsController < ApplicationController
                                           :sell_price,
                                           :sell_price_cents,
                                           :sell_price_currency,
-                                          :order_item_id)
+                                          :order_line_id)
     end
 end

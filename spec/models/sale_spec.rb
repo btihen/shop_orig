@@ -12,18 +12,18 @@ RSpec.describe Sale, type: :model do
   let!(:sourcer)    { FactoryBot.create(:user) }
   let!(:order)      { FactoryBot.create(:order,
                                         sourcer:    sourcer) }
-  let!(:order_item) { FactoryBot.create(:order_item,
+  let!(:order_line) { FactoryBot.create(:order_line,
                                         product:    product,
                                         order:      order) }
   let!(:stock_item) { FactoryBot.create(:stock_item,
-                                        order_item: order_item) }
+                                        order_line: order_line) }
   #
   let!(:cashier)    { FactoryBot.create(:user) }
   let!(:register)   { FactoryBot.create(:register,
                                         cashier:    cashier) }
   let!(:sale)       { FactoryBot.create(:sale,
                                         register:   register) }
-  let!(:sale_item)  { FactoryBot.create(:sale_item,
+  let!(:sale_line)  { FactoryBot.create(:sale_line,
                                         sale:       sale,
                                         stock_item: stock_item) }
 
@@ -50,7 +50,7 @@ RSpec.describe Sale, type: :model do
       expect( sale.register ).to eq( register )
     end
     it "finds it's sales_items" do
-      expect( sale.sale_items ).to eq( [sale_item] )
+      expect( sale.sale_lines ).to eq( [sale_line] )
     end
     it "finds it's stock_item" do
       expect( sale.stock_items ).to eq( [stock_item] )

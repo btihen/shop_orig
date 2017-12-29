@@ -12,11 +12,12 @@ RSpec.describe "products/edit", type: :view do
 
       assert_select "input[name=?]", "product[product_name]"
 
-      assert_select "textarea[name=?]", "product[description]"
+      assert_select "textarea[name=?]", "product[product_description]"
 
-      assert_select "input[name=?]", "product[product_price]"
+      assert_select "input[name=?]", "product[product_purchase_price]"
 
-      # assert_select "input[name=?]", "product[product_currency]"
+      # this has to be edited on supplier page
+      # assert_select "input[name=?]", "product[supplier.supplier_currency]"
     end
   end
 end

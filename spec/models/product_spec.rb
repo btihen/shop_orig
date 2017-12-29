@@ -18,12 +18,15 @@ RSpec.describe Product, type: :model do
       # pp invalid_product.errors.messages
       # expect( invalid_product.errors.details ).to eq( {} )
       expect( invalid_product.errors.messages ).to eq(
-              { :supplier=>["must exist"],
-                :product_price_cents=>["is not a number"],
-                :product_price_currency=>["is not included in the list"],
-                :product_name=>["can't be blank",
-                                "is too short (minimum is 2 characters)"]
-              } )
+              { supplier: ["must exist"],
+                product_purchase_price_cents: ["is not a number"],
+                product_resell_item_price_cents: ["must be greater than or equal to 0"],
+                product_name:    ["can't be blank",
+                                  "is too short (minimum is 2 characters)"],
+                assign_currency: ["can't be blank",
+                                  "is not included in the list"]
+              }
+            )
     end
   end
 

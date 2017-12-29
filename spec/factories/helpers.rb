@@ -9,9 +9,9 @@ module FactoryHelpers
   end
 
   def get_product_category
-    # if less than 5 tax categories (make new ones)
+    # if less than 5 product categories (make new ones)
     return FactoryBot.create :product_category      if ProductCategory.count < 5
-    # if 3 tax categories - return an exising tax category
+    # if 3 product categories - return an exising product category
     return ProductCategory.find( rand(1..ProductCategory.count) )
   end
 
@@ -51,16 +51,16 @@ module FactoryHelpers
     return Order.find( rand(1..Order.count) )
   end
 
-  def get_order_item
+  def get_order_line
     # if only one supplier generate and return a new one
-    return FactoryBot.create :order_item    if OrderItem.count <= 3
+    return FactoryBot.create :order_line    if OrderLine.count <= 3
 
     # Generate a random number between 1 and 100
     random_number = Faker::Number.between(1, 100)
     # 10% return a random new supplier
-    return FactoryBot.create :order_item         if random_number <= 10
+    return FactoryBot.create :order_line         if random_number <= 10
     # 90% of the time pick a random existing supplier
-    return OrderItem.find( rand(1..OrderItem.count) )
+    return OrderLine.find( rand(1..OrderLine.count) )
   end
 
   def get_stock_item

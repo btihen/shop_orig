@@ -6,6 +6,7 @@ class Supplier < ApplicationRecord
   validates :supplier_currency,
                             allow_nil: false,
                             inclusion: { in: ApplicationHelper::CURRENCIES }
-
+  # validates :supplier_email
+  # validates :supplier_phone
 
 end

@@ -19,3 +19,5 @@
 //= require bootstrap-sprockets
 // when debugging not so important
 // //= require bootstrap
+
+//= require cocoon

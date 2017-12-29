@@ -31,7 +31,7 @@ end
 end
 
 # add orders
-# add order_items
+# add order_lines
 # add register
 # add sales
 # add sales_items

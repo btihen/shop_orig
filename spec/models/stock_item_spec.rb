@@ -12,18 +12,18 @@ RSpec.describe StockItem, type: :model do
   let!(:sourcer)    { FactoryBot.create(:user) }
   let!(:order)      { FactoryBot.create(:order,
                                         sourcer:    sourcer) }
-  let!(:order_item) { FactoryBot.create(:order_item,
+  let!(:order_line) { FactoryBot.create(:order_line,
                                         product:    product,
                                         order:      order) }
   let!(:stock_item) { FactoryBot.create(:stock_item,
-                                        order_item: order_item) }
+                                        order_line: order_line) }
   #
   let!(:cashier)    { FactoryBot.create(:user) }
   let!(:register)   { FactoryBot.create(:register,
                                         cashier:    cashier) }
   let!(:sale)       { FactoryBot.create(:sale,
                                         register:   register) }
-  let!(:sale_item)  { FactoryBot.create(:sale_item,
+  let!(:sale_line)  { FactoryBot.create(:sale_line,
                                         sale:       sale,
                                         stock_item: stock_item) }
 
@@ -37,15 +37,15 @@ RSpec.describe StockItem, type: :model do
       expect( invalid_stock_item.valid? ).to be_falsey
       # expect( invalid_stock_item.errors.details[:status][0][:error]).to eq( :inclusion )
       expect( invalid_stock_item.errors.messages).to eq(
-                                { order_item: ["must exist"], sell_price: [], 
+                                { order_line: ["must exist"], sell_price: [], 
                                   status: ["is not included in the list"] } )
     end
 
   end
 
   context "test stock_items relationships" do
-    it "can find its order_item" do
-      expect(stock_item.order_item).to eq(order_item)
+    it "can find its order_line" do
+      expect(stock_item.order_line).to eq(order_line)
     end
     it "can find its product" do
       expect(stock_item.product).to eq(product)
