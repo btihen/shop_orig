@@ -10,8 +10,16 @@ RSpec.describe OrderLine, type: :model do
   let!(:supplier)   { FactoryBot.create(:supplier) }
   let!(:product)    { FactoryBot.create(:product,
                                         supplier:   supplier) }
+  let!(:bulk_product){ FactoryBot.create(:product,
+                                        supplier:   supplier) }
+  let!(:package)    { FactoryBot.create(:supplier_package,
+                                        product: bulk_product,
+                                        included_product: product) }
   let!(:order_line) { FactoryBot.create(:order_line,
                                         product:    product,
+                                        order:      order) }
+  let!(:order_line_2){ FactoryBot.create(:order_line,
+                                        product:    bulk_product,
                                         order:      order) }
   let!(:stock_item) { FactoryBot.create(:stock_item,
                                         order_line: order_line) }
