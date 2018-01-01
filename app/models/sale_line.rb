@@ -26,6 +26,6 @@ class SaleLine < ApplicationRecord
                                         }
   validates  :sale_price_currency,
                           allow_nil: false,
-                          inclusion: { in: ApplicationHelper::CURRENCIES }
+                          inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
 
 end

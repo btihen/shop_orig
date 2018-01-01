@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Register, type: :model do
 
-  let(:register)              { FactoryBot.build(:register) }
+  let(:register)              { FactoryBot.create(:register) }
   let(:open_register_closed_nil)  { FactoryBot.build(:open_register_closed_nil) }
   let(:open_register_closed_blank){ FactoryBot.build(:open_register_closed_blank) }
   let(:invalid_register)      { FactoryBot.build(:invalid_register) }

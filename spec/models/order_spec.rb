@@ -5,7 +5,7 @@ RSpec.describe Order, type: :model do
   let(:invalid_order) { FactoryBot.build(:invalid_order) }
   #
   let!(:sourcer)      { FactoryBot.create(:user) }
-  let!(:order)        { FactoryBot.build(:order,
+  let!(:order)        { FactoryBot.create(:order,
                                           sourcer:    sourcer) }
   let!(:supplier)     { FactoryBot.create(:supplier) }
   let!(:product)      { FactoryBot.create(:product,

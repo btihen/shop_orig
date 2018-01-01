@@ -72,7 +72,7 @@ Things you may want to cover:
 
 ```ruby
 rails g model Product username:citext oa_id:integer oa_role:string oa_record:jsonb oa_sync_date:datetime
-rails g model Bundle relative:references related_user:references relative:string
+rails g model CreateSupplierPackage product:references included_product:references
 
 class CreateProducts < ActiveRecord::Migration[5.1]
   def change
@@ -94,7 +94,7 @@ end
 class CreateBundles < ActiveRecord::Migration[5.1]
   def change
     create_table :bundles do |t|
-      t.references :bundle,         index: true, foreign_key: true
+      t.references :bundle,          index: true, foreign_key: true
       t.references :bundled_product, index: true
       t.integer    :bundled_quantity
 

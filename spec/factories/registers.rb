@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :register do
-    register_currency  { ApplicationHelper::CURRENCIES.sample }
+    register_currency  { ApplicationHelper::REGISTER_CURRENCIES.sample }
     start_amount_cents { Faker::Commerce.price * 100 }
     close_amount_cents { [Faker::Commerce.price * 100, nil].sample }
     cash_deposit_cents { (close_amount_cents.nil? ? nil : close_amount_cents * 4) }
@@ -28,7 +28,7 @@ FactoryBot.define do
     cashier            { nil }
   end
   factory :invalid_neg_register, parent: :register do
-    register_currency  { ApplicationHelper::CURRENCIES.sample }
+    register_currency  { ApplicationHelper::REGISTER_CURRENCIES.sample }
     close_amount_cents { -1000 }
   end
 end

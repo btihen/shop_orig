@@ -5,14 +5,21 @@ module FactoryHelpers
     # if less than 3 tax categories (make new ones)
     return FactoryBot.create :tax_category      if TaxCategory.count < 3
     # if 3 tax categories - return an exising tax category
-    return TaxCategory.find( rand(1..TaxCategory.count) )
+    # pp TaxCategory.all.inspect
+    # https://ducktypelabs.com/retrieving-random-records-in-rails/
+    return TaxCategory.offset( rand(TaxCategory.count) ).first
+    # return TaxCategory.all.sample
+    # Couldn't find TaxCategory with 'id'=2
+    # return TaxCategory.find( rand(1..3) )
+    # return TaxCategory.find( rand(1..TaxCategory.count) )
   end
 
   def get_product_category
     # if less than 5 product categories (make new ones)
     return FactoryBot.create :product_category      if ProductCategory.count < 5
     # if 3 product categories - return an exising product category
-    return ProductCategory.find( rand(1..ProductCategory.count) )
+    return ProductCategory.find( rand(1..5) )
+    # return ProductCategory.find( rand(1..ProductCategory.count) )
   end
 
   def get_supplier

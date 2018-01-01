@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Sale, type: :model do
 
-  let(:sale)        { FactoryBot.build(:sale) }
+  let(:sale)        { FactoryBot.create(:sale) }
   let(:invalid_sale){ FactoryBot.build(:invalid_sale) }
   #
   let!(:supplier)   { FactoryBot.create(:supplier) }

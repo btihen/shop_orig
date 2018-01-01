@@ -5,7 +5,7 @@ class Supplier < ApplicationRecord
                             length: { minimum: 2 }
   validates :supplier_currency,
                             allow_nil: false,
-                            inclusion: { in: ApplicationHelper::CURRENCIES }
+                            inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
   # validates :supplier_email
   # validates :supplier_phone
 

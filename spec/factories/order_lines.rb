@@ -3,7 +3,7 @@ FactoryBot.define do
     quantity            { Faker::Number.between(1, 10) }
     order_line_note     { Faker::Hipster.sentence }
     order_line_actual_purchase_price { Money.new(Faker::Commerce.price * 100,
-                          ApplicationHelper::CURRENCIES.sample) }
+                          ApplicationHelper::REGISTER_CURRENCIES.sample) }
     #
     product             { FactoryHelpers.get_product() }
     order               { FactoryHelpers.get_order() }

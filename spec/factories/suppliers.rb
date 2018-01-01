@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :supplier do
     supplier_name         { Faker::Company.name }
-    supplier_currency     { ApplicationHelper::CURRENCIES.sample }
+    supplier_currency     { ApplicationHelper::REGISTER_CURRENCIES.sample }
     supplier_web_url      { Faker::Internet.url }
     supplier_email        { Faker::Internet.email }
     supplier_phone        { Faker::PhoneNumber.phone_number }

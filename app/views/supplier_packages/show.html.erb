@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @supplier_package.product.product_name %>
+</p>
+
+<p>
+  <strong>Package Supplier:</strong>
+  <%= @supplier_package.product.supplier.supplier_name %>
+</p>
+
+<p>
+  <strong>Included product:</strong>
+  <%= @supplier_package.included_product.product_name %>
+</p>
+<p>
+  <strong>Included quantity:</strong>
+  <%= @supplier_package.included_quantity %>
+</p>
+
+<%= link_to 'Edit', edit_supplier_package_path(@supplier_package) %> |
+<%= link_to 'Back', supplier_packages_path %>

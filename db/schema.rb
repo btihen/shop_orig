@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171224120222) do
+ActiveRecord::Schema.define(version: 20171229204621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,17 @@ ActiveRecord::Schema.define(version: 20171224120222) do
     t.index ["order_line_id"], name: "index_stock_items_on_order_line_id"
   end
 
+  create_table "supplier_packages", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "included_product_id"
+    t.integer "included_quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["included_product_id"], name: "index_supplier_packages_on_included_product_id"
+    t.index ["product_id", "included_product_id"], name: "index_supplier_packages_on_product_id_and_included_product_id", unique: true
+    t.index ["product_id"], name: "index_supplier_packages_on_product_id"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "supplier_name"
     t.string "supplier_currency"
@@ -159,4 +170,6 @@ ActiveRecord::Schema.define(version: 20171224120222) do
   add_foreign_key "sale_lines", "stock_items"
   add_foreign_key "sales", "registers"
   add_foreign_key "stock_items", "order_lines"
+  add_foreign_key "supplier_packages", "products"
+  add_foreign_key "supplier_packages", "products", column: "included_product_id"
 end

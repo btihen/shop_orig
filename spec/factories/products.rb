@@ -7,11 +7,11 @@ FactoryBot.define do
                                   style:       ['Mens', 'Women'].sample,
                                   size: ['XS', 'S', 'M', 'L', 'XL', 'XXL'].sample } }
     product_supplier_price_cents   { Faker::Commerce.price * 100 }
-    # product_supplier_price_currency{ ApplicationHelper::CURRENCIES.sample }
+    # product_supplier_price_currency{ ApplicationHelper::REGISTER_CURRENCIES.sample }
     # product_supplier_price    { Money.new(Faker::Commerce.price * 100,
-    #                             ApplicationHelper::CURRENCIES.sample) }
+    #                             ApplicationHelper::REGISTER_CURRENCIES.sample) }
     product_resell_item_price { Money.new(Faker::Commerce.price * 100,
-                                ApplicationHelper::CURRENCIES.sample) }
+                                ApplicationHelper::REGISTER_CURRENCIES.sample) }
     product_category          { FactoryHelpers.get_product_category() }
     supplier                  { FactoryHelpers.get_supplier() }
   end

@@ -21,7 +21,7 @@ class Register < ApplicationRecord
 
   validates  :register_currency, presence: true,
                               allow_nil: false,
-                              inclusion: { in: ApplicationHelper::CURRENCIES }
+                              inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
   validates  :start_amount_cents,
                               allow_nil: false,
                               numericality: { greater_than_or_equal_to: 0 }

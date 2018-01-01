@@ -5,7 +5,7 @@ FactoryBot.define do
     add_datetime  { days_ago }
     sold_datetime { Faker::Date.between(days_ago, Date.today) }
     sell_price    { Money.new(Faker::Commerce.price * 100,
-                    ApplicationHelper::CURRENCIES.sample) }
+                    ApplicationHelper::REGISTER_CURRENCIES.sample) }
     order_line    { FactoryHelpers.get_order_line() }
   end
   factory :invalid_stock_item, parent: :stock_item do
