@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "users/index", type: :view do
   before(:each) do
     @users = assign(:users, [
-                      FactoryBot.create(:user, user_role: 'manager'),
+                      FactoryBot.create(:user, user_role: 'finance'),
                       FactoryBot.create(:user, full_name: "O'Connel",
                                                 user_role: 'cashier'),
                     ])

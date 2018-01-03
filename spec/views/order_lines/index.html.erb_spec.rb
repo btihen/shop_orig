@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "order_lines/index", type: :view do
   before(:each) do
     @order_lines = assign(:order_lines, [
-                            FactoryBot.create(:order_line, :quantity => 1),
-                            FactoryBot.create(:order_line, :quantity => 2),
+                            FactoryBot.create(:order_line, :order_line_quantity => 1),
+                            FactoryBot.create(:order_line, :order_line_quantity => 2),
                           ])
   end
 

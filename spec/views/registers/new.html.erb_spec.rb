@@ -15,7 +15,7 @@ RSpec.describe "registers/new", type: :view do
 
       assert_select "input[name=?]", "register[register_close_amount]"
 
-      assert_select "input[name=?]", "register[register_deposit_amount]"
+      assert_select "input[name=?]", "register[register_cash_deposit]"
 
       assert_select "input[name=?]", "register[user_id]"
     end

@@ -10,9 +10,9 @@ RSpec.describe "orders/new", type: :view do
 
     assert_select "form[action=?][method=?]", orders_path, "post" do
 
-      assert_select "input[name=?]", "order[status]"
+      assert_select "input[name=?]", "order[order_status]"
 
-      assert_select "textarea[name=?]", "order[reason]"
+      assert_select "textarea[name=?]", "order[order_reason]"
 
       assert_select "input[name=?]", "order[user_id]"
     end

@@ -15,7 +15,7 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.order_reason %></td>
+        <td><%= order.order_status %></td>
         <td><%= order.order_reason %></td>
         <td><%= order.sourcer.full_name %></td>
         <td><%= link_to 'Show', order %></td>
