@@ -23,6 +23,10 @@ before_install:
   # - "rm ${BUNDLE_GEMFILE}.lock"
   - gem update --system
 
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database shop_test;' -U postgres
+
 script:
   - bin/rails db:create RAILS_ENV=test
   - bin/rails db:migrate RAILS_ENV=test
@@ -47,7 +51,3 @@ script:
 # production:
 #   <<: *default
 #   database: shop_developement
-
-before_script:
-  - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database shop_test;' -U postgres
