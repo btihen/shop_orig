@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20171229204621) do
   end
 
   create_table "registers", force: :cascade do |t|
+    t.string "register_name"
     t.string "register_currency", null: false
     t.integer "register_start_amount_cents", default: 0, null: false
     t.string "register_start_amount_currency", default: "USD", null: false
@@ -160,7 +161,7 @@ ActiveRecord::Schema.define(version: 20171229204621) do
     t.date "tax_end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tax_category_name", "tax_category_rate"], name: "index_tax_categories_on_tax_category_name_and_tax_category_rate", unique: true
+    t.index ["tax_category_name", "tax_category_rate", "tax_start_date"], name: "tax_unique_index", unique: true
     t.index ["tax_category_name"], name: "index_tax_categories_on_tax_category_name"
   end
 
