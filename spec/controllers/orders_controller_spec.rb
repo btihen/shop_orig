@@ -72,7 +72,8 @@ RSpec.describe OrdersController, type: :controller do
     context "with valid params" do
       it "creates a new Order" do
         expect {
-          post :create, params: {order: valid_attributes}, session: valid_session
+          post :create, params: {order: valid_attributes},
+                        session: valid_session
         }.to change(Order, :count).by(1)
       end
 
@@ -84,7 +85,8 @@ RSpec.describe OrdersController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {order: invalid_attributes}, session: valid_session
+        post :create, params: {order: invalid_attributes},
+                      session: valid_session
         expect(response).to be_success
       end
     end
@@ -96,14 +98,16 @@ RSpec.describe OrdersController, type: :controller do
 
       it "updates the requested order" do
         order = Order.create! valid_attributes
-        put :update, params: {id: order.to_param, order: new_attributes}, session: valid_session
+        put :update,  params: {id: order.to_param, order: new_attributes},
+                      session: valid_session
         order.reload
-        expect( order.reason ).to eq( "resupply" )
+        expect( order.order_reason ).to eq( "resupply" )
       end
 
       it "redirects to the order" do
         order = Order.create! valid_attributes
-        put :update, params: {id: order.to_param, order: valid_attributes}, session: valid_session
+        put :update,  params: {id: order.to_param, order: valid_attributes},
+                      session: valid_session
         expect(response).to redirect_to(order)
       end
     end
@@ -111,7 +115,8 @@ RSpec.describe OrdersController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         order = Order.create! valid_attributes
-        put :update, params: {id: order.to_param, order: invalid_attributes}, session: valid_session
+        put :update,  params: {id: order.to_param, order: invalid_attributes},
+                      session: valid_session
         expect(response).to be_success
       end
     end
