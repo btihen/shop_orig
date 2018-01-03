@@ -30,12 +30,12 @@ RSpec.describe SaleLinesController, type: :controller do
   # adjust the attributes here as well.
   let!(:stock_item)      { FactoryBot.create(:stock_item) }
   let(:valid_attributes) { FactoryBot.build(:sale_line,
-                                      sale_price: Money.new(5001, 'EUR'),
-                                      # sale_line_price_cents: 5001,
-                                      # sale_line_price_currency: 'EUR',
+                                      sale_line_sale_price_cents: 5001,
+                                      # sale_line_sale_price_cents: 5001,
+                                      # sale_line_sale_price_currency: 'EUR',
                                       stock_item: stock_item).attributes }
 
-  let(:invalid_attributes) { FactoryBot.attributes_for(:invalid_sale_line) }
+  let(:invalid_attributes) { FactoryBot.attributes_for(:invalid_nil_sale_line) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -78,19 +78,22 @@ RSpec.describe SaleLinesController, type: :controller do
       it "creates a new SaleLine" do
         # byebug
         expect {
-          post :create, params: {sale_line: valid_attributes}, session: valid_session
+          post :create, params: {sale_line: valid_attributes},
+                        session: valid_session
         }.to change(SaleLine, :count).by(1)
       end
 
       it "redirects to the created sale_line" do
-        post :create, params: {sale_line: valid_attributes}, session: valid_session
+        post :create, params: {sale_line: valid_attributes},
+                      session: valid_session
         expect(response).to redirect_to(SaleLine.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {sale_line: invalid_attributes}, session: valid_session
+        post :create, params: {sale_line: invalid_attributes},
+                      session: valid_session
         expect(response).to be_success
       end
     end
@@ -98,20 +101,23 @@ RSpec.describe SaleLinesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {sale_line_price_cents: 1005,  sale_line_price_currency: 'CHF'} }
-      # let(:new_attributes) { {sale_price: Money.new(1005, 'CHF')} }
+      let(:new_attributes) { {sale_line_sale_price_cents: 1005} }
+      # let(:new_attributes) { {sale_line_sale_price: Money.new(1005, 'CHF')} }
 
       it "updates the requested sale_line" do
         sale_line = SaleLine.create! valid_attributes
-        put :update, params: {id: sale_line.to_param, sale_line: new_attributes},
-                              session: valid_session
+        put :update,  params: { id: sale_line.to_param,
+                                sale_line: new_attributes},
+                      session: valid_session
         sale_line.reload
-        expect( sale_line.sale_price ).to eq( Money.new(1005, 'CHF') )
+        expect( sale_line.sale_line_sale_price_cents ).to eq( 1005 )
       end
 
       it "redirects to the sale_line" do
         sale_line = SaleLine.create! valid_attributes
-        put :update, params: {id: sale_line.to_param, sale_line: valid_attributes}, session: valid_session
+        put :update,  params: { id: sale_line.to_param,
+                                sale_line: valid_attributes},
+                      session: valid_session
         expect(response).to redirect_to(sale_line)
       end
     end
@@ -119,7 +125,9 @@ RSpec.describe SaleLinesController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         sale_line = SaleLine.create! valid_attributes
-        put :update, params: {id: sale_line.to_param, sale_line: invalid_attributes}, session: valid_session
+        put :update,  params: { id: sale_line.to_param,
+                                sale_line: invalid_attributes},
+                      session: valid_session
         expect(response).to be_success
       end
     end
@@ -129,13 +137,15 @@ RSpec.describe SaleLinesController, type: :controller do
     it "destroys the requested sale_line" do
       sale_line = SaleLine.create! valid_attributes
       expect {
-        delete :destroy, params: {id: sale_line.to_param}, session: valid_session
+        delete :destroy,  params: {id: sale_line.to_param},
+                          session: valid_session
       }.to change(SaleLine, :count).by(-1)
     end
 
     it "redirects to the sale_lines list" do
       sale_line = SaleLine.create! valid_attributes
-      delete :destroy, params: {id: sale_line.to_param}, session: valid_session
+      delete :destroy,  params: {id: sale_line.to_param},
+                        session: valid_session
       expect(response).to redirect_to(sale_lines_url)
     end
   end

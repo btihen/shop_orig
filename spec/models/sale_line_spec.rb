@@ -42,8 +42,8 @@ RSpec.describe SaleLine, type: :model do
               { :sale=>["must exist"],
                 :stock_item=>["must exist"],
                 :sale_line_quantity=>["is not a number"],
-                :sale_line_price_cents=>["is not a number", "is not a number"],
-                # :sale_line_price_currency=>["is not included in the list"]
+                :sale_line_sale_price_cents=>["is not a number", "is not a number"],
+                # :sale_line_sale_price_currency=>["is not included in the list"]
               }
             )
     end
@@ -55,8 +55,8 @@ RSpec.describe SaleLine, type: :model do
               { :sale=>["must exist"],
                 :stock_item=>["must exist"],
                 :sale_line_quantity=>["must be greater than or equal to 1"],
-                :sale_line_price_cents=>["must be greater than or equal to 0"],
-                # :sale_line_price_currency=>["is not included in the list"]
+                :sale_line_sale_price_cents=>["must be greater than or equal to 0"],
+                # :sale_line_sale_price_currency=>["is not included in the list"]
               }
             )
     end

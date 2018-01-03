@@ -15,7 +15,7 @@ class SaleLine < ApplicationRecord
 
   before_validation :assign_sale_line_currency, on: [:create, :update]
 
-  monetize :sale_line_price_cents,
+  monetize :sale_line_sale_price_cents,
                           allow_nil: false,
                           numericality: false
                           # numericality: {
@@ -24,18 +24,18 @@ class SaleLine < ApplicationRecord
                           # }
   validates  :sale_line_quantity,
                           numericality: { greater_than_or_equal_to: 1 }
-  validates  :sale_line_price_cents,
+  validates  :sale_line_sale_price_cents,
                           numericality: { greater_than_or_equal_to: 0 }
-  validates  :sale_line_price_currency,
+  validates  :sale_line_sale_price_currency,
                           allow_nil: false,
                           inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
 
   def assign_sale_line_currency
     if sale_id.nil?
-      self.sale_line_price_currency  = ApplicationHelper::LOCAL_CURRENCY
+      self.sale_line_sale_price_currency  = ApplicationHelper::LOCAL_CURRENCY
     else
       sale = Sale.find(sale_id)
-      self.sale_line_price_currency = sale.register.register_currency
+      self.sale_line_sale_price_currency = sale.register.register_currency
     end
   end
 

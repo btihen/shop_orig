@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 20171229204621) do
 
   create_table "sale_lines", force: :cascade do |t|
     t.integer "sale_line_quantity", null: false
-    t.integer "sale_line_price_cents", default: 0, null: false
-    t.string "sale_line_price_currency", default: "USD", null: false
+    t.integer "sale_line_sale_price_cents", default: 0, null: false
+    t.string "sale_line_sale_price_currency", default: "USD", null: false
     t.text "sale_line_note"
     t.bigint "sale_id"
     t.datetime "created_at", null: false
@@ -115,9 +115,7 @@ ActiveRecord::Schema.define(version: 20171229204621) do
     t.string "stock_item_resell_price_currency", default: "USD", null: false
     t.integer "stock_item_sold_price_cents", default: 0, null: false
     t.string "stock_item_sold_price_currency", default: "USD", null: false
-    t.datetime "stock_item_stock_item_sold_datetime"
-    t.string "stock_item_sold_tax_category"
-    t.decimal "stock_item_sold_tax_rate"
+    t.datetime "stock_item_sold_datetime"
     t.bigint "order_line_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

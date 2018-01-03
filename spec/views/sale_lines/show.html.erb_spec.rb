@@ -8,7 +8,7 @@ RSpec.describe "sale_lines/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/#{CGI.escapeHTML(@sale_line.sale_line_note)}/)
-    expect(rendered).to match(/#{@sale_line.sale_price}/)
+    expect(rendered).to match(/#{@sale_line.sale_line_sale_price}/)
     expect(rendered).to match(/#{@sale_line.sale.id}/)
   end
 end

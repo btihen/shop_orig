@@ -12,8 +12,8 @@ RSpec.describe "sale_lines/index", type: :view do
     render
     assert_select "tr>td", :text => @sale_lines[0].sale_line_note, :count => 1
     assert_select "tr>td", :text => @sale_lines[1].sale_line_note, :count => 1
-    assert_select "tr>td", :text => @sale_lines[0].sale_price.to_s, :count => 1
-    assert_select "tr>td", :text => @sale_lines[1].sale_price.to_s, :count => 1
+    assert_select "tr>td", :text => @sale_lines[0].sale_line_sale_price.to_s, :count => 1
+    assert_select "tr>td", :text => @sale_lines[1].sale_line_sale_price.to_s, :count => 1
     assert_select "tr>td", :text => @sale_lines[0].sale.id.to_s, :count => 1
     assert_select "tr>td", :text => @sale_lines[1].sale.id.to_s, :count => 1
   end

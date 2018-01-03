@@ -16,7 +16,7 @@
     <% @sale_lines.each do |sale_line| %>
       <tr>
         <td><%= sale_line.sale_line_note %></td>
-        <td><%= sale_line.sale_price %></td>
+        <td><%= sale_line.sale_line_sale_price %></td>
         <td><%= sale_line.sale.id %></td>
         <td><%= link_to 'Show', sale_line %></td>
         <td><%= link_to 'Edit', edit_sale_line_path(sale_line) %></td>

@@ -5,9 +5,7 @@ class CreateStockItems < ActiveRecord::Migration[5.1]
       t.datetime :stock_item_added_datetime, null: false
       t.monetize :stock_item_resell_price
       t.monetize :stock_item_sold_price
-      t.datetime :stock_item_stock_item_sold_datetime
-      t.string   :stock_item_sold_tax_category
-      t.decimal  :stock_item_sold_tax_rate
+      t.datetime :stock_item_sold_datetime
       t.references :order_line, foreign_key: true, index: true
 
       t.timestamps

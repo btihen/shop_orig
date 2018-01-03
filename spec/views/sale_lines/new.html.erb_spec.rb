@@ -12,7 +12,7 @@ RSpec.describe "sale_lines/new", type: :view do
 
       assert_select "textarea[name=?]", "sale_line[sale_line_note]"
 
-      assert_select "input[name=?]", "sale_line[sale_price]"
+      assert_select "input[name=?]", "sale_line[sale_line_sale_price]"
 
       assert_select "input[name=?]", "sale_line[sale_id]"
     end
