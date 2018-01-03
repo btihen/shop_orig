@@ -5,11 +5,12 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.string   :product_name,               null: false
       t.string   :product_size
       t.string   :product_color
+      t.string   :product_style
       t.string   :product_material
       t.string   :product_status
       t.jsonb    :product_details,            null: false, default: '{}'
       t.text     :product_extra_info
-      t.date     :product_sell_by_date
+      # t.date     :product_sell_by_date
       # t.monetize :product_supplier_price,     null: false
       # t.monetize :product_resell_item_price,  null: false
 
@@ -21,8 +22,10 @@ class CreateProducts < ActiveRecord::Migration[5.1]
     add_index :products, :product_name
     add_index :products, :product_code,      unique: true
     # https://stackoverflow.com/questions/5443740/how-do-i-handle-too-long-index-names-in-a-ruby-on-rails-migration-with-mysql
-    add_index :products, [:product_name, :product_size, :product_color],
-                                             unique: true,
+    add_index :products,[ :product_code, :product_category_id, :supplier_id,
+                          :product_name, :product_details,
+                          # :product_size, :product_color, :product_material,
+                        ],                   unique: true,
                                                name: 'product_unique_index'
     # https://nandovieira.com/using-postgresql-and-jsonb-with-ruby-on-rails
     add_index :products, :product_details,    using: :gin

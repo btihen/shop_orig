@@ -5,13 +5,14 @@ FactoryBot.define do
     product_name              { Faker::Commerce.product_name }
     product_size              { ['XS', 'S', 'M', 'L', 'XL', 'XXL'].sample }
     product_color             { Faker::Color.color_name }
+    product_style             { Faker::Lorem.word }
     product_material          { Faker::Commerce.material }
-    product_details           { {
-                                  size: product_size,
-                                  color: Faker::Color.color_name,
-                                  material: Faker::Commerce.material,
-                                  style: ['Mens', 'Women'].sample,
-                              } }
+    # product_details           { {
+    #                               size: product_size,
+    #                               color: Faker::Color.color_name,
+    #                               material: Faker::Commerce.material,
+    #                               style: ['Mens', 'Women'].sample,
+    #                           } }
     # product_details           { {
     #                               author: Faker::Book.author,
     #                               title: Faker::Book.title,
@@ -20,7 +21,7 @@ FactoryBot.define do
     #                               publisher: Faker::Book.publisher,
     #                               genre: Faker::Book.genre,
     #                           } }
-    product_sell_by_date      { Faker::Date.between(50.days.ago, Date.today + 400.days) }
+    # product_sell_by_date      { Faker::Date.between(50.days.ago, Date.today + 400.days) }
     product_extra_info        { Faker::Lorem.sentence }
     product_status            { ApplicationHelper::PRODUCT_STATUSES.sample }
     supplier                  { FactoryHelpers.get_supplier() }

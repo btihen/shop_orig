@@ -14,17 +14,8 @@ class Product < ApplicationRecord
     end
   end
 
-  # before_validation :assign_purchase_currency, on: :create
-  # before_validation :assign_purchase_currency, on: [:create, :update]
-  # before_save       :assign_purchase_currency
-
-  # monetize  :product_supplier_price_cents,
-  #                           allow_nil: false,
-  #                           numericality: false
-  #                           # numericality: { greater_than_or_equal_to: 0 }
-  # monetize  :product_resell_item_price_cents,
-  #                           allow_nil: true,
-  #                           numericality: false
+  # before_validation :create_details_json, on: [:create, :update]
+  before_save         :create_details_json
 
   validates :product_code,  presence: true, uniqueness: true,
                             length: { minimum: 2 }
@@ -32,30 +23,18 @@ class Product < ApplicationRecord
                             length: { minimum: 2 }
   validates :product_status, presence: true,
                             inclusion: { in: ApplicationHelper::PRODUCT_STATUSES }
-  # validates :product_supplier_price_cents,
-  #                           numericality: { greater_than_or_equal_to: 0 }
-  # validates :product_resell_item_price_cents,
-  #                           allow_nil: true,
-  #                           numericality: { greater_than_or_equal_to: 0 }
-  # validates :product_resell_item_price_currency, presence: true,
-  #                           inclusion: { in: [ApplicationHelper::LOCAL_CURRENCY] }
-  # validates :product_supplier_price_currency, presence: true,
-  #                           inclusion: { in: ApplicationHelper::SUPPLIER_CURRENCIES }
-  #                           # inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
-  validates_date  :product_sell_by_date, allow_nil: false
 
   def package_created_at
     Time.zone.parse(self[:package_created_at].to_s) if self[:package_created_at]
   end
 
-  # def assign_purchase_currency
-  #   unless supplier_id.nil?
-  #     supplier = Supplier.find(supplier_id)
-  #     self.product_supplier_price_currency = supplier.supplier_currency
-  #   end
-  #
-  #   self.product_resell_item_price_currency  = ApplicationHelper::LOCAL_CURRENCY
-  #   self.product_resell_item_price_cents   ||= product_supplier_price_cents * 2
-  # end
+  def create_details_json
+    self.product_details = {
+                              product_size: self.product_size,
+                              product_color: self.product_color,
+                              product_style: self.product_style,
+                              product_material: self.product_material,
+                            }
+  end
 
 end

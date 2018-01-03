@@ -5,7 +5,6 @@
 Product.destroy_all
 
 product_list = [
-  # ["Code","Category","Art.Nr.","Lieferant","Beschreibung","Status","Grösse/Format","Farbe/Material","zusätzliche Angaben"],
   ["OSSE","Acsessoir","","unknown","Schlüsselanhänger Orissa Elefant","Auslauf","klein","Metall",""],
   ["OSSE","Acsessoir","","unknown","Schlüsselanhänger Orissa Elefant","Auslauf","mini","Metall",""],
   ["NBSB","Acsessoir","","Nepal","Brocade shoulder bag","running","","",""],
@@ -1317,40 +1316,57 @@ product_list = [
   ["","Bücher","","","the essence of the heart sutra","out of stock2","","",""],
 ]
 
-product_list.each do |product_code, product_category, new_number, supplier_name,
-                      product_name, product_status, product_size, product_color,
-                      product_material, product_extra_info |
-  # o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
-  # string = (0...50).map { o[rand(o.length)] }.join
+product_list.each do |product_code, product_category_name, new_number,
+                      supplier_name, product_name, product_status, product_size,
+                      product_color, product_material, product_extra_info |
   # https://stackoverflow.com/questions/88311/how-to-generate-a-random-string-in-ruby
+  product_code       = nil if product_code.blank?
   product_code     ||= ('A'..'Z').to_a.shuffle[0,3].join
+  new_number         = nil if new_number.blank?
   new_number       ||= [*('A'..'Z'),*('0'..'9')].shuffle[0,3].join
   product_new_code   = "#{product_code}-#{new_number}"
+  product_category   = nil if product_category.blank?
   product_category ||= 'unknown'
+  supplier_name      = nil if supplier_name.blank?
   supplier_name    ||= "unknown"
+  product_name       = nil if product_name.blank?
   product_name     ||= "Item #{[*('A'..'Z'),*('0'..'9')].shuffle[0,4].join}"
+  product_status     = nil if product_status.blank?
   product_status   ||= "running"
-  product_sell_by_date ||= nil
+  product_style    ||= ""
 
-  Product.create(
-                  product_code: product_new_code,
-                  product_category: ProductCategory.
-                          where(product_category_name: product_category),
-                  product_name: product_name,
-                  product_status: product_status,
-                  product_size: product_size,
-                  product_color: product_color,
-                  product_material: product_material,
-                  product_details:  { product_size: product_size,
-                                      product_color: product_color,
-                                      product_material: product_material,
-                                    },
-                  product_extra_info: product_extra_info,
-                  product_sell_by_date: product_sell_by_date,
-                  # product_supplier_price: product_supplier_price,
-                  # product_resell_item_price: product_resell_item_price,
-                  supplier: Supplier.
-                          where(supplier_name: supplier_name).first,
-                  created_at: DateTime.parse( "2014-01-01 12:34 +0100" )
-                )
+  product_category  = ProductCategory.
+                            where(product_category_name: product_category_name).
+                            first
+  supplier          = Supplier.
+                            where(supplier_name: supplier_name).first
+  product           = {
+                        product_code: product_new_code,
+                        product_category: product_category,
+                        product_name: product_name,
+                        product_status: product_status,
+                        product_size: product_size,
+                        product_color: product_color,
+                        product_style: product_style,
+                        product_material: product_material,
+                        # product_details:  { product_size: product_size,
+                        #                     product_color: product_color,
+                        #                     product_material: product_material,
+                        #                   },
+                        product_extra_info: product_extra_info,
+                        supplier: supplier,
+                        created_at: DateTime.parse( "2014-01-01 12:34 +0100" )
+                      }
+  # puts "PRODUCT"
+  # pp product.inspect
+  # puts "SUPPLIER"
+  # pp supplier.inspect
+  # puts "PRODUCT CATEGORY"
+  # pp product_category.inspect
+  # # puts "TAX CATEGORY"
+  # # pp product_category.tax_category.inspect
+  # puts "-" * 50
+
+  Product.create(  product )
+
 end

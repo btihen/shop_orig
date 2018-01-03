@@ -52,19 +52,19 @@ ActiveRecord::Schema.define(version: 20171113134137) do
     t.string "product_name", null: false
     t.string "product_size"
     t.string "product_color"
+    t.string "product_style"
     t.string "product_material"
     t.string "product_status"
     t.jsonb "product_details", default: "{}", null: false
     t.text "product_extra_info"
-    t.date "product_sell_by_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "supplier_id"
     t.bigint "product_category_id"
     t.index ["product_category_id"], name: "index_products_on_product_category_id"
+    t.index ["product_code", "product_category_id", "supplier_id", "product_name", "product_details"], name: "product_unique_index", unique: true
     t.index ["product_code"], name: "index_products_on_product_code", unique: true
     t.index ["product_details"], name: "index_products_on_product_details", using: :gin
-    t.index ["product_name", "product_size", "product_color"], name: "product_unique_index", unique: true
     t.index ["product_name"], name: "index_products_on_product_name"
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20171113134137) do
     t.string "stock_item_bought_price_currency", default: "USD", null: false
     t.integer "stock_item_resell_price_cents", default: 0, null: false
     t.string "stock_item_resell_price_currency", default: "USD", null: false
+    t.date "stock_item_sell_by_date"
     t.integer "stock_item_sold_price_cents", default: 0, null: false
     t.string "stock_item_sold_price_currency", default: "USD", null: false
     t.datetime "stock_item_sold_datetime"

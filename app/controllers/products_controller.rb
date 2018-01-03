@@ -73,12 +73,12 @@ class ProductsController < ApplicationController
                                         :product_name,
                                         :product_size,
                                         :product_color,
+                                        :product_style,
                                         :product_material,
                                         :product_status,
                                         :product_details,
                                         :product_extra_info,
                                         :product_extra_info,
-                                        :product_sell_by_date,
                                         :supplier_id,
                                         :product_category_id,
                                       )
