@@ -44,6 +44,11 @@ gem "cocoon", '~> 1.2'
 gem 'money-rails', '~> 1.9'
 gem 'eu_central_bank', '~> 1.1'
 
+# validates dates
+# 
+gem 'validates_timeliness', '~> 4.0'
+# rails generate validates_timeliness:install
+
 # detect old browsers
 gem "browser", '~> 2.5'
 
