@@ -12,9 +12,11 @@ RSpec.describe "registers/edit", type: :view do
 
       assert_select "input[name=?]", "register[register_currency]"
 
-      assert_select "input[name=?]", "register[start_amount]"
+      assert_select "input[name=?]", "register[register_start_amount]"
 
-      assert_select "input[name=?]", "register[close_amount]"
+      assert_select "input[name=?]", "register[register_close_amount]"
+
+      assert_select "input[name=?]", "register[register_deposit_amount]"
 
       assert_select "input[name=?]", "register[user_id]"
     end

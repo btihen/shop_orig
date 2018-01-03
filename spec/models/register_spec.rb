@@ -63,8 +63,8 @@ RSpec.describe Register, type: :model do
       expect( invalid_register.errors.messages ).to eq(
               { :cashier=>["must exist"],
                 :register_currency=>["can't be blank", "is not included in the list"],
-                :start_amount_cents=>["is not a number"] #,
-                # :start_amount_currency=>["is not included in the list"]
+                :register_start_amount_cents=>["is not a number"] #,
+                # :register_start_amount_currency=>["is not included in the list"]
               }
             )
     end
@@ -75,7 +75,7 @@ RSpec.describe Register, type: :model do
       # puts "\nINVALID NEG AMOUNT PARAMS"
       # pp invalid_neg_register.errors.messages
       expect( invalid_neg_register.errors.messages).to eq(
-              { :close_amount_cents=>["must be greater than or equal to 0"] #,
+              { :register_close_amount_cents=>["must be greater than or equal to 0"] #,
                 # :close_amount_currency=>["is not included in the list"]
               }
             )

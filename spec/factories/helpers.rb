@@ -117,7 +117,7 @@ module FactoryHelpers
     # 90% of the time pick a random existing supplier
     user = User.find( rand(1..User.count) )
     # do not return an itadmin user
-    while supplier.role == "itadmin"
+    while supplier.user_role == "itadmin"
       user = User.find( rand(1..User.count) )
     end
     return user
@@ -132,9 +132,9 @@ module FactoryHelpers
     # 10% return a random new supplier
     return FactoryBot.create :cashier       if random_number <= 10
     # 90% of the time pick a random existing supplier
-    return User.where( role: 'cashier' ).sample
+    return User.where( user_role: 'cashier' ).sample
     # # do not return an itadmin user
-    # while supplier.role == "itadmin"
+    # while supplier.user_role == "itadmin"
     #   user = User.find( rand(1..User.count) )
     # end
     # return user
@@ -149,9 +149,9 @@ module FactoryHelpers
     # 10% return a random new supplier
     return FactoryBot.create :sourcer       if random_number <= 10
     # 90% of the time pick a random existing supplier
-    return User.where( role: 'sourcer' ).sample
+    return User.where( user_role: 'sourcer' ).sample
     # # do not return an itadmin user
-    # while supplier.role == "itadmin"
+    # while supplier.user_role == "itadmin"
     #   user = User.find( rand(1..User.count) )
     # end
     # return user

@@ -28,7 +28,7 @@ RSpec.describe Order, type: :model do
       # expect( invalid_order.errors.details).to eq( {} )
       expect( invalid_order.errors.messages).to eq(
               { sourcer: ["must exist"],
-                status:  ["can't be blank", "is not included in the list"]
+                order_status:  ["can't be blank", "is not included in the list"]
               } )
     end
   end

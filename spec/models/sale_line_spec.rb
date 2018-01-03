@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe SaleLine, type: :model do
 
   let(:sale_line)         { FactoryBot.create(:sale_line) }
-  let(:invalid_sale_line) { FactoryBot.build(:invalid_sale_line) }
+  let(:invalid_nil_sale_line) { FactoryBot.build(:invalid_nil_sale_line) }
   let(:invalid_neg_sale_line) { FactoryBot.build(:invalid_neg_sale_line) }
   #
   let!(:supplier)   { FactoryBot.create(:supplier) }
@@ -34,15 +34,16 @@ RSpec.describe SaleLine, type: :model do
       expect( sale_line.errors.details).to eq( {} )
       expect( sale_line.errors.messages).to eq( {} )
     end
-    it "correctly detects invalid_sale_line" do
-      expect( invalid_sale_line.valid? ).to be_falsey
+    it "correctly detects invalid_nil_sale_line" do
+      expect( invalid_nil_sale_line.valid? ).to be_falsey
       # puts "\nINVALID NIL PRICE SALE ITEM"
-      # pp invalid_sale_line.errors.messages
-      expect( invalid_sale_line.errors.messages ).to eq(
+      # pp invalid_nil_sale_line.errors.messages
+      expect( invalid_nil_sale_line.errors.messages ).to eq(
               { :sale=>["must exist"],
                 :stock_item=>["must exist"],
-                :sale_price_cents=>["is not a number", "is not a number"],
-                :sale_price_currency=>["is not included in the list"]
+                :sale_line_quantity=>["is not a number"],
+                :sale_line_price_cents=>["is not a number", "is not a number"],
+                # :sale_line_price_currency=>["is not included in the list"]
               }
             )
     end
@@ -53,8 +54,9 @@ RSpec.describe SaleLine, type: :model do
       expect( invalid_neg_sale_line.errors.messages ).to eq(
               { :sale=>["must exist"],
                 :stock_item=>["must exist"],
-                :sale_price_cents=>["must be greater than or equal to 0"],
-                :sale_price_currency=>["is not included in the list"]
+                :sale_line_quantity=>["must be greater than or equal to 1"],
+                :sale_line_price_cents=>["must be greater than or equal to 0"],
+                # :sale_line_price_currency=>["is not included in the list"]
               }
             )
     end

@@ -38,7 +38,7 @@ RSpec.describe OrderLine, type: :model do
                 product: ["must exist"],
                 order_line_actual_purchase_price_cents: ["is not a number"],
                 order_line_actual_purchase_price_currency: ["is not included in the list"],
-                quantity: ["is not a number"]
+                order_line_quantity: ["is not a number"]
               } )
     end
   end

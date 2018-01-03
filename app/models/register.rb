@@ -8,28 +8,28 @@ class Register < ApplicationRecord
   has_many   :order_lines,    through: :stock_items
   has_many   :products_sold,  through: :order_lines, source: 'product'
 
-  monetize   :start_amount_cents, disable_validation: true
-  monetize   :close_amount_cents, disable_validation: true
-  monetize   :cash_deposit_cents, disable_validation: true
+  monetize   :register_start_amount_cents, disable_validation: true
+  monetize   :register_close_amount_cents, disable_validation: true
+  monetize   :register_cash_deposit_cents, disable_validation: true
 
   after_validation(on: :create) do
-    self.start_amount = Money.new(start_amount_cents.to_i,
-                                  register_currency) if attribute_present?("start_amount_cents")
-    self.close_amount = Money.new(close_amount_cents.to_i,
-                                  register_currency) if attribute_present?("close_amount_cents")
+    self.register_start_amount = Money.new(register_start_amount_cents.to_i,
+                                  register_currency) if attribute_present?("register_start_amount_cents")
+    self.register_close_amount = Money.new(register_close_amount_cents.to_i,
+                                  register_currency) if attribute_present?("register_close_amount_cents")
   end
 
   validates  :register_currency, presence: true,
                               allow_nil: false,
                               inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
-  validates  :start_amount_cents,
+  validates  :register_start_amount_cents,
                               allow_nil: false,
                               numericality: { greater_than_or_equal_to: 0 }
-  validates  :close_amount_cents,
+  validates  :register_close_amount_cents,
                               allow_nil: true,
                               numericality: { greater_than_or_equal_to: 0 } #,
                               # if: :validate_close_amount?
-  validates  :cash_deposit_cents,
+  validates  :register_cash_deposit_cents,
                               allow_nil: true,
                               numericality: { greater_than_or_equal_to: 0 },
                               if: :validate_cash_deposit?
@@ -38,7 +38,7 @@ class Register < ApplicationRecord
     return true if not cash_deposit_cents.nil? and cash_deposit_cents > 0
   end
   def validate_cash_deposit?
-    return true if not close_amount_cents.nil? and close_amount_cents > 0
+    return true if not register_close_amount_cents.nil? and register_close_amount_cents > 0
   end
 
 end

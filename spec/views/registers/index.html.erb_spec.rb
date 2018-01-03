@@ -17,12 +17,13 @@ RSpec.describe "registers/index", type: :view do
     # expect(view).to render_template("registers/index")
 
     # assert_select "tr>td", :text => @registers[0].register_currency, :count => 1
-    assert_select "tr>td", :text => @registers[0].start_amount.to_s, :count => 1
-    # assert_select "tr>td", :text => @registers[0].close_amount.to_s, :count => 1
+    assert_select "tr>td", :text => @registers[0].register_start_amount.to_s, :count => 1
+    assert_select "tr>td", :text => @registers[0].register_close_amount.to_s, :count => 1
+    assert_select "tr>td", :text => @registers[0].register_deposit_amount.to_s, :count => 1
     assert_select "tr>td", :text => @registers[0].cashier.full_name, :count => 1
     # assert_select "tr>td", :text => @registers[1].register_currency, :count => 1
-    # assert_select "tr>td", :text => @registers[1].start_amount.to_s, :count => 1
-    # assert_select "tr>td", :text => @registers[1].close_amount.to_s, :count => 1
+    # assert_select "tr>td", :text => @registers[1].register_start_amount.to_s, :count => 1
+    # assert_select "tr>td", :text => @registers[1].register_close_amount.to_s, :count => 1
     # assert_select "tr>td", :text => @registers[1].cashier.full_name, :count => 1
   end
 end

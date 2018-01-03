@@ -31,8 +31,8 @@ RSpec.describe SaleLinesController, type: :controller do
   let!(:stock_item)      { FactoryBot.create(:stock_item) }
   let(:valid_attributes) { FactoryBot.build(:sale_line,
                                       sale_price: Money.new(5001, 'EUR'),
-                                      # sale_price_cents: 5001,
-                                      # sale_price_currency: 'EUR',
+                                      # sale_line_price_cents: 5001,
+                                      # sale_line_price_currency: 'EUR',
                                       stock_item: stock_item).attributes }
 
   let(:invalid_attributes) { FactoryBot.attributes_for(:invalid_sale_line) }
@@ -98,7 +98,7 @@ RSpec.describe SaleLinesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {sale_price_cents: 1005,  sale_price_currency: 'CHF'} }
+      let(:new_attributes) { {sale_line_price_cents: 1005,  sale_line_price_currency: 'CHF'} }
       # let(:new_attributes) { {sale_price: Money.new(1005, 'CHF')} }
 
       it "updates the requested sale_line" do

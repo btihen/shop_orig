@@ -1,8 +1,8 @@
 class CreateSuppliers < ActiveRecord::Migration[5.1]
   def change
     create_table :suppliers do |t|
-      t.string  :supplier_name
-      t.string  :supplier_currency
+      t.string  :supplier_name,     null: false
+      t.string  :supplier_currency, null: false
       t.string  :supplier_web_url
       t.citext  :supplier_email
       t.string  :supplier_phone
@@ -17,7 +17,7 @@ class CreateSuppliers < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :suppliers, :supplier_name,    unique: true
-    add_index :suppliers, :supplier_currency
+    add_index :suppliers, :supplier_name
+    add_index :suppliers, [:supplier_name, :supplier_currency], unique: true
   end
 end

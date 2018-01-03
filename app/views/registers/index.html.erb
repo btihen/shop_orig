@@ -18,9 +18,9 @@
     <% @registers.each do |register| %>
       <tr>
         <td><%= register.register_currency %></td>
-        <td><%= register.start_amount %></td>
-        <td><%= register.close_amount %></td>
-        <td><%= register.cash_deposit %></td>
+        <td><%= register.register_start_amount %></td>
+        <td><%= register.register_close_amount %></td>
+        <td><%= register.register_cash_deposit %></td>
         <td><%= register.cashier.full_name %></td>
         <td><%= link_to 'Show', register %></td>
         <td><%= link_to 'Edit', edit_register_path(register) %></td>

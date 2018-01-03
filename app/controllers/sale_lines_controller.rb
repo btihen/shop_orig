@@ -72,8 +72,8 @@ class SaleLinesController < ApplicationController
       params.require(:sale_line).permit(:sale_line_note,
                                         :sale_id,
                                         :sale_price,
-                                        :sale_price_cents,
-                                        :sale_price_currency,
+                                        :sale_line_price_cents,
+                                        :sale_line_price_currency,
                                         :stock_item_id)
     end
 end

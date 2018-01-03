@@ -92,13 +92,13 @@ RSpec.describe StockItemsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {status: 'returned'} }
+      let(:new_attributes) { {stock_item_status: 'returned'} }
 
       it "updates the requested stock_item" do
         stock_item = StockItem.create! valid_attributes
         put :update, params: {id: stock_item.to_param, stock_item: new_attributes}, session: valid_session
         stock_item.reload
-        expect( stock_item.status ).to eq( 'returned' )
+        expect( stock_item.stock_item_status ).to eq( 'returned' )
       end
 
       it "redirects to the stock_item" do

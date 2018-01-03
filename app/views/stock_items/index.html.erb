@@ -17,10 +17,10 @@
   <tbody>
     <% @stock_items.each do |stock_item| %>
       <tr>
-        <td><%= stock_item.status %></td>
-        <td><%= stock_item.add_datetime %></td>
-        <td><%= stock_item.sold_datetime %></td>
-        <td><%= stock_item.sell_price %></td>
+        <td><%= stock_item.stock_item_status %></td>
+        <td><%= stock_item.stock_item_added_datetime %></td>
+        <td><%= stock_item.stock_item_sold_datetime %></td>
+        <td><%= stock_item.stock_item_sold_price %></td>
         <td><%= stock_item.order_line.id %></td>
         <td><%= link_to 'Show', stock_item %></td>
         <td><%= link_to 'Edit', edit_stock_item_path(stock_item) %></td>

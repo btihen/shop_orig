@@ -1,16 +1,16 @@
 FactoryBot.define do
   factory :sale do
-    payment_method { ApplicationHelper::PAYMENT_METHOD.sample }
-    register       { FactoryHelpers.get_register() }
+    sale_payment_method { ApplicationHelper::PAYMENT_METHOD.sample }
+    register            { FactoryHelpers.get_register() }
   end
   factory :cash_sale, parent: :sale do
-    payment_method { 'cash' }
+    sale_payment_method { 'cash' }
   end
   factory :card_sale, parent: :sale do
-    payment_method { 'card' }
+    sale_payment_method { 'card' }
   end
   factory :invalid_sale, parent: :sale do
-    payment_method { 'bad' }
-    register       { nil }
+    sale_payment_method { 'bad' }
+    register            { nil }
   end
 end

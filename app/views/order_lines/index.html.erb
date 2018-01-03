@@ -15,7 +15,7 @@
   <tbody>
     <% @order_lines.each do |order_line| %>
       <tr>
-        <td><%= order_line.quantity %></td>
+        <td><%= order_line.order_line_quantity %></td>
         <td><%= order_line.order_line_note %></td>
         <td><%= order_line.order_line_actual_purchase_price %></td>
         <td><%= link_to 'Show', order_line %></td>

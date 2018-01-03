@@ -35,10 +35,11 @@ RSpec.describe Sale, type: :model do
     end
     it "detects an invalid_stock_item" do
       expect( invalid_sale.valid? ).to be_falsey
-      # expect( invalid_sale.errors.details[:payment_method][0][:error]).to eq( :inclusion )
+      # expect( invalid_sale.errors.details[:sale_payment_method][0][:error]).to eq( :inclusion )
       expect( invalid_sale.errors.messages).to eq(
                           { register: ["must exist"],
-                            payment_method: ["is not included in the list"] } )
+                            sale_payment_method: ["is not included in the list"]
+                          } )
     end
   end
 

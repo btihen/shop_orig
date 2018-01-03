@@ -6,29 +6,36 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-1.times do
-  FactoryBot.create(:user, role: 'itadmin')
-end
-2.times do
-  FactoryBot.create(:user, role: 'owner')
-end
-3.times do
-  FactoryBot.create(:user, role: 'manager')
-end
-4.times do
-  FactoryBot.create(:user, role: 'cashier')
-end
-# 10.times do
-#   FactoryBot.create(:user, role: 'user')
+require "data/users"
+require "data/suppliers"
+require "data/products"
+
+
+# 1.times do
+#   FactoryBot.create(:user, user_role: 'itadmin')
+# end
+# 2.times do
+#   FactoryBot.create(:user, user_role: 'owner')
+# end
+# 3.times do
+#   FactoryBot.create(:user, user_role: 'manager')
+# end
+# 4.times do
+#   FactoryBot.create(:user, user_role: 'cashier')
 # end
 
-15.times do
-  FactoryBot.create(:supplier)
-end
 
-75.times do
-  FactoryBot.create(:product)
-end
+# 10.times do
+#   FactoryBot.create(:user, user_role: 'user')
+# end
+#
+# 15.times do
+#   FactoryBot.create(:supplier)
+# end
+#
+# 75.times do
+#   FactoryBot.create(:product)
+# end
 
 # add orders
 # add order_lines

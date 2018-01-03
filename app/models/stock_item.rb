@@ -7,9 +7,10 @@ class StockItem < ApplicationRecord
   has_one    :order,    through: :order_line
   has_one    :sourcer,  through: :order
 
-  monetize   :sell_price_cents
+  monetize   :stock_item_sold_price_cents
 
-  validates  :status,   presence: true,
+  validates  :stock_item_status,
+                        presence: true,
                         inclusion: { in: ApplicationHelper::STOCK_STATUS }
 
 end

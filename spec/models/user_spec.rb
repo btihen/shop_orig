@@ -57,13 +57,13 @@ RSpec.describe User, type: :model do
               [{:error=>:blank}, {:error=>:too_short, :count=>2}] )
       expect( invalid_user.errors.details[:full_name]).to eq(
               [{:error=>:too_short, :count=>2}] )
-      expect( invalid_user.errors.details[:role]).to eq(
+      expect( invalid_user.errors.details[:user_role]).to eq(
               [{:error=>:blank}, {:error=>:inclusion, :value=>nil}] )
       expect( invalid_user.errors.messages[:username]).to eq(
               ["can't be blank", "is too short (minimum is 2 characters)"] )
       expect( invalid_user.errors.messages[:full_name]).to eq(
               ["is too short (minimum is 2 characters)"] )
-      expect( invalid_user.errors.messages[:role]).to eq(
+      expect( invalid_user.errors.messages[:user_role]).to eq(
               ["can't be blank", "is not included in the list"] )
     end
   end

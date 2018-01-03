@@ -92,7 +92,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {reason: "resupply"} }
+      let(:new_attributes) { {order_reason: "resupply"} }
 
       it "updates the requested order" do
         order = Order.create! valid_attributes

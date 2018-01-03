@@ -11,9 +11,11 @@ RSpec.describe "registers/new", type: :view do
 
     assert_select "form[action=?][method=?]", registers_path, "post" do
 
-      assert_select "input[name=?]", "register[start_amount]"
+      assert_select "input[name=?]", "register[register_start_amount]"
 
-      assert_select "input[name=?]", "register[close_amount]"
+      assert_select "input[name=?]", "register[register_close_amount]"
+
+      assert_select "input[name=?]", "register[register_deposit_amount]"
 
       assert_select "input[name=?]", "register[user_id]"
     end

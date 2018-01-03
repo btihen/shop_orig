@@ -7,7 +7,7 @@ RSpec.describe "sales/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/#{@sale.payment_method}/)
+    expect(rendered).to match(/#{@sale.sale_payment_method}/)
     expect(rendered).to match(/#{@sale.register.id}/)
   end
 end

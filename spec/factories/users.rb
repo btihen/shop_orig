@@ -2,27 +2,27 @@ FactoryBot.define do
   factory :user do
     username    { Faker::Internet.user_name }
     full_name   { Faker::Name.name }
-    role        { ApplicationHelper::USER_ROLES.sample }
+    user_role        { ApplicationHelper::USER_ROLES.sample }
     # email { Faker::Internet.email }
     # passwd = Faker::Internet.password(8)
     # password { passwd }
     # password_confirm { passwd }
   end
   factory :cashier, parent: :user do
-    role        { 'cashier' }
+    user_role        { 'cashier' }
   end
   factory :sourcer, parent: :user do
-    role        { 'manager' }
+    user_role        { 'sourcer' }
   end
-  factory :manager, parent: :user do
-    role        {'manager'}
+  factory :inventory, parent: :user do
+    user_role        {'inventory'}
   end
-  factory :owner, parent: :user do
-    role        {'owner'}
+  factory :finance, parent: :user do
+    user_role        {'finance'}
   end
   factory :invalid_user, parent: :user do
     username    { " " }
     full_name   { "a" }
-    role        { nil }
+    user_role        { nil }
   end
 end

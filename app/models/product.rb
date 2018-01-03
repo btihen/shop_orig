@@ -15,7 +15,7 @@ class Product < ApplicationRecord
   end
 
   before_validation :assign_purchase_currency, on: :create
-  # before_validation :assign_purchase_currency #, on: [:create, :update]
+  # before_validation :assign_purchase_currency, on: [:create, :update]
   # before_save       :assign_purchase_currency
 
   monetize  :product_supplier_price_cents,

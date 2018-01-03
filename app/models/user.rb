@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   validates :username,  presence: true, uniqueness: true, length: { minimum: 2 }
   validates :full_name, presence: true, length: { minimum: 2 }
-  validates :role,      presence: true,
+  validates :user_role,      presence: true,
                         inclusion: { :in => ApplicationHelper::USER_ROLES }
 
 end

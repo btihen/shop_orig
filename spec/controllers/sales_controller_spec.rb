@@ -84,7 +84,8 @@ RSpec.describe SalesController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {sale: invalid_attributes}, session: valid_session
+        post :create, params: {sale: invalid_attributes},
+                      session: valid_session
         expect(response).to be_success
       end
     end
@@ -92,18 +93,20 @@ RSpec.describe SalesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {payment_method: 'cash'} }
+      let(:new_attributes) { {sale_payment_method: 'cash'} }
 
       it "updates the requested sale" do
         sale = Sale.create! valid_attributes
-        put :update, params: {id: sale.to_param, sale: new_attributes}, session: valid_session
+        put :update,  params: {id: sale.to_param, sale: new_attributes},
+                      session: valid_session
         sale.reload
-        expect(sale.payment_method).to eq( 'cash' )
+        expect(sale.sale_payment_method).to eq( 'cash' )
       end
 
       it "redirects to the sale" do
         sale = Sale.create! valid_attributes
-        put :update, params: {id: sale.to_param, sale: valid_attributes}, session: valid_session
+        put :update,  params: {id: sale.to_param, sale: valid_attributes},
+                      session: valid_session
         expect(response).to redirect_to(sale)
       end
     end
@@ -111,7 +114,8 @@ RSpec.describe SalesController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         sale = Sale.create! valid_attributes
-        put :update, params: {id: sale.to_param, sale: invalid_attributes}, session: valid_session
+        put :update,  params: {id: sale.to_param, sale: invalid_attributes}, 
+                      session: valid_session
         expect(response).to be_success
       end
     end

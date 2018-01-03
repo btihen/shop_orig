@@ -11,6 +11,6 @@ RSpec.describe "users/show", type: :view do
     render
     expect(rendered).to match(/#{@user.username}/)
     expect(rendered).to match(/#{CGI.escapeHTML(@user.full_name)}/)
-    expect(rendered).to match(/#{@user.role}/)
+    expect(rendered).to match(/#{@user.user_role}/)
   end
 end

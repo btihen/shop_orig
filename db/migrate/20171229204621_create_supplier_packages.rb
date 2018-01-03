@@ -3,9 +3,9 @@ class CreateSupplierPackages < ActiveRecord::Migration[5.1]
     create_table :supplier_packages do |t|
       # t.references :product, foreign_key: true
       # t.references :included_product, foreign_key: true
-      t.references :product, index: true, foreign_key: true
+      t.references :product,          index: true, foreign_key: true
       t.references :included_product, index: true
-      t.integer    :included_quantity
+      t.integer    :included_quantity, null: false
 
       t.timestamps null: false
     end

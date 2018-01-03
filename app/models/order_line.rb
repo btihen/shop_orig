@@ -16,8 +16,8 @@ class OrderLine < ApplicationRecord
                           allow_nil: false,
                           inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
 
-  validates :quantity,    allow_nil: false,
-                          # numericality: false
+  validates :order_line_quantity,
+                          allow_nil: false,
                           numericality: {
                             only_integer: true,
                             greater_than_or_equal_to: 1,

@@ -14,7 +14,7 @@
   <tbody>
     <% @sales.each do |sale| %>
       <tr>
-        <td><%= sale.payment_method %></td>
+        <td><%= sale.sale_payment_method %></td>
         <td><%= sale.register.id %></td>
         <td><%= link_to 'Show', sale %></td>
         <td><%= link_to 'Edit', edit_sale_path(sale) %></td>

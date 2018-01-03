@@ -97,7 +97,7 @@ RSpec.describe RegistersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {close_amount_cents: 12000} }
+      let(:new_attributes) { {register_close_amount_cents: 12000} }
       it "updates the requested register" do
         register = Register.create! valid_attributes
         put :update,  params: { id: register.to_param,
