@@ -1,5 +1,7 @@
 # README
 
+https://travis-ci.org/btihen/shop.svg?branch=master
+
 ## Features
 
 * allows supplier management
@@ -34,10 +36,10 @@ Things you may want to cover:
   # Restart your server
   rails s
   ```
-  - # https://github.com/thoughtbot/administrate/
-  - # https://github.com/activeadmin/activeadmin (has graphs)
-  - # https://github.com/TrestleAdmin/trestle/graphs/contributors
-  - # https://github.com/sferik/rails_admin (upgrade RailsAdmin to 1.1.1)
+  - #### https://github.com/thoughtbot/administrate/
+  - #### https://github.com/activeadmin/activeadmin (has graphs)
+  - #### https://github.com/TrestleAdmin/trestle/graphs/contributors
+  - #### https://github.com/sferik/rails_admin (upgrade RailsAdmin to 1.1.1)
 
 * Configuration
   - default currency & exchange bank: in *config/initializers/money.rb*
@@ -66,7 +68,7 @@ Things you may want to cover:
 
 #### HAS MANY THROUGH (best method)
 
-# https://collectiveidea.com/blog/archives/2015/07/30/bi-directional-and-self-referential-associations-in-rails
+#### https://collectiveidea.com/blog/archives/2015/07/30/bi-directional-and-self-referential-associations-in-rails
 
 **Code to USED TO CREATE this feature:**
 
