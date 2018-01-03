@@ -1,9 +1,10 @@
 class CreateUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :users do |t|
-      t.citext :username,  null: false
-      t.string :full_name, null: false
-      t.string :user_role,      null: false
+      t.citext :username,          null: false
+      t.citext :user_email,        null: false
+      t.string :user_real_name,    null: false
+      t.string :user_role,         null: false
 
       t.timestamps
     end

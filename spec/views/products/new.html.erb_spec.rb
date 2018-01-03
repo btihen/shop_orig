@@ -14,9 +14,9 @@ RSpec.describe "products/new", type: :view do
 
       assert_select "textarea[name=?]", "product[product_extra_info]"
 
-      assert_select "input[name=?]", "product[product_supplier_price]"
-
-      assert_select "input[name=?]", "product[product_resell_item_price]"
+      # assert_select "input[name=?]", "product[product_supplier_price]"
+      #
+      # assert_select "input[name=?]", "product[product_resell_item_price]"
 
       # TODO: test input of associated models
       # assert_select "input[name=?]", "product[supplier]"

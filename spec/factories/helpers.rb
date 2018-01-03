@@ -4,14 +4,20 @@ module FactoryHelpers
   def get_tax_category
     # if less than 3 tax categories (make new ones)
     return FactoryBot.create :tax_category      if TaxCategory.count < 3
-    # if 3 tax categories - return an exising tax category
-    # pp TaxCategory.all.inspect
     # https://ducktypelabs.com/retrieving-random-records-in-rails/
     return TaxCategory.offset( rand(TaxCategory.count) ).first
-    # return TaxCategory.all.sample
-    # Couldn't find TaxCategory with 'id'=2
-    # return TaxCategory.find( rand(1..3) )
-    # return TaxCategory.find( rand(1..TaxCategory.count) )
+  end
+
+  def get_product
+    # if only one supplier generate and return a new one
+    return FactoryBot.create :product       if Product.count <= 3
+
+    # Generate a random number between 1 and 100
+    random_number = rand(1 .. 100)
+    # 105% return a random new supplier
+    return FactoryBot.create :product       if random_number <= 10
+    # 90% of the time pick a random existing supplier
+    return Product.find( rand(1..Product.count) )
   end
 
   def get_product_category
@@ -32,18 +38,6 @@ module FactoryHelpers
     return FactoryBot.create :supplier      if random_number <= 10
     # 90% of the time pick a random existing supplier
     return Supplier.find( rand(1..Supplier.count) )
-  end
-
-  def get_product
-    # if only one supplier generate and return a new one
-    return FactoryBot.create :product       if Product.count <= 3
-
-    # Generate a random number between 1 and 100
-    random_number = rand(1 .. 100)
-    # 105% return a random new supplier
-    return FactoryBot.create :product       if random_number <= 10
-    # 90% of the time pick a random existing supplier
-    return Product.find( rand(1..Product.count) )
   end
 
   def get_order

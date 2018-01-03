@@ -93,13 +93,13 @@ RSpec.describe UsersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {full_name: "Bill Tihen"} }
+      let(:new_attributes) { {user_real_name: "Bill Tihen"} }
 
       it "updates the requested user" do
         user = User.create! valid_attributes
         put :update, params: {id: user.to_param, user: new_attributes}, session: valid_session
         user.reload
-        expect( user.full_name).to eq( "Bill Tihen" )
+        expect( user.user_real_name).to eq( "Bill Tihen" )
       end
 
       it "redirects to the user" do

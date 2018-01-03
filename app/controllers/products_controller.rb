@@ -25,8 +25,6 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product  = Product.new(product_params)
-    # @product.supplier_id = params[:supplier_id]
-    # @product.product_supplier_price_currency = Supplier.find(params[:supplier_id]).supplier_currency
 
     respond_to do |format|
       if @product.save
@@ -81,10 +79,6 @@ class ProductsController < ApplicationController
                                         :product_extra_info,
                                         :product_extra_info,
                                         :product_sell_by_date,
-                                        :product_supplier_price,
-                                        :product_supplier_price_cents,
-                                        :product_resell_item_price,
-                                        :product_resell_item_price_cents,
                                         :supplier_id,
                                         :product_category_id,
                                       )

@@ -13,7 +13,7 @@ RSpec.describe "users/new", type: :view do
 
       assert_select "input[name=?]", "user[username]"
 
-      assert_select "input[name=?]", "user[full_name]"
+      assert_select "input[name=?]", "user[user_real_name]"
 
       assert_select "input[name=?]", "user[user_role]"
     end

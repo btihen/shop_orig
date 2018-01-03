@@ -82,8 +82,6 @@ class CreateProducts < ActiveRecord::Migration[5.1]
 
       t.string   :product_name
       t.text     :product_extra_info
-      t.monetize :product_supplier_price
-      t.monetize :product_resell_item_price
       t.jsonb    :product_details, null: false, default: '{}'
 
       t.timestamps

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe TaxCategory, type: :model do
 
   let(:invalid_tax_category)    { FactoryBot.build(:invalid_tax_category) }
-  let(:invalid_neg_tax_rate)    { FactoryBot.build(:invalid_tax_category) }
+  let(:invalid_neg_tax_rate)    { FactoryBot.build(:invalid_neg_tax_rate) }
   let!(:tax_category)           { FactoryBot.create(:tax_category) }
   let!(:duplicate_tax_category) { FactoryBot.build(:tax_category,
                                             tax_category_name: tax_category.tax_category_name) }
@@ -29,8 +29,18 @@ RSpec.describe TaxCategory, type: :model do
       #                               {:error=>:too_short, :count=>2}]})
       expect( invalid_tax_category.errors.messages).to eq(
       { tax_category_name: ["can't be blank", "is too short (minimum is 2 characters)"],
-         tax_category_rate: ["is not a number"],
-         tax_start_date:    ["is not a valid date"]
+        tax_category_rate: ["can't be blank"]
+         # tax_start_date:    ["is not a valid date"]
+      } )
+    end
+    xit "detects an invalid_neg_tax_rate" do
+      expect( invalid_neg_tax_rate.valid? ).to be_falsey
+      # pp invalid_neg_tax_rate.errors.messages
+      # expect( invalid_neg_tax_rate.errors.details).to eq(
+      #             {:supplier_name=>[{:error=>:blank},
+      #                               {:error=>:too_short, :count=>2}]})
+      expect( invalid_neg_tax_rate.errors.messages).to eq(
+      { tax_category_rate: ["can't be blank"]
       } )
     end
   end

@@ -30,10 +30,10 @@ RSpec.describe "registers/index", type: :view do
     assert_select "tr>td", :text => @registers[0].register_start_amount.to_s, :count => 1
     assert_select "tr>td", :text => @registers[0].register_close_amount.to_s, :count => 1
     assert_select "tr>td", :text => @registers[0].register_cash_deposit.to_s, :count => 1
-    assert_select "tr>td", :text => @registers[0].cashier.full_name, :count => 1
+    assert_select "tr>td", :text => @registers[0].cashier.user_real_name, :count => 1
     # assert_select "tr>td", :text => @registers[1].register_currency, :count => 1
     # assert_select "tr>td", :text => @registers[1].register_start_amount.to_s, :count => 1
     # assert_select "tr>td", :text => @registers[1].register_close_amount.to_s, :count => 1
-    # assert_select "tr>td", :text => @registers[1].cashier.full_name, :count => 1
+    # assert_select "tr>td", :text => @registers[1].cashier.user_real_name, :count => 1
   end
 end

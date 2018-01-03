@@ -71,8 +71,8 @@ class TaxCategoriesController < ApplicationController
     def tax_category_params
       params.require(:tax_category).permit( :tax_category_name,
                                             :tax_category_rate,
-                                            :tax_start_date,
-                                            :tax_end_date,
+                                            # :tax_start_date,
+                                            # :tax_end_date,
                                           )
     end
 end

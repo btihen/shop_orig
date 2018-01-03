@@ -17,10 +17,10 @@ register_list = [
   [ "Euro Register 2018", "EUR", 56789, nil, nil ],
 ]
 
-register_list.each do |username, full_name, user_role |
+register_list.each do |username, user_real_name, user_role |
   Register.create(
               register_name: username,
-              register_currency: full_name,
+              register_currency: user_real_name,
               register_start_amount: user_role,
               register_close_amount: user_role
               register_cash_deposit: user_role

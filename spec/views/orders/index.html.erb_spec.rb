@@ -14,7 +14,7 @@ RSpec.describe "orders/index", type: :view do
     assert_select "tr>td", :text => @orders[1].order_status, :count => 1
     assert_select "tr>td", :text => @orders[0].order_reason, :count => 1
     assert_select "tr>td", :text => @orders[1].order_reason, :count => 1
-    assert_select "tr>td", :text => @orders[0].sourcer.full_name, :count => 1
-    assert_select "tr>td", :text => @orders[1].sourcer.full_name, :count => 1
+    assert_select "tr>td", :text => @orders[0].sourcer.user_real_name, :count => 1
+    assert_select "tr>td", :text => @orders[1].sourcer.user_real_name, :count => 1
   end
 end

@@ -14,10 +14,6 @@ RSpec.describe "products/edit", type: :view do
 
       assert_select "textarea[name=?]", "product[product_extra_info]"
 
-      assert_select "input[name=?]", "product[product_supplier_price]"
-
-      assert_select "input[name=?]", "product[product_resell_item_price]"
-
       # this has to be edited on supplier page
       # assert_select "input[name=?]", "product[supplier.supplier_currency]"
     end

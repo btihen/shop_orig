@@ -1330,7 +1330,6 @@ product_list.each do |product_code, product_category, new_number, supplier_name,
   supplier_name    ||= "unknown"
   product_name     ||= "Item #{[*('A'..'Z'),*('0'..'9')].shuffle[0,4].join}"
   product_status   ||= "running"
-  product_sell_by_date ||= nil
 
   Product.create(
                   product_code: product_new_code,

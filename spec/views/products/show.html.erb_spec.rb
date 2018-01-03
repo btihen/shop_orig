@@ -9,8 +9,8 @@ RSpec.describe "products/show", type: :view do
     render
     expect(rendered).to match(/#{CGI.escapeHTML(@product.product_name.to_s)}/)
     expect(rendered).to match(/#{CGI.escapeHTML(@product.product_extra_info.to_s)}/)
-    expect(rendered).to match(/#{@product.product_supplier_price}/)
-    expect(rendered).to match(/#{@product.product_resell_item_price}/)
+    # expect(rendered).to match(/#{@product.product_supplier_price}/)
+    # expect(rendered).to match(/#{@product.product_resell_item_price}/)
     expect(rendered).to match(/#{@product.supplier.supplier_currency}/)
   end
 end

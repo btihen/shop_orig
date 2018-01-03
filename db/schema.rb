@@ -57,10 +57,6 @@ ActiveRecord::Schema.define(version: 20171113134137) do
     t.jsonb "product_details", default: "{}", null: false
     t.text "product_extra_info"
     t.date "product_sell_by_date"
-    t.integer "product_supplier_price_cents", default: 0, null: false
-    t.string "product_supplier_price_currency", default: "USD", null: false
-    t.integer "product_resell_item_price_cents", default: 0, null: false
-    t.string "product_resell_item_price_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "supplier_id"
@@ -112,6 +108,8 @@ ActiveRecord::Schema.define(version: 20171113134137) do
   create_table "stock_items", force: :cascade do |t|
     t.string "stock_item_status", null: false
     t.datetime "stock_item_added_datetime", null: false
+    t.integer "stock_item_bought_price_cents", default: 0, null: false
+    t.string "stock_item_bought_price_currency", default: "USD", null: false
     t.integer "stock_item_resell_price_cents", default: 0, null: false
     t.string "stock_item_resell_price_currency", default: "USD", null: false
     t.integer "stock_item_sold_price_cents", default: 0, null: false
@@ -156,18 +154,17 @@ ActiveRecord::Schema.define(version: 20171113134137) do
 
   create_table "tax_categories", force: :cascade do |t|
     t.string "tax_category_name", null: false
-    t.decimal "tax_category_rate", null: false
-    t.date "tax_start_date", null: false
-    t.date "tax_end_date"
+    t.jsonb "tax_category_rate", default: "{}", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tax_category_name", "tax_category_rate", "tax_start_date"], name: "tax_unique_index", unique: true
-    t.index ["tax_category_name"], name: "index_tax_categories_on_tax_category_name"
+    t.index ["tax_category_name"], name: "index_tax_categories_on_tax_category_name", unique: true
+    t.index ["tax_category_rate"], name: "index_tax_categories_on_tax_category_rate", using: :gin
   end
 
   create_table "users", force: :cascade do |t|
     t.citext "username", null: false
-    t.string "full_name", null: false
+    t.citext "user_email", null: false
+    t.string "user_real_name", null: false
     t.string "user_role", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

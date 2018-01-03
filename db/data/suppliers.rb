@@ -77,7 +77,6 @@ supplier_list = [
   [ "Weyermann/AmazonFR", "EUR" ],
   [ "Weyermann/Tsongkang", "EUR" ],
   [ "unknown", "EUR" ],
-  [ "unknownn", "EUR" ],
   [ "éd. Claire Lumière", "EUR" ],
   [ "éd. Padmakara", "EUR" ],
 ]

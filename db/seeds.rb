@@ -1,23 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# ruby encoding: utf-8
 
-require "data/users"
-require "data/suppliers"
-require "data/tax_categories"
-require "data/product_categories"
-require "data/products"
-# require "data/supplier_packages"
-# require "data/orders"
-# require "data/order_lines"
-# require "data/stock_items"
-# require "data/registers"
-# require "data/sales"
-# require "data/sale_lines"
+require_relative "data/users"
+require_relative "data/suppliers"
+require_relative "data/tax_categories"
+require_relative "data/product_categories"
+require_relative "data/products"
+# require_relative "data/supplier_packages"
+# require_relative "data/orders"
+# require_relative "data/order_lines"
+# require_relative "data/stock_items"
+# require_relative "data/registers"
+# require_relative "data/sales"
+# require_relative "data/sale_lines"
 
 
 # 1.times do
@@ -32,11 +26,6 @@ require "data/products"
 # 4.times do
 #   FactoryBot.create(:user, user_role: 'cashier')
 # end
-
-
-# 10.times do
-#   FactoryBot.create(:user, user_role: 'user')
-# end
 #
 # 15.times do
 #   FactoryBot.create(:supplier)
@@ -45,9 +34,3 @@ require "data/products"
 # 75.times do
 #   FactoryBot.create(:product)
 # end
-
-# add orders
-# add order_lines
-# add register
-# add sales
-# add sales_items

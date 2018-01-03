@@ -46,7 +46,6 @@ RSpec.describe OrderLine, type: :model do
   context "Check Supplier Relationships" do
     it "Order Items can find their associated product" do
       expect( order_line.product ).to eq( product )
-      expect( order_line.product.product_supplier_price ).to eq( product.product_supplier_price )
     end
     it "Order Items can find their associated supplier" do
       expect( order_line.supplier ).to eq( supplier )

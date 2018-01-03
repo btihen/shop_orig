@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   let(:duplicate_user){ FactoryBot.build(:user,
                                           username:   user.username) }
   let(:invalid_user)  { FactoryBot.build(:invalid_user) }
+  let(:invalid_nil_user) { FactoryBot.build(:invalid_nil_user) }
   #
   let!(:supplier)     { FactoryBot.create(:supplier) }
   let!(:product1)     { FactoryBot.create(:product,
@@ -53,18 +54,24 @@ RSpec.describe User, type: :model do
     it "correctly builds an invalid user" do
       expect( invalid_user.valid? ).to be_falsey
       # expect( invalid_user.valid? ).not_to be_truthy
-      expect( invalid_user.errors.details[:username]).to eq(
-              [{:error=>:blank}, {:error=>:too_short, :count=>2}] )
-      expect( invalid_user.errors.details[:full_name]).to eq(
-              [{:error=>:too_short, :count=>2}] )
-      expect( invalid_user.errors.details[:user_role]).to eq(
-              [{:error=>:blank}, {:error=>:inclusion, :value=>nil}] )
-      expect( invalid_user.errors.messages[:username]).to eq(
-              ["can't be blank", "is too short (minimum is 2 characters)"] )
-      expect( invalid_user.errors.messages[:full_name]).to eq(
-              ["is too short (minimum is 2 characters)"] )
-      expect( invalid_user.errors.messages[:user_role]).to eq(
-              ["can't be blank", "is not included in the list"] )
+      # pp invalid_user.errors.details
+      expect( invalid_user.errors.details).to eq(
+              { :username=>[{:error=>:blank}, {:error=>:too_short, :count=>2}],
+                :user_email=>[{:error=>:blank}, {:error=>:too_short, :count=>6}],
+                :user_real_name=>[{:error=>:blank}, {:error=>:too_short, :count=>2}],
+                :user_role=>[{:error=>:blank}, {:error=>:inclusion, :value=>" "}]
+              } )
+    end
+    it "correctly builds an invalid nil user" do
+      expect( invalid_nil_user.valid? ).to be_falsey
+      # expect( invalid_nil_user.valid? ).not_to be_truthy
+      # pp invalid_nil_user.errors.details
+      expect( invalid_nil_user.errors.details).to eq(
+              { :username=>[{:error=>:blank}, {:error=>:too_short, :count=>2}],
+                :user_email=>[{:error=>:blank}, {:error=>:too_short, :count=>6}],
+                :user_real_name=>[{:error=>:blank}, {:error=>:too_short, :count=>2}],
+                :user_role=>[{:error=>:blank}, {:error=>:inclusion, :value=>nil}]
+              } )
     end
   end
 
