@@ -12,8 +12,8 @@ RSpec.describe "products/index", type: :view do
     render
     assert_select "tr>td", :text => @products[0].product_name, :count => 1
     assert_select "tr>td", :text => @products[1].product_name, :count => 1
-    assert_select "tr>td", :text => @products[0].product_description, :count => 1
-    assert_select "tr>td", :text => @products[1].product_description, :count => 1
+    assert_select "tr>td", :text => @products[0].product_added_info, :count => 1
+    assert_select "tr>td", :text => @products[1].product_added_info, :count => 1
     assert_select "tr>td", :text => @products[0].product_supplier_price.to_s, :count => 1
     assert_select "tr>td", :text => @products[1].product_supplier_price.to_s, :count => 1
     assert_select "tr>td", :text => @products[0].product_resell_item_price.to_s, :count => 1

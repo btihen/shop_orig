@@ -26,6 +26,12 @@ class Product < ApplicationRecord
                             allow_nil: true,
                             numericality: false
 
+  validates :product_code,  presence: true, uniqueness: true,
+                            length: { minimum: 2 }
+  validates :product_name,  presence: true, # uniqueness: true,
+                            length: { minimum: 2 }
+  validates :product_status, presence: true,
+                            inclusion: { in: ApplicationHelper::PRODUCT_STATUSES }
   validates :product_supplier_price_cents,
                             numericality: { greater_than_or_equal_to: 0 }
   validates :product_resell_item_price_cents,
@@ -34,10 +40,9 @@ class Product < ApplicationRecord
   validates :product_resell_item_price_currency, presence: true,
                             inclusion: { in: [ApplicationHelper::LOCAL_CURRENCY] }
   validates :product_supplier_price_currency, presence: true,
-                            inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
-                            # inclusion: { in: ApplicationHelper::SUPPLIER_CURRENCIES }
-  validates :product_name,  presence: true, # uniqueness: true,
-                            length: { minimum: 2 }
+                            inclusion: { in: ApplicationHelper::SUPPLIER_CURRENCIES }
+                            # inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
+  validates_date  :product_sell_by_date, allow_nil: false
 
   def package_created_at
     Time.zone.parse(self[:package_created_at].to_s) if self[:package_created_at]

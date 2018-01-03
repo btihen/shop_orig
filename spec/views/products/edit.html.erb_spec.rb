@@ -12,7 +12,7 @@ RSpec.describe "products/edit", type: :view do
 
       assert_select "input[name=?]", "product[product_name]"
 
-      assert_select "textarea[name=?]", "product[product_description]"
+      assert_select "textarea[name=?]", "product[product_added_info]"
 
       assert_select "input[name=?]", "product[product_supplier_price]"
 

@@ -31,10 +31,13 @@ RSpec.describe Product, type: :model do
       # expect( invalid_product.errors.details ).to eq( {} )
       expect( invalid_product.errors.messages ).to eq(
               { supplier: ["must exist"],
-                product_name:    ["can't be blank",
+                product_code:   [ "can't be blank",
                                   "is too short (minimum is 2 characters)"],
+                product_name:   [ "can't be blank",
+                                  "is too short (minimum is 2 characters)"],
+                product_status: [ "can't be blank", "is not included in the list"],
                 product_supplier_price_cents: ["is not a number"],
-                product_supplier_price_currency: ["is not included in the list"],
+                # product_supplier_price_currency: ["is not included in the list"],
                 product_resell_item_price_cents: ["must be greater than or equal to 0"],
               }
             )
