@@ -81,7 +81,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
     create_table :products do |t|
 
       t.string   :product_name
-      t.text     :product_added_info
+      t.text     :product_extra_info
       t.monetize :product_supplier_price
       t.monetize :product_resell_item_price
       t.jsonb    :product_details, null: false, default: '{}'

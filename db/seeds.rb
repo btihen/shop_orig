@@ -8,7 +8,16 @@
 
 require "data/users"
 require "data/suppliers"
+require "data/tax_categories"
+require "data/product_categories"
 require "data/products"
+# require "data/supplier_packages"
+# require "data/orders"
+# require "data/order_lines"
+# require "data/stock_items"
+# require "data/registers"
+# require "data/sales"
+# require "data/sale_lines"
 
 
 # 1.times do

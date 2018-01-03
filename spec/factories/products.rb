@@ -21,7 +21,7 @@ FactoryBot.define do
                                   genre: Faker::Book.genre,
                               } }
     product_sell_by_date      { Faker::Date.between(50.days.ago, Date.today + 400.days) }
-    product_added_info        { Faker::Lorem.sentence }
+    product_extra_info        { Faker::Lorem.sentence }
     product_status            { ApplicationHelper::PRODUCT_STATUSES.sample }
     product_supplier_price_cents   { Faker::Commerce.price * 100 }
     # product_supplier_price_currency{ ApplicationHelper::REGISTER_CURRENCIES.sample }

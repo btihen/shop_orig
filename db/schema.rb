@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171229204621) do
+ActiveRecord::Schema.define(version: 20171113134137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20171229204621) do
     t.string "product_material"
     t.string "product_status"
     t.jsonb "product_details", default: "{}", null: false
-    t.text "product_added_info"
+    t.text "product_extra_info"
     t.date "product_sell_by_date"
     t.integer "product_supplier_price_cents", default: 0, null: false
     t.string "product_supplier_price_currency", default: "USD", null: false

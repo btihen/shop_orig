@@ -95,7 +95,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {product_added_info: "Om Mani Padme Hum"} }
+      let(:new_attributes) { {product_extra_info: "Om Mani Padme Hum"} }
 
       it "updates the requested product" do
         product = Product.create! valid_attributes
@@ -103,7 +103,7 @@ RSpec.describe ProductsController, type: :controller do
                               product: new_attributes},
                     session: valid_session
         product.reload
-        expect( product.product_added_info ).to eq( "Om Mani Padme Hum" )
+        expect( product.product_extra_info ).to eq( "Om Mani Padme Hum" )
       end
 
       it "redirects to the product" do
