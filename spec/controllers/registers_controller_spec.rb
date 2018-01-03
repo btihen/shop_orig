@@ -104,7 +104,7 @@ RSpec.describe RegistersController, type: :controller do
                                 register: new_attributes},
                       session: valid_session
         register.reload
-        expect( register.close_amount.cents ).to eq( 12000 )
+        expect( register.register_close_amount.cents ).to eq( 12000 )
       end
 
       it "redirects to the register" do
