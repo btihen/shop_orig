@@ -5,20 +5,24 @@
 Product.destroy_all
 
 product_list = [
-  [ "Migros", "CHF" ],
-  [ "Unknown", "EUR" ],
-  [ "Nepal - Tatiana", "EUR" ],
-  [ "Nepal - Old", "EUR" ],
-  [ "Sonam Khamritsang", "EUR" ],
-  [ "Phoenix Mani Bhadra", "EUR" ],
-  [ "Weyermann", "CHF" ],
-  [ "Berk", "EUR" ],
-  [ "Nepal Old", "EUR" ],
+  [ ],
 ]
 
-product_list.each do |supplier_name, supplier_currency |
+product_list.each do |product_code, product_name, supplier_name |
   Product.create(
                   product_code: product_code,
+                  product_category_name: ProductCategory.
+                            where(product_category_name: product_category_name),
                   product_name: product_name,
+                  product_size: product_size,
+                  product_color: product_color,
+                  product_material: product_material,
+                  product_status: product_status,
+                  product_added_info: product_added_info,
+                  product_sell_by_date: product_sell_by_date,
+                  product_supplier_price: product_supplier_price,
+                  product_resell_item_price: product_resell_item_price,
+                  supplier_name: Supplier.
+                            where(supplier_name: supplier_name).first,
                 )
 end

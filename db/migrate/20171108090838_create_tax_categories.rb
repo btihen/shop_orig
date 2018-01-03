@@ -9,7 +9,8 @@ class CreateTaxCategories < ActiveRecord::Migration[5.1]
       t.timestamps
     end
     add_index :tax_categories, :tax_category_name
-    add_index :tax_categories, [:tax_category_name, :tax_category_rate],
-                                   unique: true
+    add_index :tax_categories, [:tax_category_name, :tax_category_rate, :tax_start_date],
+                                   unique: true,
+                                     name: 'tax_unique_index'
   end
 end
