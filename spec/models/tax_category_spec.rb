@@ -23,13 +23,14 @@ RSpec.describe TaxCategory, type: :model do
       end
     it "detects an invalid_tax_category" do
       expect( invalid_tax_category.valid? ).to be_falsey
+      # pp invalid_tax_category.errors.messages
       # expect( invalid_supplier.errors.details).to eq(
       #             {:supplier_name=>[{:error=>:blank},
       #                               {:error=>:too_short, :count=>2}]})
       expect( invalid_tax_category.errors.messages).to eq(
-      { tax_category_name: ["can't be blank",
-                            "is too short (minimum is 2 characters)"],
-        tax_category_rate: ["is not a number"]
+      { tax_category_name: ["can't be blank", "is too short (minimum is 2 characters)"],
+         tax_category_rate: ["is not a number"],
+         tax_start_date:    ["is not a valid date"]
       } )
     end
   end
