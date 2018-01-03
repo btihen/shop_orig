@@ -16,8 +16,11 @@ env:
 services:
   - postgresql
 
+before_install:
+  # - "rm ${BUNDLE_GEMFILE}.lock"
+  - gem update --system
+
 script:
-  - gem update --system before install
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
   - bundle exec rake
