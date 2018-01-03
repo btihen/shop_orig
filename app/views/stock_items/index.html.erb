@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Status</th>
-      <th>Add date</th>
       <th>Sold date</th>
       <th>Sell price</th>
       <th>Order item</th>
@@ -18,7 +17,6 @@
     <% @stock_items.each do |stock_item| %>
       <tr>
         <td><%= stock_item.stock_item_status %></td>
-        <td><%= stock_item.stock_item_added_datetime %></td>
         <td><%= stock_item.stock_item_sold_datetime %></td>
         <td><%= stock_item.stock_item_sold_price %></td>
         <td><%= stock_item.order_line.id %></td>
