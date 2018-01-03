@@ -1,5 +1,5 @@
 class TaxCategory < ApplicationRecord
-  
+
   has_many :product_categories
 
   validates :tax_category_name, presence: true,
@@ -12,4 +12,5 @@ class TaxCategory < ApplicationRecord
                                   # less_than_or_equal_to: 100000
                                 }
 
+  validates_date  :tax_start_date,    allow_nil: false
 end
