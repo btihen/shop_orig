@@ -10,7 +10,8 @@ end
 ruby '2.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+# gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2.0.beta2'
 # gem 'rails', '~> 5.2.0'
 
 # Use postgresql as the database for Active Record
@@ -61,6 +62,9 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 
 group :development, :test do
+  # nokogiri 1.8.0 has a vulnerability - Use of vulnerable libxml2
+  gem 'nokogiri', '>= 1.8.1'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
@@ -72,8 +76,6 @@ group :development, :test do
 end
 
 group :development do
-  # nokogiri 1.8.0 has a vulnerability - Use of vulnerable libxml2
-  gem 'nokogiri', '>= 1.8.1'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.5'
   gem 'listen', '>= 3.0.5', '< 3.2'
