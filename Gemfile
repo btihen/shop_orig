@@ -44,11 +44,15 @@ gem "cocoon", '~> 1.2'
 # gem 'devise', '~> 4.3'
 
 # gem 'money', '~> 6.9'
-# gem 'money', '~> 6.10'
-gem 'money-rails', '~> 1.9'
-# gem 'money-rails', '~> 1.10'
-gem 'eu_central_bank', '~> 1.1'
-# gem 'eu_central_bank', '~> 1.2'
+gem 'money', '~> 6.10'
+# gem 'money-rails', '~> 1.9'
+# allow usage of newest money rails
+gem 'money-rails', github: 'RubyMoney/money-rails', :ref => "33e28d6"
+# gem 'money-rails', :git => "git://github.com/RubyMoney/money-rails.git", :ref => "33e28d6"
+# gem 'money-rails', :git => "git://github.com/RubyMoney/money-rails.git", :branch => "master"
+
+# gem 'eu_central_bank', '~> 1.1'
+gem 'eu_central_bank', '~> 1.2'
 
 # validates dates
 gem 'validates_timeliness', '~> 4.0'

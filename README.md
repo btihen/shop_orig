@@ -1,6 +1,6 @@
-# README
+[![Build Status](https://travis-ci.org/btihen/shop.svg?branch=master)](https://travis-ci.org/btihen/shop)
 
-https://travis-ci.org/btihen/shop.svg?branch=master
+# README
 
 ## Features
 
