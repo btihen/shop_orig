@@ -41,11 +41,15 @@ gem 'jbuilder', '~> 2.5'
 gem "cocoon", '~> 1.2'
 
 # gem 'devise', '~> 4.3'
+
+# gem 'money', '~> 6.9'
+# gem 'money', '~> 6.10'
 gem 'money-rails', '~> 1.9'
+# gem 'money-rails', '~> 1.10'
 gem 'eu_central_bank', '~> 1.1'
+# gem 'eu_central_bank', '~> 1.2'
 
 # validates dates
-#
 gem 'validates_timeliness', '~> 4.0'
 # rails generate validates_timeliness:install
 
@@ -68,8 +72,10 @@ group :development, :test do
 end
 
 group :development do
+  # nokogiri 1.8.0 has a vulnerability - Use of vulnerable libxml2
+  gem 'nokogiri', '>= 1.8.1'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.5.1'
+  gem 'web-console', '>= 3.5'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
