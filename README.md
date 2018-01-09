@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/btihen/shop.svg?branch=master)](https://travis-ci.org/btihen/shop)
+[![Build Status](https://travis-ci.org/btihen/shop.svg?branch=master)](https://travis-ci.org/btihen/shop)   [![Dependency Status](https://beta.gemnasium.com/badges/github.com/btihen/shop.svg)](https://beta.gemnasium.com/projects/github.com/btihen/shop)  [![Coverage Status](https://coveralls.io/repos/github/btihen/shop/badge.svg?branch=master)](https://coveralls.io/github/btihen/shop?branch=master)  [![Code Quality](https://bettercodehub.com/edge/badge/btihen/shop?branch=master)](https://bettercodehub.com/)
 
 # README
 
