@@ -18,10 +18,6 @@ class SaleLine < ApplicationRecord
   monetize :sale_line_sale_price_cents,
                           allow_nil: false,
                           numericality: false
-                          # numericality: {
-                          #   greater_than_or_equal_to: 0,
-                          #   # less_than_or_equal_to: 100000
-                          # }
   validates  :sale_line_quantity,
                           numericality: { greater_than_or_equal_to: 1 }
   validates  :sale_line_sale_price_cents,

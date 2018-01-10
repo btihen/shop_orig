@@ -1,28 +1,20 @@
 class ProductCategoriesController < ApplicationController
   before_action :set_product_category, only: [:show, :edit, :update, :destroy]
 
-  # GET /product_categories
-  # GET /product_categories.json
   def index
     @product_categories = ProductCategory.all
   end
 
-  # GET /product_categories/1
-  # GET /product_categories/1.json
   def show
   end
 
-  # GET /product_categories/new
   def new
     @product_category = ProductCategory.new
   end
 
-  # GET /product_categories/1/edit
   def edit
   end
 
-  # POST /product_categories
-  # POST /product_categories.json
   def create
     @product_category = ProductCategory.new(product_category_params)
 
@@ -37,8 +29,6 @@ class ProductCategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /product_categories/1
-  # PATCH/PUT /product_categories/1.json
   def update
     respond_to do |format|
       if @product_category.update(product_category_params)
@@ -51,8 +41,6 @@ class ProductCategoriesController < ApplicationController
     end
   end
 
-  # DELETE /product_categories/1
-  # DELETE /product_categories/1.json
   def destroy
     @product_category.destroy
     respond_to do |format|

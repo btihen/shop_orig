@@ -3,7 +3,6 @@ class Product < ApplicationRecord
   belongs_to :supplier
   has_many   :order_lines
   has_many   :supplier_packages
-  # has_many   :included_products, through: :supplier_packages
   has_many   :included_products, through: :supplier_packages, dependent: :destroy do
     def with_package_data
       select('products.*, supplier_packages.created_at AS package_created_at')
@@ -14,14 +13,11 @@ class Product < ApplicationRecord
     end
   end
 
-  before_validation :assign_purchase_currency, on: :create
-  # before_validation :assign_purchase_currency, on: [:create, :update]
-  # before_save       :assign_purchase_currency
+  before_validation :assign_purchase_currency, on: [:create, :update] # :create
 
   monetize  :product_supplier_price_cents,
                             allow_nil: false,
                             numericality: false
-                            # numericality: { greater_than_or_equal_to: 0 }
   monetize  :product_resell_item_price_cents,
                             allow_nil: true,
                             numericality: false
@@ -41,7 +37,6 @@ class Product < ApplicationRecord
                             inclusion: { in: [ApplicationHelper::LOCAL_CURRENCY] }
   validates :product_supplier_price_currency, presence: true,
                             inclusion: { in: ApplicationHelper::SUPPLIER_CURRENCIES }
-                            # inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
   validates_date  :product_sell_by_date, allow_nil: false
 
   def package_created_at

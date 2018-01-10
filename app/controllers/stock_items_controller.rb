@@ -1,28 +1,20 @@
 class StockItemsController < ApplicationController
   before_action :set_stock_item, only: [:show, :edit, :update, :destroy]
 
-  # GET /stock_items
-  # GET /stock_items.json
   def index
     @stock_items = StockItem.all
   end
 
-  # GET /stock_items/1
-  # GET /stock_items/1.json
   def show
   end
 
-  # GET /stock_items/new
   def new
     @stock_item = StockItem.new
   end
 
-  # GET /stock_items/1/edit
   def edit
   end
 
-  # POST /stock_items
-  # POST /stock_items.json
   def create
     @stock_item = StockItem.new(stock_item_params)
 
@@ -37,8 +29,6 @@ class StockItemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /stock_items/1
-  # PATCH/PUT /stock_items/1.json
   def update
     respond_to do |format|
       if @stock_item.update(stock_item_params)
@@ -51,8 +41,6 @@ class StockItemsController < ApplicationController
     end
   end
 
-  # DELETE /stock_items/1
-  # DELETE /stock_items/1.json
   def destroy
     @stock_item.destroy
     respond_to do |format|

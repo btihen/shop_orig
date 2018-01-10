@@ -1,28 +1,20 @@
 class OrderLinesController < ApplicationController
   before_action :set_order_line, only: [:show, :edit, :update, :destroy]
 
-  # GET /order_lines
-  # GET /order_lines.json
   def index
     @order_lines = OrderLine.all
   end
 
-  # GET /order_lines/1
-  # GET /order_lines/1.json
   def show
   end
 
-  # GET /order_lines/new
   def new
     @order_line = OrderLine.new
   end
 
-  # GET /order_lines/1/edit
   def edit
   end
 
-  # POST /order_lines
-  # POST /order_lines.json
   def create
     @order_line = OrderLine.new(order_line_params)
 
@@ -37,8 +29,6 @@ class OrderLinesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /order_lines/1
-  # PATCH/PUT /order_lines/1.json
   def update
     respond_to do |format|
       if @order_line.update(order_line_params)
@@ -51,8 +41,6 @@ class OrderLinesController < ApplicationController
     end
   end
 
-  # DELETE /order_lines/1
-  # DELETE /order_lines/1.json
   def destroy
     @order_line.destroy
     respond_to do |format|
