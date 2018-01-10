@@ -1,5 +1,5 @@
 class Register < ApplicationRecord
-  # belongs_to :user
+
   belongs_to :cashier, class_name: 'User', foreign_key: 'user_id'
 
   has_many   :sales
