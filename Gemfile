@@ -76,8 +76,9 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.8'
   gem 'rspec-rails', '~> 3.7'
 
-  gem 'coveralls', require: false
-  gem 'simplecov', '~> 0.15'
+  gem 'coveralls', '~> 0.8' #, require: false
+  # gem 'simplecov', '~> 0.9'
+  # gem 'simplecov', '~> 0.15'
   gem 'faker', '~> 1.8'
 end
 
