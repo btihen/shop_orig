@@ -1,38 +1,29 @@
-# https://stackoverflow.com/questions/35868894/travis-ci-activerecordnodatabaseerror-fatal-database-jobtrak-test-does-no
-
 language: ruby
-
 branches:
   only:
   - master
   - staging
-
 rvm:
- - 2.5.0
-
+- 2.5.0
 env:
+  matrix:
   - DB=pgsql
-
+  global:
+    secure: hHy7udw3HHJvAFepMxtSFD525EfLClhnLPKWoVBdQwa5eUCHIIME5TsKLyPEVkVazYNM7xJBUmJ1GxJ92776cnQNSoho1c54QQSQhYe06epIJXXNEDcI88HBYiT5RCRMEdXLwF7MBuWgVcUjjKPeBPC2j/u2Gzhq6UykATHsDDH8+Y9DJskSJnUGHz0BRwcLz8/hPZjJG2DG22aLe22JcMaB8+Xzilbja90IE2czBbzZXKI1CgJcApHZoVJrWPlMI3GZnsHcz9Dnbo9CutTmQR/os8vCOp92qJuTP7iOMc+/afjwf8YEmScM4ryHHJis0GLtIY0VZKhfeCJYO8dvGT715xIsqJrPGvEZxaNKf6YrbKVIvBvjEzcakVBdSs7MnJeRvgs0CKueV2KMb6mPIaxQnsIZE9NZWfk3sQA/ub13wb1iyKaWkhLhBPyic9HdHxM0Qg9lnhlDHreSQbZ05S0wS/bo5XJ11KwYx1VzrVmYGVQrLZ/Lp60zuCcDna7EInMp8S+vFsmvUmaJyDamCJS69tjy+yRhw+c6wJ1ziG3GRVDcTm+2c2ElsgIXVoIZ1+a5MfPPDTsKHYcAq3x+MWWBooerGA6k36BlJwMaXSjzLnfOzAIgMZ/iasaloAcHYcdt4CFNsTaqzxBb05ZHqksM8vJXO1+DjzU9fesy/Ec=
 addons:
-  postgresql: "9.5"
-
+  postgresql: '9.5'
 services:
-  - postgresql
-
+- postgresql
 before_install:
-  # - "rm ${BUNDLE_GEMFILE}.lock"
-  - gem update --system
-
+- gem update --system
 before_script:
-  - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database shop_test;' -U postgres
-
+- cp config/database.yml.travis config/database.yml
+- psql -c 'create database shop_test;' -U postgres
 script:
-  - bin/rails db:create RAILS_ENV=test
-  - bin/rails db:migrate RAILS_ENV=test
-  # - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rake
+- bin/rails db:create RAILS_ENV=test
+- bin/rails db:migrate RAILS_ENV=test
+- bundle exec rake db:test:prepare
+- bundle exec rake
 
 # be sure to configure config/database.yml.travis too with:
 # default: &default
