@@ -76,7 +76,13 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.8'
   gem 'rspec-rails', '~> 3.7'
 
-  gem 'coveralls', '~> 0.8' #, require: false
+  # https://medium.com/@ethanryan/testing-your-app-in-the-browser-with-capybara-rails-backend-react-frontend-e409671c4596
+  # gem 'phantomjs'
+  # gem 'poltergeist'
+  # gem 'capybara'
+
+  gem 'codacy-coverage', '~> 1.1' #, :require => false
+  # gem 'coveralls', '~> 0.8' #, require: false
   # gem 'simplecov', '~> 0.9'
   # gem 'simplecov', '~> 0.15'
   gem 'faker', '~> 1.8'
