@@ -82,9 +82,6 @@ group :development, :test do
   # gem 'capybara'
 
   gem 'codacy-coverage', '~> 1.1' #, :require => false
-  # gem 'coveralls', '~> 0.8' #, require: false
-  # gem 'simplecov', '~> 0.9'
-  # gem 'simplecov', '~> 0.15'
   gem 'faker', '~> 1.8'
 end
 
