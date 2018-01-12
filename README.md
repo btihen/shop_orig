@@ -19,11 +19,11 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version - ruby 2.4.2, rails 5.1.4
+* Ruby version - ruby 2.5.0, rails 5.2.0
 
 * System dependencies - see Gemfile - primarily rails-money (handling money and currency conversion), cocoon (nested forms), axlsx (for reporting)
-  - # http://app.forestadmin.com/welcome/btihen@las.ch/install
-    # https://github.com/ForestAdmin/forest-rails
+  - http://app.forestadmin.com/welcome/btihen@las.ch/install
+  - https://github.com/ForestAdmin/forest-rails
   ```ruby
   # Add the liana to your application's Gemfile
   gem 'forest_liana'
@@ -31,7 +31,7 @@ Things you may want to cover:
   bundle install
 
   # Install it with the environment secret
-  rails g forest_liana:install 61b83f7a5284adec9761519ba60e37c6c6b022a1d1280852934560c5ce1b59f2
+  rails g forest_liana:install
 
   # Restart your server
   rails s
