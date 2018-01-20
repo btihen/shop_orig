@@ -27,7 +27,7 @@ class Product < ApplicationRecord
   validates :product_name,  presence: true, # uniqueness: true,
                             length: { minimum: 2 }
   validates :product_status, presence: true,
-                            inclusion: { in: ApplicationHelper::PRODUCT_STATUSES }
+                            inclusion: { in: ApplicationHelper::PRODUCT_STATUS }
   validates :product_supplier_price_cents,
                             numericality: { greater_than_or_equal_to: 0 }
   validates :product_resell_item_price_cents,
