@@ -80,7 +80,9 @@ group :development, :test do
   # https://medium.com/@ethanryan/testing-your-app-in-the-browser-with-capybara-rails-backend-react-frontend-e409671c4596
   # gem 'phantomjs'
   # gem 'poltergeist'
-  # gem 'capybara'
+  # gem 'capybara-webkit'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 
   gem 'codacy-coverage', '~> 1.1' #, :require => false
   gem 'faker', '~> 1.8'
