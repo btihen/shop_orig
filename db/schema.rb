@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171229204621) do
+ActiveRecord::Schema.define(version: 2017_12_29_204621) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "citext"
+  enable_extension "plpgsql"
 
   create_table "order_lines", force: :cascade do |t|
     t.integer "order_line_quantity", null: false
@@ -165,13 +165,13 @@ ActiveRecord::Schema.define(version: 20171229204621) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.citext "username", null: false
-    t.string "full_name", null: false
+    t.citext "user_login_name", null: false
+    t.string "user_full_name", null: false
     t.string "user_role", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_login_name"], name: "index_users_on_user_login_name", unique: true
     t.index ["user_role"], name: "index_users_on_user_role"
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "order_lines", "orders"

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
-    username    { Faker::Internet.user_name }
-    full_name   { Faker::Name.name }
+    user_login_name    { Faker::Internet.user_name }
+    user_full_name   { Faker::Name.name }
     user_role        { ApplicationHelper::USER_ROLES.sample }
     # email { Faker::Internet.email }
     # passwd = Faker::Internet.password(8)
@@ -21,8 +21,8 @@ FactoryBot.define do
     user_role        {'finance'}
   end
   factory :invalid_user, parent: :user do
-    username    { " " }
-    full_name   { "a" }
+    user_login_name    { " " }
+    user_full_name   { "a" }
     user_role        { nil }
   end
 end

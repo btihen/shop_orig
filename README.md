@@ -73,7 +73,7 @@ Things you may want to cover:
 **Code to USED TO CREATE this feature:**
 
 ```ruby
-rails g model Product username:citext oa_id:integer oa_user_role:string oa_record:jsonb oa_sync_date:datetime
+rails g model Product user_login_name:citext oa_id:integer oa_user_role:string oa_record:jsonb oa_sync_date:datetime
 rails g model CreateSupplierPackage product:references included_product:references
 
 class CreateProducts < ActiveRecord::Migration[5.1]

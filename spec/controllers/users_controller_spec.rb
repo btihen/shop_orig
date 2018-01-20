@@ -31,7 +31,7 @@ RSpec.describe UsersController, type: :controller do
   let(:valid_attributes)   { FactoryBot.build(:user).attributes }
 
     let(:invalid_attributes) { FactoryBot.build(:invalid_user).attributes }
-    # let(:invalid_attributes) { FactoryBot.build(:user, username: nil).attributes }
+    # let(:invalid_attributes) { FactoryBot.build(:user, user_login_name: nil).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -93,13 +93,13 @@ RSpec.describe UsersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {full_name: "Bill Tihen"} }
+      let(:new_attributes) { {user_full_name: "Bill Tihen"} }
 
       it "updates the requested user" do
         user = User.create! valid_attributes
         put :update, params: {id: user.to_param, user: new_attributes}, session: valid_session
         user.reload
-        expect( user.full_name).to eq( "Bill Tihen" )
+        expect( user.user_full_name).to eq( "Bill Tihen" )
       end
 
       it "redirects to the user" do

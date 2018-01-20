@@ -12,10 +12,10 @@ user_list = [
   ["volunter", "Volunter", "cashier"],
 ]
 
-user_list.each do |username, full_name, user_role |
+user_list.each do |user_login_name, user_full_name, user_role |
   User.create(
-              username: username,
-              full_name: full_name,
+              user_login_name: user_login_name,
+              user_full_name: user_full_name,
               user_role: user_role
              )
 end
