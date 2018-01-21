@@ -26,10 +26,10 @@ tax_category_list = [
   [ "Reduced-1995", "2.00", "1995-01-01", "1996-09-31" ],
 ]
 
-tax_category_list.each do | tax_category_name, tax_category_rate,
+tax_category_list.each do | tax_category_name, tax_category_info,
                             tax_start_date, tax_end_date |
   TaxCategory.create(
                           tax_category_name: ,
-                          tax_category_rate: ,
+                          tax_category_info: ,
                         )
 end

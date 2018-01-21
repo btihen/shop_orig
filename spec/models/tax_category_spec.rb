@@ -29,7 +29,7 @@ RSpec.describe TaxCategory, type: :model do
       #                               {:error=>:too_short, :count=>2}]})
       expect( invalid_tax_category.errors.messages).to eq(
       { tax_category_name: ["can't be blank", "is too short (minimum is 2 characters)"],
-         # tax_category_rate: ["is not a number"],
+         # tax_category_info: ["is not a number"],
          # tax_start_date:    ["is not a valid date"]
       } )
     end

@@ -12,7 +12,7 @@ RSpec.describe "tax_categories/edit", type: :view do
 
       assert_select "input[name=?]", "tax_category[tax_category_name]"
 
-      assert_select "input[name=?]", "tax_category[tax_category_rate]"
+      assert_select "input[name=?]", "tax_category[tax_category_info]"
     end
   end
 end

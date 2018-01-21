@@ -155,13 +155,11 @@ ActiveRecord::Schema.define(version: 2017_12_29_204621) do
 
   create_table "tax_categories", force: :cascade do |t|
     t.string "tax_category_name", null: false
-    t.decimal "tax_category_rate", null: false
-    t.date "tax_start_date", null: false
-    t.date "tax_end_date"
+    t.jsonb "tax_category_info", default: "{}", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tax_category_name", "tax_category_rate"], name: "index_tax_categories_on_tax_category_name_and_tax_category_rate", unique: true
-    t.index ["tax_category_name"], name: "index_tax_categories_on_tax_category_name"
+    t.index ["tax_category_info"], name: "index_tax_categories_on_tax_category_info", using: :gin
+    t.index ["tax_category_name"], name: "index_tax_categories_on_tax_category_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
