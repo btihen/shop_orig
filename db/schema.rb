@@ -163,12 +163,12 @@ ActiveRecord::Schema.define(version: 2017_12_29_204621) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.citext "user_login_name", null: false
-    t.string "user_full_name", null: false
+    t.citext "user_login", null: false
+    t.string "user_name", null: false
     t.string "user_role", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_login_name"], name: "index_users_on_user_login_name", unique: true
+    t.index ["user_login"], name: "index_users_on_user_login", unique: true
     t.index ["user_role"], name: "index_users_on_user_role"
   end
 

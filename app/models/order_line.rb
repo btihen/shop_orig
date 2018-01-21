@@ -15,7 +15,6 @@ class OrderLine < ApplicationRecord
   validates :order_line_actual_purchase_price_currency,
                           allow_nil: false,
                           inclusion: { in: ApplicationHelper::REGISTER_CURRENCIES }
-
   validates :order_line_quantity,
                           allow_nil: false,
                           numericality: {
