@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tax Rates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tax rate</th>
+      <th>Tax rate start date</th>
+      <th>Tax rate end date</th>
+      <th>Tax category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tax_rates.each do |tax_rate| %>
+      <tr>
+        <td><%= tax_rate.tax_rate %></td>
+        <td><%= tax_rate.tax_start_date %></td>
+        <td><%= tax_rate.tax_end_date %></td>
+        <td><%= tax_rate.tax_category %></td>
+        <td><%= link_to 'Show', tax_rate %></td>
+        <td><%= link_to 'Edit', edit_tax_rate_path(tax_rate) %></td>
+        <td><%= link_to 'Destroy', tax_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tax Rate', new_tax_rate_path %>

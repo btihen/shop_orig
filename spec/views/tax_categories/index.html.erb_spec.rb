@@ -11,6 +11,5 @@ RSpec.describe "tax_categories/index", type: :view do
   it "renders a list of tax_categories" do
     render
     assert_select "tr>td", :text => @tax_categories[0].tax_category_name.to_s, :count => 1
-    # assert_select "tr>td", :text => @tax_categories[0].tax_category_info.to_s, :count => 1
   end
 end

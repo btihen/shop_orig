@@ -155,11 +155,22 @@ ActiveRecord::Schema.define(version: 2017_12_29_204621) do
 
   create_table "tax_categories", force: :cascade do |t|
     t.string "tax_category_name", null: false
-    t.jsonb "tax_category_info", default: "{}", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tax_category_info"], name: "index_tax_categories_on_tax_category_info", using: :gin
     t.index ["tax_category_name"], name: "index_tax_categories_on_tax_category_name", unique: true
+  end
+
+  create_table "tax_rates", force: :cascade do |t|
+    t.decimal "tax_rate"
+    t.date "tax_start_date"
+    t.string "tax_end_date"
+    t.bigint "tax_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tax_category_id"], name: "index_tax_rates_on_tax_category_id"
+    t.index ["tax_end_date"], name: "index_tax_rates_on_tax_end_date"
+    t.index ["tax_rate"], name: "index_tax_rates_on_tax_rate"
+    t.index ["tax_start_date"], name: "index_tax_rates_on_tax_start_date"
   end
 
   create_table "users", force: :cascade do |t|
@@ -185,4 +196,5 @@ ActiveRecord::Schema.define(version: 2017_12_29_204621) do
   add_foreign_key "stock_items", "order_lines"
   add_foreign_key "supplier_packages", "products"
   add_foreign_key "supplier_packages", "products", column: "included_product_id"
+  add_foreign_key "tax_rates", "tax_categories"
 end

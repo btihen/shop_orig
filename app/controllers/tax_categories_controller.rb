@@ -57,10 +57,8 @@ class TaxCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tax_category_params
-      params.require(:tax_category).permit( :tax_category_name,
-                                            :tax_category_info[
-                                              :rate, :start_date, :end_date,
-                                            ]
+      params.require(:tax_category).permit(
+                                            :tax_category_name,
                                           )
     end
 end

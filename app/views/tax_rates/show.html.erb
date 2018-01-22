@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tax rate:</strong>
+  <%= @tax_rate.tax_rate %>
+</p>
+
+<p>
+  <strong>Tax rate start date:</strong>
+  <%= @tax_rate.tax_start_date %>
+</p>
+
+<p>
+  <strong>Tax rate end date:</strong>
+  <%= @tax_rate.tax_end_date %>
+</p>
+
+<p>
+  <strong>Tax category:</strong>
+  <%= @tax_rate.tax_category %>
+</p>
+
+<%= link_to 'Edit', edit_tax_rate_path(@tax_rate) %> |
+<%= link_to 'Back', tax_rates_path %>

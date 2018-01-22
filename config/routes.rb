@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tax_rates
   resources :supplier_packages
   resources :product_categories
   resources :tax_categories
