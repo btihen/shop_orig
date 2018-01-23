@@ -3,8 +3,12 @@ require 'rails_helper'
 RSpec.describe "supplier_packages/index", type: :view do
   before(:each) do
     @supplier_packages = assign(:supplier_packages, [
-                        FactoryBot.create(:supplier_package),
-                        FactoryBot.create(:supplier_package),
+                        FactoryBot.create(:supplier_package,
+                          included_quantity: 3
+                        ),
+                        FactoryBot.create(:supplier_package,
+                          included_quantity: 5
+                        ),
                       ])
     # assign(:supplier_packages, [
     #   SupplierPackage.create!(

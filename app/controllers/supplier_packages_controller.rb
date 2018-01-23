@@ -1,28 +1,20 @@
 class SupplierPackagesController < ApplicationController
   before_action :set_supplier_package, only: [:show, :edit, :update, :destroy]
 
-  # GET /supplier_packages
-  # GET /supplier_packages.json
   def index
     @supplier_packages = SupplierPackage.all
   end
 
-  # GET /supplier_packages/1
-  # GET /supplier_packages/1.json
   def show
   end
 
-  # GET /supplier_packages/new
   def new
     @supplier_package = SupplierPackage.new
   end
 
-  # GET /supplier_packages/1/edit
   def edit
   end
 
-  # POST /supplier_packages
-  # POST /supplier_packages.json
   def create
     @supplier_package = SupplierPackage.new(supplier_package_params)
 
@@ -37,8 +29,6 @@ class SupplierPackagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /supplier_packages/1
-  # PATCH/PUT /supplier_packages/1.json
   def update
     respond_to do |format|
       if @supplier_package.update(supplier_package_params)
@@ -51,8 +41,6 @@ class SupplierPackagesController < ApplicationController
     end
   end
 
-  # DELETE /supplier_packages/1
-  # DELETE /supplier_packages/1.json
   def destroy
     @supplier_package.destroy
     respond_to do |format|

@@ -1,28 +1,20 @@
 class SaleLinesController < ApplicationController
   before_action :set_sale_line, only: [:show, :edit, :update, :destroy]
 
-  # GET /sale_lines
-  # GET /sale_lines.json
   def index
     @sale_lines = SaleLine.all
   end
 
-  # GET /sale_lines/1
-  # GET /sale_lines/1.json
   def show
   end
 
-  # GET /sale_lines/new
   def new
     @sale_line = SaleLine.new
   end
 
-  # GET /sale_lines/1/edit
   def edit
   end
 
-  # POST /sale_lines
-  # POST /sale_lines.json
   def create
     @sale_line = SaleLine.new(sale_line_params)
 
@@ -37,8 +29,6 @@ class SaleLinesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sale_lines/1
-  # PATCH/PUT /sale_lines/1.json
   def update
     respond_to do |format|
       if @sale_line.update(sale_line_params)
@@ -51,8 +41,6 @@ class SaleLinesController < ApplicationController
     end
   end
 
-  # DELETE /sale_lines/1
-  # DELETE /sale_lines/1.json
   def destroy
     @sale_line.destroy
     respond_to do |format|

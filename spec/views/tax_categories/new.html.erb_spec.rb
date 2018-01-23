@@ -5,7 +5,7 @@ RSpec.describe "tax_categories/new", type: :view do
     assign(:tax_category, FactoryBot.build(:tax_category) )
     # assign(:tax_category, TaxCategory.new(
     #   :tax_category_name => "MyString",
-    #   :tax_category_rate => "9.99"
+    #   :tax_category_name => "9.99"
     # ))
   end
 
@@ -16,7 +16,6 @@ RSpec.describe "tax_categories/new", type: :view do
 
       assert_select "input[name=?]", "tax_category[tax_category_name]"
 
-      assert_select "input[name=?]", "tax_category[tax_category_rate]"
     end
   end
 end

@@ -32,11 +32,12 @@ tax_category_list = [
   ],
 ]
 
-tax_category_list.each do | tax_category_name, tax_category_rate |
+tax_category_list.each do | tax_category_name, tax_category_name,
+                            tax_start_date, tax_end_date |
   TaxCategory.create(
-                      tax_category_name: tax_category_name,
-                      tax_category_rate: tax_category_rate
-                    )
+                          tax_category_name: ,
+                          tax_category_name: ,
+                        )
 end
 
 # https://www.estv.admin.ch/estv/en/home/mehrwertsteuer/fachinformationen/steuersaetze/entwicklung-mwst.html

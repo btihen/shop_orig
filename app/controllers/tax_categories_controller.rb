@@ -1,28 +1,20 @@
 class TaxCategoriesController < ApplicationController
   before_action :set_tax_category, only: [:show, :edit, :update, :destroy]
 
-  # GET /tax_categories
-  # GET /tax_categories.json
   def index
     @tax_categories = TaxCategory.all
   end
 
-  # GET /tax_categories/1
-  # GET /tax_categories/1.json
   def show
   end
 
-  # GET /tax_categories/new
   def new
     @tax_category = TaxCategory.new
   end
 
-  # GET /tax_categories/1/edit
   def edit
   end
 
-  # POST /tax_categories
-  # POST /tax_categories.json
   def create
     @tax_category = TaxCategory.new(tax_category_params)
 
@@ -37,8 +29,6 @@ class TaxCategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tax_categories/1
-  # PATCH/PUT /tax_categories/1.json
   def update
     respond_to do |format|
       if @tax_category.update(tax_category_params)
@@ -51,8 +41,6 @@ class TaxCategoriesController < ApplicationController
     end
   end
 
-  # DELETE /tax_categories/1
-  # DELETE /tax_categories/1.json
   def destroy
     @tax_category.destroy
     respond_to do |format|
@@ -69,10 +57,8 @@ class TaxCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tax_category_params
-      params.require(:tax_category).permit( :tax_category_name,
-                                            :tax_category_rate,
-                                            # :tax_start_date,
-                                            # :tax_end_date,
+      params.require(:tax_category).permit(
+                                            :tax_category_name,
                                           )
     end
 end

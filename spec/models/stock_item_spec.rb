@@ -38,7 +38,7 @@ RSpec.describe StockItem, type: :model do
       # expect( invalid_stock_item.errors.details[:stock_item_status][0][:error]).to eq( :inclusion )
       expect( invalid_stock_item.errors.messages).to eq(
                                 { order_line: ["must exist"],
-                                  stock_item_sold_price: [],
+                                  # stock_item_sold_price: [],
                                   stock_item_status: ["is not included in the list"] } )
     end
 

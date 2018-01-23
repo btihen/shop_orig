@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
 
   let!(:user)         { FactoryBot.create(:user) }
   let(:duplicate_user){ FactoryBot.build(:user,
-                                          username:   user.username) }
+                                          user_login:   user.user_login) }
   let(:invalid_user)  { FactoryBot.build(:invalid_user) }
   let(:invalid_nil_user) { FactoryBot.build(:invalid_nil_user) }
   #
@@ -47,31 +47,25 @@ RSpec.describe User, type: :model do
     end
     it "correctly detects duplicate_user" do
       expect( duplicate_user.valid? ).to be_falsey
-      # expect( duplicate_user.errors.details[:username][0][:error]).to eq( :taken )
+      # expect( duplicate_user.errors.details[:user_login][0][:error]).to eq( :taken )
       expect( duplicate_user.errors.messages).to eq(
-                            {:username=>["has already been taken"]} )
+                            {:user_login=>["has already been taken"]} )
     end
     it "correctly builds an invalid user" do
       expect( invalid_user.valid? ).to be_falsey
       # expect( invalid_user.valid? ).not_to be_truthy
-      # pp invalid_user.errors.details
-      expect( invalid_user.errors.details).to eq(
-              { :username=>[{:error=>:blank}, {:error=>:too_short, :count=>2}],
-                :user_email=>[{:error=>:blank}, {:error=>:too_short, :count=>6}],
-                :user_real_name=>[{:error=>:blank}, {:error=>:too_short, :count=>2}],
-                :user_role=>[{:error=>:blank}, {:error=>:inclusion, :value=>" "}]
-              } )
-    end
-    it "correctly builds an invalid nil user" do
-      expect( invalid_nil_user.valid? ).to be_falsey
-      # expect( invalid_nil_user.valid? ).not_to be_truthy
-      # pp invalid_nil_user.errors.details
-      expect( invalid_nil_user.errors.details).to eq(
-              { :username=>[{:error=>:blank}, {:error=>:too_short, :count=>2}],
-                :user_email=>[{:error=>:blank}, {:error=>:too_short, :count=>6}],
-                :user_real_name=>[{:error=>:blank}, {:error=>:too_short, :count=>2}],
-                :user_role=>[{:error=>:blank}, {:error=>:inclusion, :value=>nil}]
-              } )
+      expect( invalid_user.errors.details[:user_login]).to eq(
+              [{:error=>:blank}, {:error=>:too_short, :count=>2}] )
+      expect( invalid_user.errors.details[:user_name]).to eq(
+              [{:error=>:too_short, :count=>2}] )
+      expect( invalid_user.errors.details[:user_role]).to eq(
+              [{:error=>:blank}, {:error=>:inclusion, :value=>nil}] )
+      expect( invalid_user.errors.messages[:user_login]).to eq(
+              ["can't be blank", "is too short (minimum is 2 characters)"] )
+      expect( invalid_user.errors.messages[:user_name]).to eq(
+              ["is too short (minimum is 2 characters)"] )
+      expect( invalid_user.errors.messages[:user_role]).to eq(
+              ["can't be blank", "is not included in the list"] )
     end
   end
 

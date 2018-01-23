@@ -1,6 +1,6 @@
-# README
+[![Build Status](https://travis-ci.org/btihen/shop.svg?branch=master)](https://travis-ci.org/btihen/shop)   [![Dependency Status](https://beta.gemnasium.com/badges/github.com/btihen/shop.svg)](https://beta.gemnasium.com/projects/github.com/btihen/shop)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/026e7d9cb8ba4c48a75aa465e8c69020)](https://www.codacy.com/app/btihen/shop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=btihen/shop&amp;utm_campaign=Badge_Grade)  [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/026e7d9cb8ba4c48a75aa465e8c69020)](https://www.codacy.com/app/btihen/shop?utm_source=github.com&utm_medium=referral&utm_content=btihen/shop&utm_campaign=Badge_Coverage)  [![Code Quality](https://bettercodehub.com/edge/badge/btihen/shop?branch=master)](https://bettercodehub.com/)
 
-https://travis-ci.org/btihen/shop.svg?branch=master
+# README
 
 ## Features
 
@@ -19,11 +19,11 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version - ruby 2.4.2, rails 5.1.4
+* Ruby version - ruby 2.5.0, rails 5.2.0
 
 * System dependencies - see Gemfile - primarily rails-money (handling money and currency conversion), cocoon (nested forms), axlsx (for reporting)
-  - # http://app.forestadmin.com/welcome/btihen@las.ch/install
-    # https://github.com/ForestAdmin/forest-rails
+  - http://app.forestadmin.com/welcome/btihen@las.ch/install
+  - https://github.com/ForestAdmin/forest-rails
   ```ruby
   # Add the liana to your application's Gemfile
   gem 'forest_liana'
@@ -31,7 +31,7 @@ Things you may want to cover:
   bundle install
 
   # Install it with the environment secret
-  rails g forest_liana:install 61b83f7a5284adec9761519ba60e37c6c6b022a1d1280852934560c5ce1b59f2
+  rails g forest_liana:install
 
   # Restart your server
   rails s
@@ -73,7 +73,7 @@ Things you may want to cover:
 **Code to USED TO CREATE this feature:**
 
 ```ruby
-rails g model Product username:citext oa_id:integer oa_user_role:string oa_record:jsonb oa_sync_date:datetime
+rails g model Product user_login:citext oa_id:integer oa_user_role:string oa_record:jsonb oa_sync_date:datetime
 rails g model CreateSupplierPackage product:references included_product:references
 
 class CreateProducts < ActiveRecord::Migration[5.1]

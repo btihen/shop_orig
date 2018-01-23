@@ -9,6 +9,6 @@ RSpec.describe "orders/show", type: :view do
     render
     expect(rendered).to match(/#{@order.order_status}/)
     expect(rendered).to match(/#{CGI.escapeHTML(@order.order_reason)}/)
-    expect(rendered).to match(/#{CGI.escapeHTML(@order.sourcer.user_real_name)}/)
+    expect(rendered).to match(/#{CGI.escapeHTML(@order.sourcer.user_name)}/)
   end
 end

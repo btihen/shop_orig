@@ -12,6 +12,8 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+.coveralls.yml
+.rbenv-vars
 
 /node_modules
 /yarn-error.log
@@ -20,3 +22,6 @@
 .rbenv-vars
 
 coverage
+
+# Ignore master key for decrypting credentials and more.
+#/config/master.key

@@ -41,7 +41,7 @@ RSpec.describe SupplierPackagesController, type: :controller do
     it "returns a success response" do
       supplier_package = SupplierPackage.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -50,14 +50,14 @@ RSpec.describe SupplierPackagesController, type: :controller do
       supplier_package = SupplierPackage.create! valid_attributes
       get :show,  params: { id: supplier_package.to_param },
                   session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -66,7 +66,7 @@ RSpec.describe SupplierPackagesController, type: :controller do
       supplier_package = SupplierPackage.create! valid_attributes
       get :edit,  params: { id: supplier_package.to_param },
                   session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -90,7 +90,7 @@ RSpec.describe SupplierPackagesController, type: :controller do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: { supplier_package: invalid_attributes },
                       session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
@@ -123,7 +123,7 @@ RSpec.describe SupplierPackagesController, type: :controller do
         put :update,  params: { id: supplier_package.to_param,
                                 supplier_package: invalid_attributes},
                       session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end

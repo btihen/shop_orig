@@ -1,53 +1,29 @@
-# https://stackoverflow.com/questions/35868894/travis-ci-activerecordnodatabaseerror-fatal-database-jobtrak-test-does-no
-
 language: ruby
-
 branches:
   only:
   - master
   - staging
-
 rvm:
- - 2.5.0
-
+- 2.5.0
 env:
+  matrix:
   - DB=pgsql
-
+  global:
+  # travis encrypt travis encrypt CODACY_PROJECT_TOKEN=$CODACY_PROJECT_TOKEN --add
+  - secure: hHy7udw3HHJvAFepMxtSFD525EfLClhnLPKWoVBdQwa5eUCHIIME5TsKLyPEVkVazYNM7xJBUmJ1GxJ92776cnQNSoho1c54QQSQhYe06epIJXXNEDcI88HBYiT5RCRMEdXLwF7MBuWgVcUjjKPeBPC2j/u2Gzhq6UykATHsDDH8+Y9DJskSJnUGHz0BRwcLz8/hPZjJG2DG22aLe22JcMaB8+Xzilbja90IE2czBbzZXKI1CgJcApHZoVJrWPlMI3GZnsHcz9Dnbo9CutTmQR/os8vCOp92qJuTP7iOMc+/afjwf8YEmScM4ryHHJis0GLtIY0VZKhfeCJYO8dvGT715xIsqJrPGvEZxaNKf6YrbKVIvBvjEzcakVBdSs7MnJeRvgs0CKueV2KMb6mPIaxQnsIZE9NZWfk3sQA/ub13wb1iyKaWkhLhBPyic9HdHxM0Qg9lnhlDHreSQbZ05S0wS/bo5XJ11KwYx1VzrVmYGVQrLZ/Lp60zuCcDna7EInMp8S+vFsmvUmaJyDamCJS69tjy+yRhw+c6wJ1ziG3GRVDcTm+2c2ElsgIXVoIZ1+a5MfPPDTsKHYcAq3x+MWWBooerGA6k36BlJwMaXSjzLnfOzAIgMZ/iasaloAcHYcdt4CFNsTaqzxBb05ZHqksM8vJXO1+DjzU9fesy/Ec=
+  # travis encrypt travis encrypt RAILS_MASTER_KEY=RAILS_MASTER_KEY --add=$ --add
+  - secure: A7Ny38BCB7KMMv0yx37CCuz+4VfoVnjEFeSZF7AeiWEr8Db7Fj3DzuFFq5O9t28+1+watyxhvxvAaOeRO4OxY1iWQ06stPATyW2zCU/csQ+B2VGMhg2nK7w8rvHIpsvZ6Agr+oSLvMoj0s6v7+f6xhcYujlhzGswaoZh2xH/8c7NRXcndA1wRHKbpDVm683k7q+NqwUM7/razdG0RL8yjnIVwxE1xYqd1AjQO10YZoXMDjYUMut5vhashmhqErIE+KLE+AG1YKtOsXj/6/nwkSHTpJzS1FR8slIHxttQIPl18I9caLt3+8DIn5p4ynwG0ztzW8Ic2oInFGLtOabwD3dU9ik6LnM/sLFzUo3L9Q1SmjRclT+KOwKyrcdRnvGVfWA+xuOtcBt7cELjfVjU3UPGPSercs04XiBADQWV4FXj8iKMixGGaQ+w2ba7D7u8tAOXEGqhQgZNa2fd6UKia1n2tTAIUZ8XTNJBpmD9/wUauqcQgDgFM3arvTy3Y5lVzesdaIjcnJ9QidVTw912/K1Ri/0ihyWywgso5juXe2rtJVP9aWmO+dr+a/XP5J2jktU5Xsb7+PMWY9TTC70VuN7j9MwPZXxkMiYG/qHbu2iws6rOCuGQUpKv1NNn3GMidfxBPHjInvgq/x3OPXkDMK3ZlCdqPEGBXzz4O7pwiJI=
 addons:
-  postgresql: "9.6"
-
+  postgresql: '9.5'
 services:
-  - postgresql
-
+- postgresql
 before_install:
-  # - "rm ${BUNDLE_GEMFILE}.lock"
-  - gem update --system
-
+- gem update --system
 before_script:
-  - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database shop_test;' -U postgres
-
+- cp config/database.yml.travis config/database.yml
+- psql -c 'create database shop_test;' -U postgres
 script:
-  - bin/rails db:create RAILS_ENV=test
-  - bin/rails db:migrate RAILS_ENV=test
-  # - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rake
-
-# be sure to configure config/database.yml.travis too with:
-# default: &default
-#   adapter: postgresql
-#   encoding: unicode
-#   pool: 5
-#
-# development:
-#   <<: *default
-#   database: shop_development
-#
-# test:
-#   <<: *default
-#   database: shop_test
-#
-# production:
-#   <<: *default
-#   database: shop_developement
+- bin/rails db:create RAILS_ENV=test
+- bin/rails db:migrate RAILS_ENV=test
+- bundle exec rake db:test:prepare
+- bundle exec rake

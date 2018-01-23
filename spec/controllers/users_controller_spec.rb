@@ -31,7 +31,7 @@ RSpec.describe UsersController, type: :controller do
   let(:valid_attributes)   { FactoryBot.build(:user).attributes }
 
     let(:invalid_attributes) { FactoryBot.build(:invalid_user).attributes }
-    # let(:invalid_attributes) { FactoryBot.build(:user, username: nil).attributes }
+    # let(:invalid_attributes) { FactoryBot.build(:user, user_login: nil).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -42,7 +42,7 @@ RSpec.describe UsersController, type: :controller do
     it "returns a success response" do
       user = User.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -50,14 +50,14 @@ RSpec.describe UsersController, type: :controller do
     it "returns a success response" do
       user = User.create! valid_attributes
       get :show, params: {id: user.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe UsersController, type: :controller do
     it "returns a success response" do
       user = User.create! valid_attributes
       get :edit, params: {id: user.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -86,20 +86,20 @@ RSpec.describe UsersController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: {user: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { {user_real_name: "Bill Tihen"} }
+      let(:new_attributes) { {user_name: "Bill Tihen"} }
 
       it "updates the requested user" do
         user = User.create! valid_attributes
         put :update, params: {id: user.to_param, user: new_attributes}, session: valid_session
         user.reload
-        expect( user.user_real_name).to eq( "Bill Tihen" )
+        expect( user.user_name).to eq( "Bill Tihen" )
       end
 
       it "redirects to the user" do
@@ -113,7 +113,7 @@ RSpec.describe UsersController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         user = User.create! valid_attributes
         put :update, params: {id: user.to_param, user: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
