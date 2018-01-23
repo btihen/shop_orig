@@ -28,13 +28,9 @@ RSpec.describe TaxRatesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # TaxRate. As you add validations to TaxRate, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { FactoryBot.build(:tax_rate).attributes }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { FactoryBot.build(:invalid_tax_rate).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -45,7 +41,7 @@ RSpec.describe TaxRatesController, type: :controller do
     it "returns a success response" do
       tax_rate = TaxRate.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -53,14 +49,14 @@ RSpec.describe TaxRatesController, type: :controller do
     it "returns a success response" do
       tax_rate = TaxRate.create! valid_attributes
       get :show, params: {id: tax_rate.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -68,7 +64,7 @@ RSpec.describe TaxRatesController, type: :controller do
     it "returns a success response" do
       tax_rate = TaxRate.create! valid_attributes
       get :edit, params: {id: tax_rate.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -89,22 +85,20 @@ RSpec.describe TaxRatesController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: {tax_rate: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { { tax_rate: 9.98 } }
 
       it "updates the requested tax_rate" do
         tax_rate = TaxRate.create! valid_attributes
         put :update, params: {id: tax_rate.to_param, tax_rate: new_attributes}, session: valid_session
         tax_rate.reload
-        skip("Add assertions for updated state")
+        expect( tax_rate.tax_rate ).to eq( 9.98 )
       end
 
       it "redirects to the tax_rate" do
@@ -118,7 +112,7 @@ RSpec.describe TaxRatesController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         tax_rate = TaxRate.create! valid_attributes
         put :update, params: {id: tax_rate.to_param, tax_rate: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end

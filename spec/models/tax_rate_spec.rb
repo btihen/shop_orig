@@ -17,7 +17,7 @@ RSpec.describe TaxRate, type: :model do
       end
       it "detects an invalid_tax_rate" do
         expect( invalid_tax_rate.valid? ).to be_falsey
-        pp invalid_tax_rate.errors.messages
+        # pp invalid_tax_rate.errors.messages
         expect( invalid_tax_rate.errors.messages).to eq(
                 { tax_rate:          ["is not a number"],
                   tax_start_date:    ["is not a valid date"]
@@ -25,7 +25,7 @@ RSpec.describe TaxRate, type: :model do
       end
       it "detects an invalid_neg_tax_rate" do
         expect( invalid_neg_tax_rate.valid? ).to be_falsey
-        pp invalid_neg_tax_rate.errors.messages
+        # pp invalid_neg_tax_rate.errors.messages
         expect( invalid_neg_tax_rate.errors.messages).to eq(
                 { tax_rate: ["must be greater than or equal to 0"] }
               )
