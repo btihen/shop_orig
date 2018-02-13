@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_12_29_204621) do
+ActiveRecord::Schema.define(version: 2017_11_13_134137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(version: 2017_12_29_204621) do
     t.string "product_status"
     t.jsonb "product_details", default: "{}", null: false
     t.text "product_extra_info"
+    t.date "product_sell_by_date"
+    t.integer "product_supplier_price_cents", default: 0, null: false
+    t.string "product_supplier_price_currency", default: "USD", null: false
+    t.integer "product_resell_item_price_cents", default: 0, null: false
+    t.string "product_resell_item_price_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "supplier_id"

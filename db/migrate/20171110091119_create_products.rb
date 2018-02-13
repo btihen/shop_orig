@@ -10,9 +10,9 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.string   :product_status
       t.jsonb    :product_details,            null: false, default: '{}'
       t.text     :product_extra_info
-      # t.date     :product_sell_by_date
-      # t.monetize :product_supplier_price,     null: false
-      # t.monetize :product_resell_item_price,  null: false
+      t.date     :product_sell_by_date
+      t.monetize :product_supplier_price,     null: false
+      t.monetize :product_resell_item_price,  null: false
 
       t.timestamps
     end

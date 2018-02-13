@@ -13,7 +13,7 @@ class Product < ApplicationRecord
     end
   end
 
-  before_validation :assign_purchase_currency, on: [:create, :update] # :create
+  # before_validation :assign_purchase_currency, on: [:create, :update] # :create
 
   monetize  :product_supplier_price_cents,
                             allow_nil: false,
@@ -38,6 +38,16 @@ class Product < ApplicationRecord
   validates :product_supplier_price_currency, presence: true,
                             inclusion: { in: ApplicationHelper::SUPPLIER_CURRENCIES }
   validates_date  :product_sell_by_date, allow_nil: false
+
+  # def assign_purchase_currency
+  #   unless supplier_id.nil?
+  #     supplier = Supplier.find(supplier_id)
+  #     self.product_supplier_price_currency = supplier.supplier_currency
+  #   end
+  #
+  #   self.product_resell_item_price_currency  = ApplicationHelper::LOCAL_CURRENCY
+  #   self.product_resell_item_price_cents   ||= product_supplier_price_cents * 2
+  # end
 
   def package_created_at
     Time.zone.parse(self[:package_created_at].to_s) if self[:package_created_at]
