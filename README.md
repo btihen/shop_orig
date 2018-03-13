@@ -2,6 +2,9 @@
 
 # README
 
+## Variants Idea
+https://www.pluralsight.com/guides/ruby-ruby-on-rails/ruby-on-rails-nested-attributes
+
 ## Features
 
 * allows supplier management
